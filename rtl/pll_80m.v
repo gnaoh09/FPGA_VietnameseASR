@@ -25,6 +25,8 @@ module pll_80m #(
             always #7.143 sim_clk80 = ~sim_clk80;
         end else if (ENG_MHZ == 60) begin : gen_eng_60
             always #8.333 sim_clk80 = ~sim_clk80;
+        end else if (ENG_MHZ == 50) begin : gen_eng_50
+            always #10.000 sim_clk80 = ~sim_clk80;
         end else begin : gen_eng_80
             always #6.25 sim_clk80 = ~sim_clk80;
         end
@@ -56,8 +58,9 @@ module pll_80m #(
     localparam integer ENG_MUL =
         (ENG_MHZ == 90) ? 9 :
         (ENG_MHZ == 70) ? 7 :
-        (ENG_MHZ == 60) ? 6 : 8;
-    localparam integer ENG_DIV = 5;
+        (ENG_MHZ == 60) ? 6 :
+        (ENG_MHZ == 50) ? 1 : 8;
+    localparam integer ENG_DIV = (ENG_MHZ == 50) ? 1 : 5;
 
     localparam integer SDRAM_MUL =
         (SDRAM_MHZ == 120) ? 12 :
@@ -69,6 +72,7 @@ module pll_80m #(
         (SDRAM_MHZ == 75)  ? 3  :
         (SDRAM_MHZ == 70)  ? 7  :
         (SDRAM_MHZ == 65)  ? 13 :
+        (SDRAM_MHZ == 64)  ? 32 :
         (SDRAM_MHZ == 60)  ? 6  :
         (SDRAM_MHZ == 50)  ? 1  :
         (SDRAM_MHZ == 40)  ? 4  : 8;
@@ -78,6 +82,7 @@ module pll_80m #(
         (SDRAM_MHZ == 88)  ? 25 :
         (SDRAM_MHZ == 75)  ? 2  :
         (SDRAM_MHZ == 65)  ? 10 :
+        (SDRAM_MHZ == 64)  ? 25 :
         (SDRAM_MHZ == 50)  ? 1  : 5;
     localparam SDRAM_PHASE =
         (SDRAM_MHZ >= 110) ? "-2500" :
