@@ -1,0 +1,413 @@
+{
+  "c1_heldout_extrapolation": [
+    {
+      "shape": "128->384->128",
+      "d_model": 128,
+      "d_ff": 384,
+      "t_tile": 4,
+      "l1_base": 0,
+      "l2_base": 1728,
+      "l1_kchunks": 1,
+      "l2_kchunks": 1,
+      "pred_total_cyc": 26869.8
+    },
+    {
+      "shape": "384->1152->384",
+      "d_model": 384,
+      "d_ff": 1152,
+      "t_tile": 4,
+      "l1_base": 3328,
+      "l2_base": 17728,
+      "l1_kchunks": 1,
+      "l2_kchunks": 3,
+      "pred_total_cyc": 225466.73
+    },
+    {
+      "shape": "512->1280->512",
+      "d_model": 512,
+      "d_ff": 1280,
+      "t_tile": 4,
+      "l1_base": 32128,
+      "l2_base": 53248,
+      "l1_kchunks": 1,
+      "l2_kchunks": 4,
+      "pred_total_cyc": 332675.97
+    }
+  ],
+  "c2_t8_new_clocks": [
+    {
+      "shape": "192->384->192",
+      "d_model": 192,
+      "d_ff": 384,
+      "t_tile": 8,
+      "eng_mhz": 80,
+      "sdram_mhz": 65,
+      "l1_base": 0,
+      "l2_base": 2496,
+      "pred_total_cyc": 77424.62
+    },
+    {
+      "shape": "256->576->256",
+      "d_model": 256,
+      "d_ff": 576,
+      "t_tile": 8,
+      "eng_mhz": 80,
+      "sdram_mhz": 65,
+      "l1_base": 4896,
+      "l2_base": 9792,
+      "pred_total_cyc": 151280.31
+    },
+    {
+      "shape": "256->960->256",
+      "d_model": 256,
+      "d_ff": 960,
+      "t_tile": 8,
+      "eng_mhz": 80,
+      "sdram_mhz": 65,
+      "l1_base": 14656,
+      "l2_base": 22816,
+      "pred_total_cyc": 250902.0
+    },
+    {
+      "shape": "512->1536->512",
+      "d_model": 512,
+      "d_ff": 1536,
+      "t_tile": 8,
+      "eng_mhz": 80,
+      "sdram_mhz": 65,
+      "l1_base": 30752,
+      "l2_base": 56096,
+      "pred_total_cyc": 794055.22
+    },
+    {
+      "shape": "192->384->192",
+      "d_model": 192,
+      "d_ff": 384,
+      "t_tile": 8,
+      "eng_mhz": 80,
+      "sdram_mhz": 75,
+      "l1_base": 0,
+      "l2_base": 2496,
+      "pred_total_cyc": 76991.97
+    },
+    {
+      "shape": "256->576->256",
+      "d_model": 256,
+      "d_ff": 576,
+      "t_tile": 8,
+      "eng_mhz": 80,
+      "sdram_mhz": 75,
+      "l1_base": 4896,
+      "l2_base": 9792,
+      "pred_total_cyc": 150871.35
+    },
+    {
+      "shape": "256->960->256",
+      "d_model": 256,
+      "d_ff": 960,
+      "t_tile": 8,
+      "eng_mhz": 80,
+      "sdram_mhz": 75,
+      "l1_base": 14656,
+      "l2_base": 22816,
+      "pred_total_cyc": 250357.93
+    },
+    {
+      "shape": "512->1536->512",
+      "d_model": 512,
+      "d_ff": 1536,
+      "t_tile": 8,
+      "eng_mhz": 80,
+      "sdram_mhz": 75,
+      "l1_base": 30752,
+      "l2_base": 56096,
+      "pred_total_cyc": 793307.33
+    },
+    {
+      "shape": "192->384->192",
+      "d_model": 192,
+      "d_ff": 384,
+      "t_tile": 8,
+      "eng_mhz": 80,
+      "sdram_mhz": 110,
+      "l1_base": 0,
+      "l2_base": 2496,
+      "pred_total_cyc": 76101.55
+    },
+    {
+      "shape": "256->576->256",
+      "d_model": 256,
+      "d_ff": 576,
+      "t_tile": 8,
+      "eng_mhz": 80,
+      "sdram_mhz": 110,
+      "l1_base": 4896,
+      "l2_base": 9792,
+      "pred_total_cyc": 150029.67
+    },
+    {
+      "shape": "256->960->256",
+      "d_model": 256,
+      "d_ff": 960,
+      "t_tile": 8,
+      "eng_mhz": 80,
+      "sdram_mhz": 110,
+      "l1_base": 14656,
+      "l2_base": 22816,
+      "pred_total_cyc": 249238.2
+    },
+    {
+      "shape": "512->1536->512",
+      "d_model": 512,
+      "d_ff": 1536,
+      "t_tile": 8,
+      "eng_mhz": 80,
+      "sdram_mhz": 110,
+      "l1_base": 30752,
+      "l2_base": 56096,
+      "pred_total_cyc": 791768.12
+    }
+  ],
+  "c3_offset_192_512_90mhz": [
+    {
+      "offset": 0,
+      "l1_base": 16384,
+      "l2_base": 32768,
+      "pred_total_cyc": 53183.52
+    },
+    {
+      "offset": 1,
+      "l1_base": 16385,
+      "l2_base": 32769,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 2,
+      "l1_base": 16386,
+      "l2_base": 32770,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 3,
+      "l1_base": 16387,
+      "l2_base": 32771,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 4,
+      "l1_base": 16388,
+      "l2_base": 32772,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 5,
+      "l1_base": 16389,
+      "l2_base": 32773,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 6,
+      "l1_base": 16390,
+      "l2_base": 32774,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 7,
+      "l1_base": 16391,
+      "l2_base": 32775,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 8,
+      "l1_base": 16392,
+      "l2_base": 32776,
+      "pred_total_cyc": 53183.52
+    },
+    {
+      "offset": 9,
+      "l1_base": 16393,
+      "l2_base": 32777,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 10,
+      "l1_base": 16394,
+      "l2_base": 32778,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 11,
+      "l1_base": 16395,
+      "l2_base": 32779,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 12,
+      "l1_base": 16396,
+      "l2_base": 32780,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 13,
+      "l1_base": 16397,
+      "l2_base": 32781,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 14,
+      "l1_base": 16398,
+      "l2_base": 32782,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 15,
+      "l1_base": 16399,
+      "l2_base": 32783,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 16,
+      "l1_base": 16400,
+      "l2_base": 32784,
+      "pred_total_cyc": 53183.52
+    },
+    {
+      "offset": 17,
+      "l1_base": 16401,
+      "l2_base": 32785,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 18,
+      "l1_base": 16402,
+      "l2_base": 32786,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 19,
+      "l1_base": 16403,
+      "l2_base": 32787,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 20,
+      "l1_base": 16404,
+      "l2_base": 32788,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 21,
+      "l1_base": 16405,
+      "l2_base": 32789,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 22,
+      "l1_base": 16406,
+      "l2_base": 32790,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 23,
+      "l1_base": 16407,
+      "l2_base": 32791,
+      "pred_total_cyc": 53283.71
+    },
+    {
+      "offset": 24,
+      "l1_base": 16408,
+      "l2_base": 32792,
+      "pred_total_cyc": 53183.52
+    },
+    {
+      "offset": 25,
+      "l1_base": 16409,
+      "l2_base": 32793,
+      "pred_total_cyc": 53296.23
+    },
+    {
+      "offset": 26,
+      "l1_base": 16410,
+      "l2_base": 32794,
+      "pred_total_cyc": 53296.23
+    },
+    {
+      "offset": 27,
+      "l1_base": 16411,
+      "l2_base": 32795,
+      "pred_total_cyc": 53296.23
+    },
+    {
+      "offset": 28,
+      "l1_base": 16412,
+      "l2_base": 32796,
+      "pred_total_cyc": 53296.23
+    },
+    {
+      "offset": 29,
+      "l1_base": 16413,
+      "l2_base": 32797,
+      "pred_total_cyc": 53296.23
+    },
+    {
+      "offset": 30,
+      "l1_base": 16414,
+      "l2_base": 32798,
+      "pred_total_cyc": 53296.23
+    },
+    {
+      "offset": 31,
+      "l1_base": 16415,
+      "l2_base": 32799,
+      "pred_total_cyc": 53296.23
+    }
+  ],
+  "c4_t8_dse_192_384": {
+    "ref_110mhz_wb": 76101.55,
+    "ref_110mhz_bist": 74196.0,
+    "wb_selected_mhz_1pct": 80,
+    "bist_selected_mhz_1pct": 50,
+    "table": [
+      {
+        "sdram_mhz": 40,
+        "wb_pred_cyc": 89634.11,
+        "bist_pred_cyc": 83336.17
+      },
+      {
+        "sdram_mhz": 50,
+        "wb_pred_cyc": 78401.72,
+        "bist_pred_cyc": 74196.0
+      },
+      {
+        "sdram_mhz": 60,
+        "wb_pred_cyc": 77695.53,
+        "bist_pred_cyc": 74196.0
+      },
+      {
+        "sdram_mhz": 65,
+        "wb_pred_cyc": 77424.62,
+        "bist_pred_cyc": 74196.0
+      },
+      {
+        "sdram_mhz": 75,
+        "wb_pred_cyc": 76991.97,
+        "bist_pred_cyc": 74196.0
+      },
+      {
+        "sdram_mhz": 80,
+        "wb_pred_cyc": 76816.49,
+        "bist_pred_cyc": 74196.0
+      },
+      {
+        "sdram_mhz": 100,
+        "wb_pred_cyc": 76291.03,
+        "bist_pred_cyc": 74196.0
+      },
+      {
+        "sdram_mhz": 110,
+        "wb_pred_cyc": 76101.55,
+        "bist_pred_cyc": 74196.0
+      }
+    ]
+  }
+}
