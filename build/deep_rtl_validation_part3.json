@@ -1,0 +1,508 @@
+{
+  "device": "EP4CE10E22C8N",
+  "t8_freq_sweep": [
+    {
+      "mhz": 40,
+      "eng_meas": 80.0,
+      "sd_meas": 40.001,
+      "bist_rd_MBps": 74.77,
+      "shape": "ffn_192_384_192",
+      "meas_tot_mean": 89638.0,
+      "meas_tot_sd": 32.4,
+      "meas_stall_mean": 15442.0,
+      "meas_stall_pct": 17.23,
+      "pred_tot": 89635,
+      "pred_stall": 15439,
+      "err_pct": 0.00335
+    },
+    {
+      "mhz": 40,
+      "eng_meas": 80.0,
+      "sd_meas": 40.001,
+      "bist_rd_MBps": 74.77,
+      "shape": "ffn_256_576_256",
+      "meas_tot_mean": 173695.9,
+      "meas_tot_sd": 11.96,
+      "meas_stall_mean": 25467.9,
+      "meas_stall_pct": 14.66,
+      "pred_tot": 173697,
+      "pred_stall": 25469,
+      "err_pct": 0.00063
+    },
+    {
+      "mhz": 40,
+      "eng_meas": 80.0,
+      "sd_meas": 40.001,
+      "bist_rd_MBps": 74.77,
+      "shape": "ffn_256_960_256",
+      "meas_tot_mean": 284492.5,
+      "meas_tot_sd": 18.47,
+      "meas_stall_mean": 37648.5,
+      "meas_stall_pct": 13.23,
+      "pred_tot": 284481,
+      "pred_stall": 37637,
+      "err_pct": 0.00404
+    },
+    {
+      "mhz": 40,
+      "eng_meas": 80.0,
+      "sd_meas": 40.001,
+      "bist_rd_MBps": 74.77,
+      "shape": "ffn_512_1536_512",
+      "meas_tot_mean": 882269.3,
+      "meas_tot_sd": 15.11,
+      "meas_stall_mean": 93789.3,
+      "meas_stall_pct": 10.63,
+      "pred_tot": 882196,
+      "pred_stall": 93716,
+      "err_pct": 0.00831
+    },
+    {
+      "mhz": 50,
+      "eng_meas": 79.986,
+      "sd_meas": 50.0,
+      "bist_rd_MBps": 93.73,
+      "shape": "ffn_192_384_192",
+      "meas_tot_mean": 78400.5,
+      "meas_tot_sd": 5.42,
+      "meas_stall_mean": 4204.5,
+      "meas_stall_pct": 5.36,
+      "pred_tot": 78401,
+      "pred_stall": 4205,
+      "err_pct": 0.00064
+    },
+    {
+      "mhz": 50,
+      "eng_meas": 79.986,
+      "sd_meas": 50.0,
+      "bist_rd_MBps": 93.73,
+      "shape": "ffn_256_576_256",
+      "meas_tot_mean": 152204.4,
+      "meas_tot_sd": 7.4,
+      "meas_stall_mean": 3976.4,
+      "meas_stall_pct": 2.61,
+      "pred_tot": 152204,
+      "pred_stall": 3976,
+      "err_pct": 0.00026
+    },
+    {
+      "mhz": 50,
+      "eng_meas": 79.986,
+      "sd_meas": 50.0,
+      "bist_rd_MBps": 93.73,
+      "shape": "ffn_256_960_256",
+      "meas_tot_mean": 252133.9,
+      "meas_tot_sd": 6.9,
+      "meas_stall_mean": 5289.9,
+      "meas_stall_pct": 2.1,
+      "pred_tot": 252130,
+      "pred_stall": 5286,
+      "err_pct": 0.00155
+    },
+    {
+      "mhz": 50,
+      "eng_meas": 79.986,
+      "sd_meas": 50.0,
+      "bist_rd_MBps": 93.73,
+      "shape": "ffn_512_1536_512",
+      "meas_tot_mean": 795744.3,
+      "meas_tot_sd": 0.67,
+      "meas_stall_mean": 7264.3,
+      "meas_stall_pct": 0.91,
+      "pred_tot": 795744,
+      "pred_stall": 7264,
+      "err_pct": 4e-05
+    },
+    {
+      "mhz": 60,
+      "eng_meas": 80.006,
+      "sd_meas": 60.002,
+      "bist_rd_MBps": 112.7,
+      "shape": "ffn_192_384_192",
+      "meas_tot_mean": 77698.4,
+      "meas_tot_sd": 3.37,
+      "meas_stall_mean": 3502.4,
+      "meas_stall_pct": 4.51,
+      "pred_tot": 77696,
+      "pred_stall": 3500,
+      "err_pct": 0.00309
+    },
+    {
+      "mhz": 60,
+      "eng_meas": 80.006,
+      "sd_meas": 60.002,
+      "bist_rd_MBps": 112.7,
+      "shape": "ffn_256_576_256",
+      "meas_tot_mean": 151537.5,
+      "meas_tot_sd": 5.42,
+      "meas_stall_mean": 3309.5,
+      "meas_stall_pct": 2.18,
+      "pred_tot": 151536,
+      "pred_stall": 3308,
+      "err_pct": 0.00099
+    },
+    {
+      "mhz": 60,
+      "eng_meas": 80.006,
+      "sd_meas": 60.002,
+      "bist_rd_MBps": 112.7,
+      "shape": "ffn_256_960_256",
+      "meas_tot_mean": 251245.6,
+      "meas_tot_sd": 9.03,
+      "meas_stall_mean": 4401.6,
+      "meas_stall_pct": 1.75,
+      "pred_tot": 251243,
+      "pred_stall": 4399,
+      "err_pct": 0.00103
+    },
+    {
+      "mhz": 60,
+      "eng_meas": 80.006,
+      "sd_meas": 60.002,
+      "bist_rd_MBps": 112.7,
+      "shape": "ffn_512_1536_512",
+      "meas_tot_mean": 794521.8,
+      "meas_tot_sd": 7.33,
+      "meas_stall_mean": 6041.8,
+      "meas_stall_pct": 0.76,
+      "pred_tot": 794524,
+      "pred_stall": 6044,
+      "err_pct": 0.00028
+    },
+    {
+      "mhz": 80,
+      "eng_meas": 79.969,
+      "sd_meas": 79.992,
+      "bist_rd_MBps": 150.61,
+      "shape": "ffn_192_384_192",
+      "meas_tot_mean": 76822.5,
+      "meas_tot_sd": 5.36,
+      "meas_stall_mean": 2626.5,
+      "meas_stall_pct": 3.42,
+      "pred_tot": 76816,
+      "pred_stall": 2620,
+      "err_pct": 0.00846
+    },
+    {
+      "mhz": 80,
+      "eng_meas": 79.969,
+      "sd_meas": 79.992,
+      "bist_rd_MBps": 150.61,
+      "shape": "ffn_256_576_256",
+      "meas_tot_mean": 150710.0,
+      "meas_tot_sd": 0.0,
+      "meas_stall_mean": 2482.0,
+      "meas_stall_pct": 1.65,
+      "pred_tot": 150705,
+      "pred_stall": 2477,
+      "err_pct": 0.00332
+    },
+    {
+      "mhz": 80,
+      "eng_meas": 79.969,
+      "sd_meas": 79.992,
+      "bist_rd_MBps": 150.61,
+      "shape": "ffn_256_960_256",
+      "meas_tot_mean": 250141.6,
+      "meas_tot_sd": 3.86,
+      "meas_stall_mean": 3297.6,
+      "meas_stall_pct": 1.32,
+      "pred_tot": 250137,
+      "pred_stall": 3293,
+      "err_pct": 0.00184
+    },
+    {
+      "mhz": 80,
+      "eng_meas": 79.969,
+      "sd_meas": 79.992,
+      "bist_rd_MBps": 150.61,
+      "shape": "ffn_512_1536_512",
+      "meas_tot_mean": 793007.7,
+      "meas_tot_sd": 3.71,
+      "meas_stall_mean": 4527.7,
+      "meas_stall_pct": 0.57,
+      "pred_tot": 793004,
+      "pred_stall": 4524,
+      "err_pct": 0.00047
+    },
+    {
+      "mhz": 100,
+      "eng_meas": 79.972,
+      "sd_meas": 99.998,
+      "bist_rd_MBps": 188.54,
+      "shape": "ffn_192_384_192",
+      "meas_tot_mean": 76294.1,
+      "meas_tot_sd": 4.18,
+      "meas_stall_mean": 2098.1,
+      "meas_stall_pct": 2.75,
+      "pred_tot": 76291,
+      "pred_stall": 2095,
+      "err_pct": 0.00406
+    },
+    {
+      "mhz": 100,
+      "eng_meas": 79.972,
+      "sd_meas": 99.998,
+      "bist_rd_MBps": 188.54,
+      "shape": "ffn_256_576_256",
+      "meas_tot_mean": 150212.7,
+      "meas_tot_sd": 3.06,
+      "meas_stall_mean": 1984.7,
+      "meas_stall_pct": 1.32,
+      "pred_tot": 150209,
+      "pred_stall": 1981,
+      "err_pct": 0.00246
+    },
+    {
+      "mhz": 100,
+      "eng_meas": 79.972,
+      "sd_meas": 99.998,
+      "bist_rd_MBps": 188.54,
+      "shape": "ffn_256_960_256",
+      "meas_tot_mean": 249481.1,
+      "meas_tot_sd": 3.38,
+      "meas_stall_mean": 2637.1,
+      "meas_stall_pct": 1.06,
+      "pred_tot": 249477,
+      "pred_stall": 2633,
+      "err_pct": 0.00164
+    },
+    {
+      "mhz": 100,
+      "eng_meas": 79.972,
+      "sd_meas": 99.998,
+      "bist_rd_MBps": 188.54,
+      "shape": "ffn_512_1536_512",
+      "meas_tot_mean": 792097.9,
+      "meas_tot_sd": 3.73,
+      "meas_stall_mean": 3617.9,
+      "meas_stall_pct": 0.46,
+      "pred_tot": 792096,
+      "pred_stall": 3616,
+      "err_pct": 0.00024
+    }
+  ],
+  "offset_0_31_n10_90mhz": {
+    "eng_meas": 79.95,
+    "sd_meas": 89.99,
+    "slope_meas_vs_pred": 1.0863,
+    "intercept_cyc": -5601.31,
+    "mae_cyc": 28.65,
+    "mean_sd_cyc": 7.51,
+    "mae_over_sd": 3.81,
+    "rows": [
+      {
+        "offset": 0,
+        "pred_tot": 65090,
+        "meas_tot_mean": 65103.6,
+        "meas_tot_sd": 13.25
+      },
+      {
+        "offset": 1,
+        "pred_tot": 65284,
+        "meas_tot_mean": 65320.0,
+        "meas_tot_sd": 6.31
+      },
+      {
+        "offset": 2,
+        "pred_tot": 65284,
+        "meas_tot_mean": 65318.7,
+        "meas_tot_sd": 4.22
+      },
+      {
+        "offset": 3,
+        "pred_tot": 65284,
+        "meas_tot_mean": 65320.3,
+        "meas_tot_sd": 6.63
+      },
+      {
+        "offset": 4,
+        "pred_tot": 65284,
+        "meas_tot_mean": 65320.1,
+        "meas_tot_sd": 9.88
+      },
+      {
+        "offset": 5,
+        "pred_tot": 65284,
+        "meas_tot_mean": 65312.0,
+        "meas_tot_sd": 7.23
+      },
+      {
+        "offset": 6,
+        "pred_tot": 65284,
+        "meas_tot_mean": 65306.6,
+        "meas_tot_sd": 10.66
+      },
+      {
+        "offset": 7,
+        "pred_tot": 65284,
+        "meas_tot_mean": 65307.6,
+        "meas_tot_sd": 7.14
+      },
+      {
+        "offset": 8,
+        "pred_tot": 65090,
+        "meas_tot_mean": 65102.4,
+        "meas_tot_sd": 10.32
+      },
+      {
+        "offset": 9,
+        "pred_tot": 65242,
+        "meas_tot_mean": 65276.1,
+        "meas_tot_sd": 5.36
+      },
+      {
+        "offset": 10,
+        "pred_tot": 65242,
+        "meas_tot_mean": 65273.4,
+        "meas_tot_sd": 6.29
+      },
+      {
+        "offset": 11,
+        "pred_tot": 65242,
+        "meas_tot_mean": 65275.1,
+        "meas_tot_sd": 8.14
+      },
+      {
+        "offset": 12,
+        "pred_tot": 65242,
+        "meas_tot_mean": 65275.5,
+        "meas_tot_sd": 5.97
+      },
+      {
+        "offset": 13,
+        "pred_tot": 65242,
+        "meas_tot_mean": 65274.6,
+        "meas_tot_sd": 7.66
+      },
+      {
+        "offset": 14,
+        "pred_tot": 65242,
+        "meas_tot_mean": 65270.4,
+        "meas_tot_sd": 6.52
+      },
+      {
+        "offset": 15,
+        "pred_tot": 65242,
+        "meas_tot_mean": 65270.1,
+        "meas_tot_sd": 8.61
+      },
+      {
+        "offset": 16,
+        "pred_tot": 65090,
+        "meas_tot_mean": 65100.8,
+        "meas_tot_sd": 7.19
+      },
+      {
+        "offset": 17,
+        "pred_tot": 65284,
+        "meas_tot_mean": 65321.8,
+        "meas_tot_sd": 5.18
+      },
+      {
+        "offset": 18,
+        "pred_tot": 65284,
+        "meas_tot_mean": 65315.3,
+        "meas_tot_sd": 10.07
+      },
+      {
+        "offset": 19,
+        "pred_tot": 65284,
+        "meas_tot_mean": 65315.5,
+        "meas_tot_sd": 5.3
+      },
+      {
+        "offset": 20,
+        "pred_tot": 65284,
+        "meas_tot_mean": 65310.5,
+        "meas_tot_sd": 8.59
+      },
+      {
+        "offset": 21,
+        "pred_tot": 65284,
+        "meas_tot_mean": 65311.2,
+        "meas_tot_sd": 6.55
+      },
+      {
+        "offset": 22,
+        "pred_tot": 65284,
+        "meas_tot_mean": 65308.4,
+        "meas_tot_sd": 8.78
+      },
+      {
+        "offset": 23,
+        "pred_tot": 65284,
+        "meas_tot_mean": 65309.4,
+        "meas_tot_sd": 4.01
+      },
+      {
+        "offset": 24,
+        "pred_tot": 65090,
+        "meas_tot_mean": 65107.7,
+        "meas_tot_sd": 6.04
+      },
+      {
+        "offset": 25,
+        "pred_tot": 65250,
+        "meas_tot_mean": 65287.6,
+        "meas_tot_sd": 4.74
+      },
+      {
+        "offset": 26,
+        "pred_tot": 65250,
+        "meas_tot_mean": 65288.0,
+        "meas_tot_sd": 6.85
+      },
+      {
+        "offset": 27,
+        "pred_tot": 65250,
+        "meas_tot_mean": 65283.5,
+        "meas_tot_sd": 5.95
+      },
+      {
+        "offset": 28,
+        "pred_tot": 65250,
+        "meas_tot_mean": 65283.7,
+        "meas_tot_sd": 9.15
+      },
+      {
+        "offset": 29,
+        "pred_tot": 65250,
+        "meas_tot_mean": 65276.7,
+        "meas_tot_sd": 10.0
+      },
+      {
+        "offset": 30,
+        "pred_tot": 65250,
+        "meas_tot_mean": 65275.7,
+        "meas_tot_sd": 8.56
+      },
+      {
+        "offset": 31,
+        "pred_tot": 65250,
+        "meas_tot_mean": 65274.5,
+        "meas_tot_sd": 9.17
+      }
+    ]
+  },
+  "generalization_100mhz": {
+    "eng_meas": 79.981,
+    "sd_meas": 99.994,
+    "rd_lat_ablation": {
+      "rd_lat_4": {
+        "mean": 64066.9,
+        "sd": 2.73
+      },
+      "rd_lat_6": {
+        "mean": 64084.9,
+        "sd": 3.54
+      }
+    },
+    "attn_proj_256_256": {
+      "meas_mean": 17533.4,
+      "meas_sd": 1.9,
+      "pred_rtl": 17531,
+      "err_pct": 0.01369
+    }
+  }
+}

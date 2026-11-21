@@ -1,0 +1,51 @@
+{
+  "experiment": "Q2_Priority_1_Full_2448_Byte_Verification",
+  "device": "EP4CE6E22C8",
+  "eng_mhz": 79.949,
+  "sdram_mhz": 99.995,
+  "sdram_image_reused": false,
+  "sdram_upload_s": 215.63,
+  "wall_time_s": 621.36,
+  "jtag_readback_wall_s": 476.16,
+  "effective_jtag_read_Bps": 5864.5,
+  "campaigns": {
+    "full_seq_t263": {
+      "tiles": 504,
+      "y_out_bytes": 466944,
+      "y_out_byte_mism": 0,
+      "csum_mism": 0,
+      "max_abs_diff": 0,
+      "read_s": 79.11599062599896
+    },
+    "vivos_50utt": {
+      "tiles": 1800,
+      "y_out_bytes": 1766400,
+      "y_out_byte_mism": 0,
+      "csum_mism": 0,
+      "max_abs_diff": 0,
+      "read_s": 301.6537196259993
+    },
+    "stress_4x36": {
+      "tiles": 144,
+      "y_out_bytes": 141312,
+      "y_out_byte_mism": 0,
+      "h_post_bytes": 417792,
+      "h_post_byte_mism": 0,
+      "csum_mism": 0,
+      "max_abs_diff": 0,
+      "read_s": 95.38836829299962
+    }
+  },
+  "totals": {
+    "y_out_tiles_byte_verified": 2448,
+    "y_out_tiles_expected": 2448,
+    "y_out_total_bytes_checked": 2374656,
+    "y_out_byte_mismatches": 0,
+    "h_post_tiles_byte_verified": 144,
+    "h_post_total_bytes_checked": 417792,
+    "h_post_byte_mismatches": 0,
+    "total_all_tensor_bytes_checked": 2792448,
+    "csum_mismatches": 0,
+    "global_max_abs_diff_lsb": 0
+  }
+}

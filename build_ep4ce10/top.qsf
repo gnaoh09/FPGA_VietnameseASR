@@ -1,0 +1,54 @@
+# Device & Toolchain Settings (OMDAZZ / RZ-EasyFPGA A2.2 - EP4CE10E22C8)
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE10E22C8
+set_global_assignment -name TOP_LEVEL_ENTITY top
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name GENERATE_RBF_FILE ON
+set_global_assignment -name NUM_PARALLEL_PROCESSORS 1
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_WEAK_PULLUP "AS INPUT TRI-STATED"
+
+# Timing Constraints
+set_global_assignment -name SDC_FILE omdazz_ep4ce6.sdc
+
+# 50 MHz Onboard Oscillator (OSC1)
+set_location_assignment PIN_23 -to clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clk
+
+# Active-Low Reset Push Button (RESET)
+set_location_assignment PIN_25 -to rst_n
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to rst_n
+
+# User LEDs (Active-Low: 0 = ON, 1 = OFF)
+set_location_assignment PIN_87 -to led[0]
+set_location_assignment PIN_86 -to led[1]
+set_location_assignment PIN_85 -to led[2]
+set_location_assignment PIN_84 -to led[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led[3]
+
+# User Push Buttons S1..S4 (Active-Low)
+set_location_assignment PIN_88 -to key[0]
+set_location_assignment PIN_89 -to key[1]
+set_location_assignment PIN_90 -to key[2]
+set_location_assignment PIN_91 -to key[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to key[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to key[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to key[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to key[3]
+
+# Optional UART pins (onboard DB9 RS-232 via U2 uses PIN_114/PIN_115).
+# If connecting an external 3.3V USB-to-TTL dongle on header P1/P2/P3,
+# prefer free header pins (e.g. PIN_110/PIN_111 on P1) to avoid contention with U2.
+# set_location_assignment PIN_110 -to uart_rx
+# set_location_assignment PIN_111 -to uart_tx
+# set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to uart_rx
+# set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to uart_tx
+
+set_parameter -name NUM_LANES 32
+set_global_assignment -name VERILOG_FILE ../rtl/jtag_bridge.v
+set_global_assignment -name VERILOG_FILE ../rtl/zipformer_engine.v
+set_global_assignment -name VERILOG_FILE ../rtl/top.v
+
+set_global_assignment -name LAST_QUARTUS_VERSION "21.1.1 Lite Edition"

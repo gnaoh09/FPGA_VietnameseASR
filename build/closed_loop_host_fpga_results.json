@@ -1,0 +1,222 @@
+{
+  "experiment": "Q2_Priority_3_Closed_Loop_Host_FPGA_Multi_Length",
+  "device": "EP4CE6E22C8",
+  "eng_mhz": 79.975,
+  "sdram_mhz": 99.993,
+  "sdram_image_reused": true,
+  "utterances": [
+    {
+      "utt_id": "VIVOSDEV08_274",
+      "duration_s": 1.812,
+      "fbank_frames": 181,
+      "stage_shapes": {
+        "stage_0": {
+          "t_frames": 87,
+          "mod4": 3,
+          "padded_tail": true,
+          "n_t_tiles": 22
+        },
+        "stage_1": {
+          "t_frames": 44,
+          "mod4": 0,
+          "padded_tail": false,
+          "n_t_tiles": 11
+        },
+        "stage_2": {
+          "t_frames": 22,
+          "mod4": 2,
+          "padded_tail": true,
+          "n_t_tiles": 6
+        },
+        "stage_3": {
+          "t_frames": 11,
+          "mod4": 3,
+          "padded_tail": true,
+          "n_t_tiles": 3
+        },
+        "stage_4": {
+          "t_frames": 22,
+          "mod4": 2,
+          "padded_tail": true,
+          "n_t_tiles": 6
+        },
+        "stage_5": {
+          "t_frames": 44,
+          "mod4": 0,
+          "padded_tail": false,
+          "n_t_tiles": 11
+        }
+      },
+      "total_block_tiles": 354,
+      "padded_tail_block_launches": 24,
+      "csum_mismatches": 0,
+      "y_out_byte_mismatches": 0,
+      "y_out_max_abs_diff_lsb": 0,
+      "encoder_out_max_abs_diff": 0.0,
+      "transcript_exact_match_vs_onnx": true,
+      "ref_text": "T\u00d4I CH\u1ebeT C\u00d9NG V\u1edaI \u00c1NH TR\u0102NG",
+      "fpga_transcript": "T\u00d4I CH\u1ebeT C\u00d9NG V\u1edaI \u00c1NH TR\u0102NG",
+      "utt_wer_pct": 0.0,
+      "act_in_bytes_padded": 328704,
+      "act_out_bytes_padded": 328704,
+      "hw_total_cycles": 29396077,
+      "hw_mac_cycles": 28311552,
+      "hw_stall_cycles": 799837,
+      "timing_breakdown_s": {
+        "t_fpga_compute_s": 0.3676,
+        "t_jtag_act_write_s": 6.036,
+        "t_jtag_act_read_s": 53.064,
+        "t_ctrl_lut_sync_s": 13.953,
+        "t_host_fbank_nonffn_decode_s": 0.086,
+        "t_wall_audio_to_transcript_s": 73.96
+      },
+      "length_bucket": "short",
+      "measured_rtf_ffn": 0.20285,
+      "measured_rtf_wall": 40.82,
+      "mac_lane_util_pct": 96.31,
+      "stall_pct": 2.72
+    },
+    {
+      "utt_id": "VIVOSDEV13_239",
+      "duration_s": 3.124,
+      "fbank_frames": 312,
+      "stage_shapes": {
+        "stage_0": {
+          "t_frames": 152,
+          "mod4": 0,
+          "padded_tail": false,
+          "n_t_tiles": 38
+        },
+        "stage_1": {
+          "t_frames": 76,
+          "mod4": 0,
+          "padded_tail": false,
+          "n_t_tiles": 19
+        },
+        "stage_2": {
+          "t_frames": 38,
+          "mod4": 2,
+          "padded_tail": true,
+          "n_t_tiles": 10
+        },
+        "stage_3": {
+          "t_frames": 19,
+          "mod4": 3,
+          "padded_tail": true,
+          "n_t_tiles": 5
+        },
+        "stage_4": {
+          "t_frames": 38,
+          "mod4": 2,
+          "padded_tail": true,
+          "n_t_tiles": 10
+        },
+        "stage_5": {
+          "t_frames": 76,
+          "mod4": 0,
+          "padded_tail": false,
+          "n_t_tiles": 19
+        }
+      },
+      "total_block_tiles": 606,
+      "padded_tail_block_launches": 18,
+      "csum_mismatches": 0,
+      "y_out_byte_mismatches": 0,
+      "y_out_max_abs_diff_lsb": 0,
+      "encoder_out_max_abs_diff": 0.0,
+      "transcript_exact_match_vs_onnx": true,
+      "ref_text": "CH\u1eb2NG C\u1ea6N NH\u00ccN V\u1ec0 PH\u01af\u01a0NG T\u00c2Y QU\u00ca H\u01af\u01a0NG C\u1ee6A H\u00c0NG HI\u1ec6U",
+      "fpga_transcript": "CH\u1eb2NG C\u1ea6N NH\u00ccN V\u1ec0 PH\u01af\u01a0NG T\u00c2Y QU\u00ca H\u01af\u01a0NG C\u1ee6A H\u00c0NG HI\u1ec6U",
+      "utt_wer_pct": 0.0,
+      "act_in_bytes_padded": 562176,
+      "act_out_bytes_padded": 562176,
+      "hw_total_cycles": 50221110,
+      "hw_mac_cycles": 48365568,
+      "hw_stall_cycles": 1368870,
+      "timing_breakdown_s": {
+        "t_fpga_compute_s": 0.628,
+        "t_jtag_act_write_s": 10.311,
+        "t_jtag_act_read_s": 94.734,
+        "t_ctrl_lut_sync_s": 23.901,
+        "t_host_fbank_nonffn_decode_s": 0.123,
+        "t_wall_audio_to_transcript_s": 130.467
+      },
+      "length_bucket": "medium",
+      "measured_rtf_ffn": 0.20101,
+      "measured_rtf_wall": 41.76,
+      "mac_lane_util_pct": 96.31,
+      "stall_pct": 2.73
+    },
+    {
+      "utt_id": "VIVOSDEV16_182",
+      "duration_s": 4.906,
+      "fbank_frames": 491,
+      "stage_shapes": {
+        "stage_0": {
+          "t_frames": 242,
+          "mod4": 2,
+          "padded_tail": true,
+          "n_t_tiles": 61
+        },
+        "stage_1": {
+          "t_frames": 121,
+          "mod4": 1,
+          "padded_tail": true,
+          "n_t_tiles": 31
+        },
+        "stage_2": {
+          "t_frames": 61,
+          "mod4": 1,
+          "padded_tail": true,
+          "n_t_tiles": 16
+        },
+        "stage_3": {
+          "t_frames": 31,
+          "mod4": 3,
+          "padded_tail": true,
+          "n_t_tiles": 8
+        },
+        "stage_4": {
+          "t_frames": 61,
+          "mod4": 1,
+          "padded_tail": true,
+          "n_t_tiles": 16
+        },
+        "stage_5": {
+          "t_frames": 121,
+          "mod4": 1,
+          "padded_tail": true,
+          "n_t_tiles": 31
+        }
+      },
+      "total_block_tiles": 978,
+      "padded_tail_block_launches": 36,
+      "csum_mismatches": 0,
+      "y_out_byte_mismatches": 0,
+      "y_out_max_abs_diff_lsb": 0,
+      "encoder_out_max_abs_diff": 0.0,
+      "transcript_exact_match_vs_onnx": true,
+      "ref_text": "NH\u1eeeNG NG\u01af\u1edcI C\u00d4 L\u1eacP M\u00ccNH C\u00d3 TH\u1ec2 G\u1eb6P PH\u1ea2I CH\u1ee8NG TR\u1ea6M C\u1ea2M HO\u1eb6C LO L\u1eaeNG",
+      "fpga_transcript": "NH\u1eeeNG NG\u01af\u1edcI C\u00d4 L\u1eacP M\u00ccNH C\u00d3 TH\u1ec2 G\u1eb6P PH\u1ea2I CH\u1ee8NG TR\u1ea6M C\u1ea2M HO\u1eb6C LO L\u1eaeNG",
+      "utt_wer_pct": 0.0,
+      "act_in_bytes_padded": 907776,
+      "act_out_bytes_padded": 907776,
+      "hw_total_cycles": 81146831,
+      "hw_mac_cycles": 78151680,
+      "hw_stall_cycles": 2209079,
+      "timing_breakdown_s": {
+        "t_fpga_compute_s": 1.0147,
+        "t_jtag_act_write_s": 16.298,
+        "t_jtag_act_read_s": 152.723,
+        "t_ctrl_lut_sync_s": 38.321,
+        "t_host_fbank_nonffn_decode_s": 0.174,
+        "t_wall_audio_to_transcript_s": 209.705
+      },
+      "length_bucket": "long_near_t500",
+      "measured_rtf_ffn": 0.20682,
+      "measured_rtf_wall": 42.74,
+      "mac_lane_util_pct": 96.31,
+      "stall_pct": 2.72
+    }
+  ]
+}

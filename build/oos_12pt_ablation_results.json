@@ -1,0 +1,576 @@
+{
+  "source_log": "build/oos_stall_validation_results.json",
+  "num_points": 12,
+  "summary_12pt": {
+    "bist_bandwidth_roofline": {
+      "description": "Compute + BIST measured read bandwidth roofline",
+      "mean_abs_rel_err_pct": 3.55574,
+      "mean_abs_rel_err_pct_4dp": 3.5557,
+      "max_abs_rel_err_pct": 6.80754,
+      "max_abs_rel_err_pct_4dp": 6.8075,
+      "worst_case": {
+        "nom_sdram_mhz": 90,
+        "shape": "ffn_192_384_192",
+        "meas_total_cyc": 40162,
+        "pred_total_cyc": 37428,
+        "rel_signed_err_pct": -6.80754,
+        "rel_abs_err_pct": 6.80754
+      },
+      "example_90mhz_192_384_192": {
+        "nom_sdram_mhz": 90,
+        "shape": "ffn_192_384_192",
+        "meas_total_cyc": 40162,
+        "pred_total_cyc": 37428,
+        "rel_signed_err_pct": -6.80754,
+        "rel_abs_err_pct": 6.80754
+      }
+    },
+    "no_pages_no_coldstart": {
+      "description": "RTL model without page-open (14*p_i=0) and without cold-start DMA",
+      "mean_abs_rel_err_pct": 4.94874,
+      "mean_abs_rel_err_pct_4dp": 4.9487,
+      "max_abs_rel_err_pct": 11.42546,
+      "max_abs_rel_err_pct_4dp": 11.4255,
+      "worst_case": {
+        "nom_sdram_mhz": 60,
+        "shape": "ffn_192_384_192",
+        "meas_total_cyc": 58816,
+        "pred_total_cyc": 52096,
+        "rel_signed_err_pct": -11.42546,
+        "rel_abs_err_pct": 11.42546
+      },
+      "example_90mhz_192_384_192": {
+        "nom_sdram_mhz": 90,
+        "shape": "ffn_192_384_192",
+        "meas_total_cyc": 40162,
+        "pred_total_cyc": 37332,
+        "rel_signed_err_pct": -7.04646,
+        "rel_abs_err_pct": 7.04646
+      }
+    },
+    "no_coldstart_only": {
+      "description": "RTL model without cold-start first DMA (keep 14*p_i)",
+      "mean_abs_rel_err_pct": 3.39225,
+      "mean_abs_rel_err_pct_4dp": 3.3923,
+      "max_abs_rel_err_pct": 6.01197,
+      "max_abs_rel_err_pct_4dp": 6.012,
+      "worst_case": {
+        "nom_sdram_mhz": 60,
+        "shape": "ffn_192_384_192",
+        "meas_total_cyc": 58816,
+        "pred_total_cyc": 55280,
+        "rel_signed_err_pct": -6.01197,
+        "rel_abs_err_pct": 6.01197
+      },
+      "example_90mhz_192_384_192": {
+        "nom_sdram_mhz": 90,
+        "shape": "ffn_192_384_192",
+        "meas_total_cyc": 40162,
+        "pred_total_cyc": 37813,
+        "rel_signed_err_pct": -5.84881,
+        "rel_abs_err_pct": 5.84881
+      }
+    },
+    "no_pages_only": {
+      "description": "RTL model without page-open penalty (14*p_i=0, keep cold-start)",
+      "mean_abs_rel_err_pct": 1.76976,
+      "mean_abs_rel_err_pct_4dp": 1.7698,
+      "max_abs_rel_err_pct": 5.8569,
+      "max_abs_rel_err_pct_4dp": 5.8569,
+      "worst_case": {
+        "nom_sdram_mhz": 60,
+        "shape": "ffn_256_576_256",
+        "meas_total_cyc": 114651,
+        "pred_total_cyc": 107936,
+        "rel_signed_err_pct": -5.8569,
+        "rel_abs_err_pct": 5.8569
+      },
+      "example_90mhz_192_384_192": {
+        "nom_sdram_mhz": 90,
+        "shape": "ffn_192_384_192",
+        "meas_total_cyc": 40162,
+        "pred_total_cyc": 39523,
+        "rel_signed_err_pct": -1.59106,
+        "rel_abs_err_pct": 1.59106
+      }
+    },
+    "no_refresh_only": {
+      "description": "RTL model without average refresh multiplier (T_RFC=0)",
+      "mean_abs_rel_err_pct": 0.34495,
+      "mean_abs_rel_err_pct_4dp": 0.345,
+      "max_abs_rel_err_pct": 0.96232,
+      "max_abs_rel_err_pct_4dp": 0.9623,
+      "worst_case": {
+        "nom_sdram_mhz": 60,
+        "shape": "ffn_192_384_192",
+        "meas_total_cyc": 58816,
+        "pred_total_cyc": 58250,
+        "rel_signed_err_pct": -0.96232,
+        "rel_abs_err_pct": 0.96232
+      },
+      "example_90mhz_192_384_192": {
+        "nom_sdram_mhz": 90,
+        "shape": "ffn_192_384_192",
+        "meas_total_cyc": 40162,
+        "pred_total_cyc": 40011,
+        "rel_signed_err_pct": -0.37598,
+        "rel_abs_err_pct": 0.37598
+      }
+    },
+    "mean_pages_within_layer": {
+      "description": "RTL model using within-layer mean pages per packet",
+      "mean_abs_rel_err_pct": 0.02295,
+      "mean_abs_rel_err_pct_4dp": 0.0229,
+      "max_abs_rel_err_pct": 0.09986,
+      "max_abs_rel_err_pct_4dp": 0.0999,
+      "worst_case": {
+        "nom_sdram_mhz": 90,
+        "shape": "ffn_256_576_256",
+        "meas_total_cyc": 77108,
+        "pred_total_cyc": 77031,
+        "rel_signed_err_pct": -0.09986,
+        "rel_abs_err_pct": 0.09986
+      },
+      "example_90mhz_192_384_192": {
+        "nom_sdram_mhz": 90,
+        "shape": "ffn_192_384_192",
+        "meas_total_cyc": 40162,
+        "pred_total_cyc": 40141,
+        "rel_signed_err_pct": -0.05229,
+        "rel_abs_err_pct": 0.05229
+      }
+    },
+    "full_locked_rtl_model": {
+      "description": "Full locked RTL schedule model (paper)",
+      "mean_abs_rel_err_pct": 0.01972,
+      "mean_abs_rel_err_pct_4dp": 0.0197,
+      "max_abs_rel_err_pct": 0.06121,
+      "max_abs_rel_err_pct_4dp": 0.0612,
+      "worst_case": {
+        "nom_sdram_mhz": 60,
+        "shape": "ffn_192_384_192",
+        "meas_total_cyc": 58816,
+        "pred_total_cyc": 58780,
+        "rel_signed_err_pct": -0.06121,
+        "rel_abs_err_pct": 0.06121
+      },
+      "example_90mhz_192_384_192": {
+        "nom_sdram_mhz": 90,
+        "shape": "ffn_192_384_192",
+        "meas_total_cyc": 40162,
+        "pred_total_cyc": 40141,
+        "rel_signed_err_pct": -0.05229,
+        "rel_abs_err_pct": 0.05229
+      }
+    }
+  },
+  "frequency_selection_decision_1pct": {
+    "ffn_192_384_192": {
+      "evaluation_note": "Retrospective check of 1% decision rule on 12 measured points",
+      "silicon_selected_mhz": 100,
+      "full_rtl_selected_mhz": 100,
+      "mean_pages_selected_mhz": 100,
+      "bist_roofline_selected_mhz": 90,
+      "full_rtl_matches_silicon": true,
+      "mean_pages_matches_silicon": true,
+      "bist_matches_silicon": false,
+      "degradation_vs_120mhz": {
+        "60": {
+          "meas_vs_120_pct": 50.48,
+          "rtl_vs_120_pct": 50.41,
+          "mean_pages_vs_120_pct": 50.41,
+          "bist_vs_120_pct": 48.97
+        },
+        "90": {
+          "meas_vs_120_pct": 2.75,
+          "rtl_vs_120_pct": 2.72,
+          "mean_pages_vs_120_pct": 2.72,
+          "bist_vs_120_pct": 0.26
+        },
+        "100": {
+          "meas_vs_120_pct": 0.87,
+          "rtl_vs_120_pct": 0.89,
+          "mean_pages_vs_120_pct": 0.89,
+          "bist_vs_120_pct": 0.0
+        },
+        "120": {
+          "meas_vs_120_pct": 0.0,
+          "rtl_vs_120_pct": 0.0,
+          "mean_pages_vs_120_pct": 0.0,
+          "bist_vs_120_pct": 0.0
+        }
+      }
+    },
+    "ffn_256_576_256": {
+      "evaluation_note": "Retrospective check of 1% decision rule on 12 measured points",
+      "silicon_selected_mhz": 100,
+      "full_rtl_selected_mhz": 100,
+      "mean_pages_selected_mhz": 100,
+      "bist_roofline_selected_mhz": 90,
+      "full_rtl_matches_silicon": true,
+      "mean_pages_matches_silicon": true,
+      "bist_matches_silicon": false,
+      "degradation_vs_120mhz": {
+        "60": {
+          "meas_vs_120_pct": 50.57,
+          "rtl_vs_120_pct": 50.55,
+          "mean_pages_vs_120_pct": 50.54,
+          "bist_vs_120_pct": 48.81
+        },
+        "90": {
+          "meas_vs_120_pct": 1.26,
+          "rtl_vs_120_pct": 1.2,
+          "mean_pages_vs_120_pct": 1.15,
+          "bist_vs_120_pct": 0.0
+        },
+        "100": {
+          "meas_vs_120_pct": 0.45,
+          "rtl_vs_120_pct": 0.43,
+          "mean_pages_vs_120_pct": 0.43,
+          "bist_vs_120_pct": 0.0
+        },
+        "120": {
+          "meas_vs_120_pct": 0.0,
+          "rtl_vs_120_pct": 0.0,
+          "mean_pages_vs_120_pct": 0.0,
+          "bist_vs_120_pct": 0.0
+        }
+      }
+    },
+    "ffn_256_960_256": {
+      "evaluation_note": "Retrospective check of 1% decision rule on 12 measured points",
+      "silicon_selected_mhz": 90,
+      "full_rtl_selected_mhz": 90,
+      "mean_pages_selected_mhz": 90,
+      "bist_roofline_selected_mhz": 90,
+      "full_rtl_matches_silicon": true,
+      "mean_pages_matches_silicon": true,
+      "bist_matches_silicon": true,
+      "degradation_vs_120mhz": {
+        "60": {
+          "meas_vs_120_pct": 48.96,
+          "rtl_vs_120_pct": 48.97,
+          "mean_pages_vs_120_pct": 48.96,
+          "bist_vs_120_pct": 47.48
+        },
+        "90": {
+          "meas_vs_120_pct": 0.89,
+          "rtl_vs_120_pct": 0.88,
+          "mean_pages_vs_120_pct": 0.88,
+          "bist_vs_120_pct": 0.0
+        },
+        "100": {
+          "meas_vs_120_pct": 0.34,
+          "rtl_vs_120_pct": 0.35,
+          "mean_pages_vs_120_pct": 0.35,
+          "bist_vs_120_pct": 0.0
+        },
+        "120": {
+          "meas_vs_120_pct": 0.0,
+          "rtl_vs_120_pct": 0.0,
+          "mean_pages_vs_120_pct": 0.0,
+          "bist_vs_120_pct": 0.0
+        }
+      }
+    }
+  },
+  "preregistered_offset_sweep_256_768_256_90mhz": {
+    "shape": "ffn_256_768_256",
+    "clocks_mhz": {
+      "eng": 80.0,
+      "sdram": 90.0
+    },
+    "refresh_cfg": {
+      "ref_interval": 1260,
+      "t_rfc": 8
+    },
+    "t_tile": 4,
+    "status": "pre_registered_prediction_not_yet_measured_on_board",
+    "offsets": [
+      {
+        "offset_w128": 0,
+        "l1_base_w128": 0,
+        "l2_base_w128": 6528,
+        "l1_pred_cyc": 51122,
+        "l2_pred_cyc": 50982,
+        "combined_pred_cyc": 102104,
+        "mean_pages_pred_cyc": 102104
+      },
+      {
+        "offset_w128": 1,
+        "l1_base_w128": 1,
+        "l2_base_w128": 6529,
+        "l1_pred_cyc": 51272,
+        "l2_pred_cyc": 50982,
+        "combined_pred_cyc": 102254,
+        "mean_pages_pred_cyc": 102258
+      },
+      {
+        "offset_w128": 15,
+        "l1_base_w128": 15,
+        "l2_base_w128": 6543,
+        "l1_pred_cyc": 51272,
+        "l2_pred_cyc": 50982,
+        "combined_pred_cyc": 102254,
+        "mean_pages_pred_cyc": 102258
+      },
+      {
+        "offset_w128": 31,
+        "l1_base_w128": 31,
+        "l2_base_w128": 6559,
+        "l1_pred_cyc": 51272,
+        "l2_pred_cyc": 50995,
+        "combined_pred_cyc": 102267,
+        "mean_pages_pred_cyc": 102258
+      }
+    ],
+    "delta_offset31_minus_offset0_cyc": 163,
+    "delta_offset31_minus_offset0_mean_pages_cyc": 154
+  },
+  "preregistered_offset_sweep_192_640_192_90mhz": {
+    "shape": "ffn_192_640_192",
+    "clocks_mhz": {
+      "eng": 80.0,
+      "sdram": 90.0
+    },
+    "refresh_cfg": {
+      "ref_interval": 1260,
+      "t_rfc": 8
+    },
+    "t_tile": 4,
+    "seed": 20261121,
+    "l1_words_128b": 4160,
+    "l2_words_128b": 4032,
+    "status": "locked_before_board_measurement",
+    "offsets": [
+      {
+        "offset_w128": 0,
+        "l1_base_w128": 0,
+        "l2_base_w128": 4160,
+        "l1_pred_cyc": 32857,
+        "l2_pred_cyc": 32233,
+        "combined_pred_cyc": 65090,
+        "l1_mean_pages_cyc": 32857,
+        "l2_mean_pages_cyc": 32233,
+        "mean_pages_pred_cyc": 65090
+      },
+      {
+        "offset_w128": 1,
+        "l1_base_w128": 1,
+        "l2_base_w128": 4161,
+        "l1_pred_cyc": 32982,
+        "l2_pred_cyc": 32302,
+        "combined_pred_cyc": 65284,
+        "l1_mean_pages_cyc": 32982,
+        "l2_mean_pages_cyc": 32261,
+        "mean_pages_pred_cyc": 65243
+      },
+      {
+        "offset_w128": 15,
+        "l1_base_w128": 15,
+        "l2_base_w128": 4175,
+        "l1_pred_cyc": 32982,
+        "l2_pred_cyc": 32260,
+        "combined_pred_cyc": 65242,
+        "l1_mean_pages_cyc": 32982,
+        "l2_mean_pages_cyc": 32261,
+        "mean_pages_pred_cyc": 65243
+      },
+      {
+        "offset_w128": 31,
+        "l1_base_w128": 31,
+        "l2_base_w128": 4191,
+        "l1_pred_cyc": 32982,
+        "l2_pred_cyc": 32268,
+        "combined_pred_cyc": 65250,
+        "l1_mean_pages_cyc": 32982,
+        "l2_mean_pages_cyc": 32261,
+        "mean_pages_pred_cyc": 65243
+      }
+    ],
+    "delta_offset1_minus_offset15_per_pkt_cyc": 42,
+    "delta_offset1_minus_offset15_mean_pages_cyc": 0
+  },
+  "per_point": [
+    {
+      "nom_sdram_mhz": 60,
+      "bist_1mib_rd_MBps": 112.69,
+      "shape": "ffn_192_384_192",
+      "meas_total_cyc": 58816,
+      "predictions": {
+        "bist_bandwidth_roofline": 55612,
+        "no_pages_no_coldstart": 52096,
+        "no_coldstart_only": 55280,
+        "no_pages_only": 55388,
+        "no_refresh_only": 58250,
+        "mean_pages_within_layer": 58780,
+        "full_locked_rtl_model": 58780
+      }
+    },
+    {
+      "nom_sdram_mhz": 60,
+      "bist_1mib_rd_MBps": 112.69,
+      "shape": "ffn_256_576_256",
+      "meas_total_cyc": 114651,
+      "predictions": {
+        "bist_bandwidth_roofline": 110860,
+        "no_pages_no_coldstart": 104816,
+        "no_coldstart_only": 111336,
+        "no_pages_only": 107936,
+        "no_refresh_only": 113589,
+        "mean_pages_within_layer": 114644,
+        "full_locked_rtl_model": 114644
+      }
+    },
+    {
+      "nom_sdram_mhz": 60,
+      "bist_1mib_rd_MBps": 112.69,
+      "shape": "ffn_256_960_256",
+      "meas_total_cyc": 187941,
+      "predictions": {
+        "bist_bandwidth_roofline": 182828,
+        "no_pages_no_coldstart": 173002,
+        "no_coldstart_only": 183536,
+        "no_pages_only": 177156,
+        "no_refresh_only": 186197,
+        "mean_pages_within_layer": 187935,
+        "full_locked_rtl_model": 187935
+      }
+    },
+    {
+      "nom_sdram_mhz": 90,
+      "bist_1mib_rd_MBps": 169.58,
+      "shape": "ffn_192_384_192",
+      "meas_total_cyc": 40162,
+      "predictions": {
+        "bist_bandwidth_roofline": 37428,
+        "no_pages_no_coldstart": 37332,
+        "no_coldstart_only": 37813,
+        "no_pages_only": 39523,
+        "no_refresh_only": 40011,
+        "mean_pages_within_layer": 40141,
+        "full_locked_rtl_model": 40141
+      }
+    },
+    {
+      "nom_sdram_mhz": 90,
+      "bist_1mib_rd_MBps": 169.58,
+      "shape": "ffn_256_576_256",
+      "meas_total_cyc": 77108,
+      "predictions": {
+        "bist_bandwidth_roofline": 74500,
+        "no_pages_no_coldstart": 74500,
+        "no_coldstart_only": 74868,
+        "no_pages_only": 76576,
+        "no_refresh_only": 76729,
+        "mean_pages_within_layer": 77031,
+        "full_locked_rtl_model": 77069
+      }
+    },
+    {
+      "nom_sdram_mhz": 90,
+      "bist_1mib_rd_MBps": 169.58,
+      "shape": "ffn_256_960_256",
+      "meas_total_cyc": 127293,
+      "predictions": {
+        "bist_bandwidth_roofline": 123964,
+        "no_pages_no_coldstart": 123964,
+        "no_coldstart_only": 124343,
+        "no_pages_only": 126727,
+        "no_refresh_only": 126872,
+        "mean_pages_within_layer": 127276,
+        "full_locked_rtl_model": 127270
+      }
+    },
+    {
+      "nom_sdram_mhz": 100,
+      "bist_1mib_rd_MBps": 188.53,
+      "shape": "ffn_192_384_192",
+      "meas_total_cyc": 39426,
+      "predictions": {
+        "bist_bandwidth_roofline": 37332,
+        "no_pages_no_coldstart": 37332,
+        "no_coldstart_only": 37332,
+        "no_pages_only": 39304,
+        "no_refresh_only": 39416,
+        "mean_pages_within_layer": 39427,
+        "full_locked_rtl_model": 39427
+      }
+    },
+    {
+      "nom_sdram_mhz": 100,
+      "bist_1mib_rd_MBps": 188.53,
+      "shape": "ffn_256_576_256",
+      "meas_total_cyc": 76487,
+      "predictions": {
+        "bist_bandwidth_roofline": 74500,
+        "no_pages_no_coldstart": 74500,
+        "no_coldstart_only": 74500,
+        "no_pages_only": 76369,
+        "no_refresh_only": 76470,
+        "mean_pages_within_layer": 76487,
+        "full_locked_rtl_model": 76481
+      }
+    },
+    {
+      "nom_sdram_mhz": 100,
+      "bist_1mib_rd_MBps": 188.53,
+      "shape": "ffn_256_960_256",
+      "meas_total_cyc": 126599,
+      "predictions": {
+        "bist_bandwidth_roofline": 123964,
+        "no_pages_no_coldstart": 123964,
+        "no_coldstart_only": 123964,
+        "no_pages_only": 126450,
+        "no_refresh_only": 126582,
+        "mean_pages_within_layer": 126602,
+        "full_locked_rtl_model": 126597
+      }
+    },
+    {
+      "nom_sdram_mhz": 120,
+      "bist_1mib_rd_MBps": 226.32,
+      "shape": "ffn_192_384_192",
+      "meas_total_cyc": 39086,
+      "predictions": {
+        "bist_bandwidth_roofline": 37332,
+        "no_pages_no_coldstart": 37332,
+        "no_coldstart_only": 37332,
+        "no_pages_only": 38975,
+        "no_refresh_only": 39070,
+        "mean_pages_within_layer": 39079,
+        "full_locked_rtl_model": 39079
+      }
+    },
+    {
+      "nom_sdram_mhz": 120,
+      "bist_1mib_rd_MBps": 226.32,
+      "shape": "ffn_256_576_256",
+      "meas_total_cyc": 76147,
+      "predictions": {
+        "bist_bandwidth_roofline": 74500,
+        "no_pages_no_coldstart": 74500,
+        "no_coldstart_only": 74500,
+        "no_pages_only": 76058,
+        "no_refresh_only": 76143,
+        "mean_pages_within_layer": 76156,
+        "full_locked_rtl_model": 76152
+      }
+    },
+    {
+      "nom_sdram_mhz": 120,
+      "bist_1mib_rd_MBps": 226.32,
+      "shape": "ffn_256_960_256",
+      "meas_total_cyc": 126169,
+      "predictions": {
+        "bist_bandwidth_roofline": 123964,
+        "no_pages_no_coldstart": 123964,
+        "no_coldstart_only": 123964,
+        "no_pages_only": 126036,
+        "no_refresh_only": 126147,
+        "mean_pages_within_layer": 126163,
+        "full_locked_rtl_model": 126158
+      }
+    }
+  ]
+}

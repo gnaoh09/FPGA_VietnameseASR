@@ -1,0 +1,107 @@
+{
+  "model": "Zipformer-30M FFN-only (36 blocks, 72 Linear layers)",
+  "reference_audio": {
+    "t_fbank": 500,
+    "duration_s": 5.0
+  },
+  "projection_convention": "Full 4-frame tail-padded 984 block-tiles matching closed-loop hardware execution (predict_layer_rtl @ 80/100 MHz, bidirectional JTAG from T=263 write/read rates)",
+  "total_block_tiles_padded": 984,
+  "pred_total_cycles": 81455516,
+  "ffn_gmac": 1.236271104,
+  "t_fpga_s": 1.018194,
+  "ffn_rtf_vs_5s": 0.20364,
+  "act_io_bytes": 1824768,
+  "act_io_MB_decimal": 1.824768,
+  "act_io_MiB_binary": 1.7402,
+  "jtag_eff_bw_MBps": 0.010399,
+  "jtag_io_time_s": 175.48,
+  "jtag_io_rtf_vs_5s": 35.1,
+  "fpga_asymptote_gmac_s": 1.2142,
+  "overlap_knee_bw_MBps": 1.7922,
+  "sweep_points": [
+    {
+      "bus_bw_MBps": 0.010399,
+      "t_io_s": 175.4756,
+      "breakeven_seq_gmac_s": 0.007,
+      "breakeven_ovl_gmac_s": 0.007,
+      "io_share_seq_pct": 99.42
+    },
+    {
+      "bus_bw_MBps": 0.05,
+      "t_io_s": 36.4954,
+      "breakeven_seq_gmac_s": 0.033,
+      "breakeven_ovl_gmac_s": 0.0339,
+      "io_share_seq_pct": 97.29
+    },
+    {
+      "bus_bw_MBps": 0.1,
+      "t_io_s": 18.2477,
+      "breakeven_seq_gmac_s": 0.0642,
+      "breakeven_ovl_gmac_s": 0.0677,
+      "io_share_seq_pct": 94.72
+    },
+    {
+      "bus_bw_MBps": 0.25,
+      "t_io_s": 7.2991,
+      "breakeven_seq_gmac_s": 0.1486,
+      "breakeven_ovl_gmac_s": 0.1694,
+      "io_share_seq_pct": 87.76
+    },
+    {
+      "bus_bw_MBps": 0.5,
+      "t_io_s": 3.6495,
+      "breakeven_seq_gmac_s": 0.2649,
+      "breakeven_ovl_gmac_s": 0.3387,
+      "io_share_seq_pct": 78.19
+    },
+    {
+      "bus_bw_MBps": 1.0,
+      "t_io_s": 1.8248,
+      "breakeven_seq_gmac_s": 0.4349,
+      "breakeven_ovl_gmac_s": 0.6775,
+      "io_share_seq_pct": 64.19
+    },
+    {
+      "bus_bw_MBps": 2.0,
+      "t_io_s": 0.9124,
+      "breakeven_seq_gmac_s": 0.6404,
+      "breakeven_ovl_gmac_s": 1.2142,
+      "io_share_seq_pct": 47.26
+    },
+    {
+      "bus_bw_MBps": 3.0,
+      "t_io_s": 0.6083,
+      "breakeven_seq_gmac_s": 0.7601,
+      "breakeven_ovl_gmac_s": 1.2142,
+      "io_share_seq_pct": 37.4
+    },
+    {
+      "bus_bw_MBps": 5.0,
+      "t_io_s": 0.365,
+      "breakeven_seq_gmac_s": 0.8938,
+      "breakeven_ovl_gmac_s": 1.2142,
+      "io_share_seq_pct": 26.39
+    },
+    {
+      "bus_bw_MBps": 10.0,
+      "t_io_s": 0.1825,
+      "breakeven_seq_gmac_s": 1.0297,
+      "breakeven_ovl_gmac_s": 1.2142,
+      "io_share_seq_pct": 15.2
+    },
+    {
+      "bus_bw_MBps": 20.0,
+      "t_io_s": 0.0912,
+      "breakeven_seq_gmac_s": 1.1143,
+      "breakeven_ovl_gmac_s": 1.2142,
+      "io_share_seq_pct": 8.22
+    },
+    {
+      "bus_bw_MBps": 50.0,
+      "t_io_s": 0.0365,
+      "breakeven_seq_gmac_s": 1.1722,
+      "breakeven_ovl_gmac_s": 1.2142,
+      "io_share_seq_pct": 3.46
+    }
+  ]
+}

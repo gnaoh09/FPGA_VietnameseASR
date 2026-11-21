@@ -1,0 +1,64 @@
+{
+  "shape": "ffn_192_640_192",
+  "clocks_mhz": {
+    "eng": 80.0,
+    "sdram": 90.0
+  },
+  "refresh_cfg": {
+    "ref_interval": 1260,
+    "t_rfc": 8
+  },
+  "t_tile": 4,
+  "seed": 20261121,
+  "l1_words_128b": 4160,
+  "l2_words_128b": 4032,
+  "status": "locked_before_board_measurement",
+  "offsets": [
+    {
+      "offset_w128": 0,
+      "l1_base_w128": 0,
+      "l2_base_w128": 4160,
+      "l1_pred_cyc": 32857,
+      "l2_pred_cyc": 32233,
+      "combined_pred_cyc": 65090,
+      "l1_mean_pages_cyc": 32857,
+      "l2_mean_pages_cyc": 32233,
+      "mean_pages_pred_cyc": 65090
+    },
+    {
+      "offset_w128": 1,
+      "l1_base_w128": 1,
+      "l2_base_w128": 4161,
+      "l1_pred_cyc": 32982,
+      "l2_pred_cyc": 32302,
+      "combined_pred_cyc": 65284,
+      "l1_mean_pages_cyc": 32982,
+      "l2_mean_pages_cyc": 32261,
+      "mean_pages_pred_cyc": 65243
+    },
+    {
+      "offset_w128": 15,
+      "l1_base_w128": 15,
+      "l2_base_w128": 4175,
+      "l1_pred_cyc": 32982,
+      "l2_pred_cyc": 32260,
+      "combined_pred_cyc": 65242,
+      "l1_mean_pages_cyc": 32982,
+      "l2_mean_pages_cyc": 32261,
+      "mean_pages_pred_cyc": 65243
+    },
+    {
+      "offset_w128": 31,
+      "l1_base_w128": 31,
+      "l2_base_w128": 4191,
+      "l1_pred_cyc": 32982,
+      "l2_pred_cyc": 32268,
+      "combined_pred_cyc": 65250,
+      "l1_mean_pages_cyc": 32982,
+      "l2_mean_pages_cyc": 32261,
+      "mean_pages_pred_cyc": 65243
+    }
+  ],
+  "delta_offset1_minus_offset15_per_pkt_cyc": 42,
+  "delta_offset1_minus_offset15_mean_pages_cyc": 0
+}

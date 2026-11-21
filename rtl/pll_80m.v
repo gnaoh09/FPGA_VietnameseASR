@@ -5,8 +5,9 @@
 //   c1: SDRAM_MHZ (80.00 MHz or 100.00 MHz, 0 ps) -> sdram_ctrl
 //   c2: SDRAM_MHZ with negative board phase shift (-3000 ps @ 100 MHz / -3125 ps @ 80 MHz) -> PIN_43 sdram_clk
 module pll_80m #(
-    parameter integer ENG_MHZ   = 80,
-    parameter integer SDRAM_MHZ = 100
+    parameter integer ENG_MHZ        = 80,
+    parameter integer SDRAM_MHZ      = 100,
+    parameter integer CLK1_PHASE_DEG = 0
 ) (
     input  wire inclk0,
     input  wire areset,
@@ -21,12 +22,18 @@ module pll_80m #(
     generate
         if (ENG_MHZ == 90) begin : gen_eng_90
             always #5.556 sim_clk80 = ~sim_clk80;
+        end else if (ENG_MHZ == 75) begin : gen_eng_75
+            always #6.667 sim_clk80 = ~sim_clk80;
         end else if (ENG_MHZ == 70) begin : gen_eng_70
             always #7.143 sim_clk80 = ~sim_clk80;
+        end else if (ENG_MHZ == 64) begin : gen_eng_64
+            always #7.8125 sim_clk80 = ~sim_clk80;
         end else if (ENG_MHZ == 60) begin : gen_eng_60
             always #8.333 sim_clk80 = ~sim_clk80;
         end else if (ENG_MHZ == 50) begin : gen_eng_50
             always #10.000 sim_clk80 = ~sim_clk80;
+        end else if (ENG_MHZ == 40) begin : gen_eng_40
+            always #12.500 sim_clk80 = ~sim_clk80;
         end else begin : gen_eng_80
             always #6.25 sim_clk80 = ~sim_clk80;
         end
@@ -40,10 +47,16 @@ module pll_80m #(
             always #5.00 sim_clk_sdram = ~sim_clk_sdram;
         end else if (SDRAM_MHZ == 90) begin : gen_sim_90
             always #5.556 sim_clk_sdram = ~sim_clk_sdram;
+        end else if (SDRAM_MHZ == 75) begin : gen_sim_75
+            always #6.667 sim_clk_sdram = ~sim_clk_sdram;
+        end else if (SDRAM_MHZ == 64) begin : gen_sim_64
+            always #7.8125 sim_clk_sdram = ~sim_clk_sdram;
         end else if (SDRAM_MHZ == 60) begin : gen_sim_60
             always #8.333 sim_clk_sdram = ~sim_clk_sdram;
         end else if (SDRAM_MHZ == 65) begin : gen_sim_65
             always #7.692 sim_clk_sdram = ~sim_clk_sdram;
+        end else if (SDRAM_MHZ == 40) begin : gen_sim_40
+            always #12.500 sim_clk_sdram = ~sim_clk_sdram;
         end else begin : gen_sim_80
             always #6.25 sim_clk_sdram = ~sim_clk_sdram;
         end
@@ -54,13 +67,20 @@ module pll_80m #(
     assign c2     = sim_clk_sdram;
     assign locked = ~areset;
     wire unused_inclk = inclk0;
+    wire unused_phase = (CLK1_PHASE_DEG == 0);
 `else
     localparam integer ENG_MUL =
         (ENG_MHZ == 90) ? 9 :
+        (ENG_MHZ == 75) ? 3 :
         (ENG_MHZ == 70) ? 7 :
+        (ENG_MHZ == 64) ? 32 :
         (ENG_MHZ == 60) ? 6 :
-        (ENG_MHZ == 50) ? 1 : 8;
-    localparam integer ENG_DIV = (ENG_MHZ == 50) ? 1 : 5;
+        (ENG_MHZ == 50) ? 1 :
+        (ENG_MHZ == 40) ? 4 : 8;
+    localparam integer ENG_DIV =
+        (ENG_MHZ == 75) ? 2 :
+        (ENG_MHZ == 64) ? 25 :
+        (ENG_MHZ == 50) ? 1 : 5;
 
     localparam integer SDRAM_MUL =
         (SDRAM_MHZ == 120) ? 12 :
@@ -89,6 +109,24 @@ module pll_80m #(
         (SDRAM_MHZ >= 88)  ? "-3000" :
         (SDRAM_MHZ >= 65)  ? "-3125" : "-3500";
 
+    localparam CLK1_PHASE_PS =
+        (CLK1_PHASE_DEG == 0) ? "0" :
+        (SDRAM_MHZ == 80 && CLK1_PHASE_DEG == 90)  ? "3125" :
+        (SDRAM_MHZ == 80 && CLK1_PHASE_DEG == 180) ? "6250" :
+        (SDRAM_MHZ == 80 && CLK1_PHASE_DEG == 270) ? "9375" :
+        (SDRAM_MHZ == 90 && CLK1_PHASE_DEG == 90)  ? "2778" :
+        (SDRAM_MHZ == 90 && CLK1_PHASE_DEG == 180) ? "5556" :
+        (SDRAM_MHZ == 90 && CLK1_PHASE_DEG == 270) ? "8333" : "0";
+
+    localparam CLK2_PHASE_PS =
+        (CLK1_PHASE_DEG == 0) ? SDRAM_PHASE :
+        (SDRAM_MHZ == 80 && CLK1_PHASE_DEG == 90)  ? "0" :
+        (SDRAM_MHZ == 80 && CLK1_PHASE_DEG == 180) ? "3125" :
+        (SDRAM_MHZ == 80 && CLK1_PHASE_DEG == 270) ? "6250" :
+        (SDRAM_MHZ == 90 && CLK1_PHASE_DEG == 90)  ? "-222" :
+        (SDRAM_MHZ == 90 && CLK1_PHASE_DEG == 180) ? "2556" :
+        (SDRAM_MHZ == 90 && CLK1_PHASE_DEG == 270) ? "5333" : SDRAM_PHASE;
+
     wire [4:0] sub_wire_clk;
     wire       sub_wire_locked;
     assign c0     = sub_wire_clk[0];
@@ -105,11 +143,11 @@ module pll_80m #(
         .clk1_divide_by          (SDRAM_DIV),
         .clk1_duty_cycle         (50),
         .clk1_multiply_by        (SDRAM_MUL),
-        .clk1_phase_shift        ("0"),
+        .clk1_phase_shift        (CLK1_PHASE_PS),
         .clk2_divide_by          (SDRAM_DIV),
         .clk2_duty_cycle         (50),
         .clk2_multiply_by        (SDRAM_MUL),
-        .clk2_phase_shift        (SDRAM_PHASE),
+        .clk2_phase_shift        (CLK2_PHASE_PS),
         .compensate_clock        ("CLK0"),
         .inclk0_input_frequency  (20000),
         .intended_device_family  ("Cyclone IV E"),

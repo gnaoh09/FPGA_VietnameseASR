@@ -1,0 +1,791 @@
+{
+  "config": {
+    "dataset": "vivos_test",
+    "num_utts": 760,
+    "num_speakers": 19,
+    "num_threads": 1,
+    "boot_b": 2000
+  },
+  "controlled_w4_vs_w3_g64_ablation": {
+    "w4_g64_meta": {
+      "tensors_quantized": 72,
+      "params_quantized_M": 12.976,
+      "matmul_params_total_M": 21.75,
+      "weight_sqnr_db": 19.22,
+      "onnx_size_MB": 87.91
+    },
+    "w4_g64_wer_pct": 4.662,
+    "w3_g64_wer_pct": 4.882,
+    "w4_g64_vs_fp32_utt": {
+      "n_units": 760,
+      "cluster_grouped": false,
+      "delta_wer_pct": 0.052,
+      "delta_wer_ci95": [
+        -0.088,
+        0.195
+      ],
+      "passes_ni_margin_0_10": false,
+      "delta_tone_gap_pct": 0.039,
+      "delta_tone_ci95": [
+        -0.0,
+        0.104
+      ],
+      "passes_tone_margin_0_10": false
+    },
+    "w4_g64_vs_fp32_spk": {
+      "n_units": 19,
+      "cluster_grouped": true,
+      "delta_wer_pct": 0.052,
+      "delta_wer_ci95": [
+        -0.055,
+        0.161
+      ],
+      "passes_ni_margin_0_10": false,
+      "delta_tone_gap_pct": 0.039,
+      "delta_tone_ci95": [
+        0.0,
+        0.104
+      ],
+      "passes_tone_margin_0_10": false
+    },
+    "w3_g64_vs_fp32_utt": {
+      "n_units": 760,
+      "cluster_grouped": false,
+      "delta_wer_pct": 0.272,
+      "delta_wer_ci95": [
+        0.026,
+        0.53
+      ],
+      "passes_ni_margin_0_10": false,
+      "delta_tone_gap_pct": 0.0,
+      "delta_tone_ci95": [
+        -0.079,
+        0.089
+      ],
+      "passes_tone_margin_0_10": true
+    },
+    "w3_g64_vs_fp32_spk": {
+      "n_units": 19,
+      "cluster_grouped": true,
+      "delta_wer_pct": 0.272,
+      "delta_wer_ci95": [
+        0.057,
+        0.508
+      ],
+      "passes_ni_margin_0_10": false,
+      "delta_tone_gap_pct": 0.0,
+      "delta_tone_ci95": [
+        -0.078,
+        0.069
+      ],
+      "passes_tone_margin_0_10": true
+    },
+    "w3_g64_minus_w4_g64_utt": {
+      "n_units": 760,
+      "cluster_grouped": false,
+      "delta_wer_pct": 0.22,
+      "delta_wer_ci95": [
+        -0.039,
+        0.516
+      ],
+      "passes_ni_margin_0_10": false,
+      "delta_tone_gap_pct": -0.039,
+      "delta_tone_ci95": [
+        -0.14,
+        0.052
+      ],
+      "passes_tone_margin_0_10": true
+    },
+    "w3_g64_minus_w4_g64_spk": {
+      "n_units": 19,
+      "cluster_grouped": true,
+      "delta_wer_pct": 0.22,
+      "delta_wer_ci95": [
+        -0.04,
+        0.506
+      ],
+      "passes_ni_margin_0_10": false,
+      "delta_tone_gap_pct": -0.039,
+      "delta_tone_ci95": [
+        -0.125,
+        0.04
+      ],
+      "passes_tone_margin_0_10": true
+    }
+  },
+  "tone_6x6_matrices": {
+    "30M_FP32": {
+      "tone_order": [
+        "ngang",
+        "huyen",
+        "sac",
+        "hoi",
+        "nga",
+        "nang"
+      ],
+      "total_ref_syllables": 7722,
+      "aligned_same_base_syllables": 7416,
+      "same_base_coverage_pct": 96.04,
+      "overall_same_base_tone_errors": 27,
+      "overall_same_base_tone_err_pct": 0.3641,
+      "per_tone": {
+        "ngang": {
+          "total_ref_syllables": 2150,
+          "aligned_same_base_denom": 2059,
+          "tone_errors": 3,
+          "error_rate_pct": 0.1457
+        },
+        "huyen": {
+          "total_ref_syllables": 1450,
+          "aligned_same_base_denom": 1401,
+          "tone_errors": 1,
+          "error_rate_pct": 0.0714
+        },
+        "sac": {
+          "total_ref_syllables": 1794,
+          "aligned_same_base_denom": 1714,
+          "tone_errors": 2,
+          "error_rate_pct": 0.1167
+        },
+        "hoi": {
+          "total_ref_syllables": 724,
+          "aligned_same_base_denom": 700,
+          "tone_errors": 9,
+          "error_rate_pct": 1.2857
+        },
+        "nga": {
+          "total_ref_syllables": 373,
+          "aligned_same_base_denom": 356,
+          "tone_errors": 4,
+          "error_rate_pct": 1.1236
+        },
+        "nang": {
+          "total_ref_syllables": 1231,
+          "aligned_same_base_denom": 1186,
+          "tone_errors": 8,
+          "error_rate_pct": 0.6745
+        }
+      },
+      "confusion_matrix_6x6": [
+        [
+          2056,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1400,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1712,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          2,
+          691,
+          4,
+          2
+        ],
+        [
+          1,
+          0,
+          0,
+          3,
+          352,
+          0
+        ],
+        [
+          1,
+          2,
+          0,
+          5,
+          0,
+          1178
+        ]
+      ]
+    },
+    "30M_fpga_bitexact_w8a8": {
+      "tone_order": [
+        "ngang",
+        "huyen",
+        "sac",
+        "hoi",
+        "nga",
+        "nang"
+      ],
+      "total_ref_syllables": 7722,
+      "aligned_same_base_syllables": 7421,
+      "same_base_coverage_pct": 96.1,
+      "overall_same_base_tone_errors": 30,
+      "overall_same_base_tone_err_pct": 0.4043,
+      "per_tone": {
+        "ngang": {
+          "total_ref_syllables": 2150,
+          "aligned_same_base_denom": 2061,
+          "tone_errors": 3,
+          "error_rate_pct": 0.1456
+        },
+        "huyen": {
+          "total_ref_syllables": 1450,
+          "aligned_same_base_denom": 1400,
+          "tone_errors": 1,
+          "error_rate_pct": 0.0714
+        },
+        "sac": {
+          "total_ref_syllables": 1794,
+          "aligned_same_base_denom": 1714,
+          "tone_errors": 2,
+          "error_rate_pct": 0.1167
+        },
+        "hoi": {
+          "total_ref_syllables": 724,
+          "aligned_same_base_denom": 701,
+          "tone_errors": 9,
+          "error_rate_pct": 1.2839
+        },
+        "nga": {
+          "total_ref_syllables": 373,
+          "aligned_same_base_denom": 357,
+          "tone_errors": 6,
+          "error_rate_pct": 1.6807
+        },
+        "nang": {
+          "total_ref_syllables": 1231,
+          "aligned_same_base_denom": 1188,
+          "tone_errors": 9,
+          "error_rate_pct": 0.7576
+        }
+      },
+      "confusion_matrix_6x6": [
+        [
+          2058,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1399,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1712,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          2,
+          692,
+          4,
+          2
+        ],
+        [
+          1,
+          0,
+          0,
+          5,
+          351,
+          0
+        ],
+        [
+          2,
+          2,
+          0,
+          5,
+          0,
+          1179
+        ]
+      ]
+    },
+    "30M_fpga_bitexact_w4a8": {
+      "tone_order": [
+        "ngang",
+        "huyen",
+        "sac",
+        "hoi",
+        "nga",
+        "nang"
+      ],
+      "total_ref_syllables": 7722,
+      "aligned_same_base_syllables": 7412,
+      "same_base_coverage_pct": 95.99,
+      "overall_same_base_tone_errors": 29,
+      "overall_same_base_tone_err_pct": 0.3913,
+      "per_tone": {
+        "ngang": {
+          "total_ref_syllables": 2150,
+          "aligned_same_base_denom": 2055,
+          "tone_errors": 3,
+          "error_rate_pct": 0.146
+        },
+        "huyen": {
+          "total_ref_syllables": 1450,
+          "aligned_same_base_denom": 1401,
+          "tone_errors": 1,
+          "error_rate_pct": 0.0714
+        },
+        "sac": {
+          "total_ref_syllables": 1794,
+          "aligned_same_base_denom": 1709,
+          "tone_errors": 2,
+          "error_rate_pct": 0.117
+        },
+        "hoi": {
+          "total_ref_syllables": 724,
+          "aligned_same_base_denom": 702,
+          "tone_errors": 9,
+          "error_rate_pct": 1.2821
+        },
+        "nga": {
+          "total_ref_syllables": 373,
+          "aligned_same_base_denom": 357,
+          "tone_errors": 5,
+          "error_rate_pct": 1.4006
+        },
+        "nang": {
+          "total_ref_syllables": 1231,
+          "aligned_same_base_denom": 1188,
+          "tone_errors": 9,
+          "error_rate_pct": 0.7576
+        }
+      },
+      "confusion_matrix_6x6": [
+        [
+          2052,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1400,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1707,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          2,
+          693,
+          4,
+          2
+        ],
+        [
+          1,
+          0,
+          0,
+          4,
+          352,
+          0
+        ],
+        [
+          2,
+          3,
+          0,
+          4,
+          0,
+          1179
+        ]
+      ]
+    },
+    "30M_ffn_w4_g64": {
+      "tone_order": [
+        "ngang",
+        "huyen",
+        "sac",
+        "hoi",
+        "nga",
+        "nang"
+      ],
+      "total_ref_syllables": 7722,
+      "aligned_same_base_syllables": 7415,
+      "same_base_coverage_pct": 96.02,
+      "overall_same_base_tone_errors": 30,
+      "overall_same_base_tone_err_pct": 0.4046,
+      "per_tone": {
+        "ngang": {
+          "total_ref_syllables": 2150,
+          "aligned_same_base_denom": 2061,
+          "tone_errors": 3,
+          "error_rate_pct": 0.1456
+        },
+        "huyen": {
+          "total_ref_syllables": 1450,
+          "aligned_same_base_denom": 1400,
+          "tone_errors": 1,
+          "error_rate_pct": 0.0714
+        },
+        "sac": {
+          "total_ref_syllables": 1794,
+          "aligned_same_base_denom": 1709,
+          "tone_errors": 2,
+          "error_rate_pct": 0.117
+        },
+        "hoi": {
+          "total_ref_syllables": 724,
+          "aligned_same_base_denom": 699,
+          "tone_errors": 9,
+          "error_rate_pct": 1.2876
+        },
+        "nga": {
+          "total_ref_syllables": 373,
+          "aligned_same_base_denom": 356,
+          "tone_errors": 6,
+          "error_rate_pct": 1.6854
+        },
+        "nang": {
+          "total_ref_syllables": 1231,
+          "aligned_same_base_denom": 1190,
+          "tone_errors": 9,
+          "error_rate_pct": 0.7563
+        }
+      },
+      "confusion_matrix_6x6": [
+        [
+          2058,
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1399,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1707,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          2,
+          690,
+          4,
+          2
+        ],
+        [
+          1,
+          0,
+          0,
+          5,
+          350,
+          0
+        ],
+        [
+          2,
+          2,
+          0,
+          5,
+          0,
+          1181
+        ]
+      ]
+    },
+    "30M_ffn_w3_g64": {
+      "tone_order": [
+        "ngang",
+        "huyen",
+        "sac",
+        "hoi",
+        "nga",
+        "nang"
+      ],
+      "total_ref_syllables": 7722,
+      "aligned_same_base_syllables": 7395,
+      "same_base_coverage_pct": 95.77,
+      "overall_same_base_tone_errors": 27,
+      "overall_same_base_tone_err_pct": 0.3651,
+      "per_tone": {
+        "ngang": {
+          "total_ref_syllables": 2150,
+          "aligned_same_base_denom": 2056,
+          "tone_errors": 1,
+          "error_rate_pct": 0.0486
+        },
+        "huyen": {
+          "total_ref_syllables": 1450,
+          "aligned_same_base_denom": 1399,
+          "tone_errors": 2,
+          "error_rate_pct": 0.143
+        },
+        "sac": {
+          "total_ref_syllables": 1794,
+          "aligned_same_base_denom": 1704,
+          "tone_errors": 2,
+          "error_rate_pct": 0.1174
+        },
+        "hoi": {
+          "total_ref_syllables": 724,
+          "aligned_same_base_denom": 701,
+          "tone_errors": 11,
+          "error_rate_pct": 1.5692
+        },
+        "nga": {
+          "total_ref_syllables": 373,
+          "aligned_same_base_denom": 356,
+          "tone_errors": 3,
+          "error_rate_pct": 0.8427
+        },
+        "nang": {
+          "total_ref_syllables": 1231,
+          "aligned_same_base_denom": 1179,
+          "tone_errors": 8,
+          "error_rate_pct": 0.6785
+        }
+      },
+      "confusion_matrix_6x6": [
+        [
+          2055,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1397,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1702,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          2,
+          690,
+          6,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          2,
+          353,
+          0
+        ],
+        [
+          1,
+          2,
+          0,
+          4,
+          1,
+          1171
+        ]
+      ]
+    }
+  },
+  "tone_6x6_speaker_bootstrap_deltas": {
+    "w4a8_bitexact_minus_fp32": {
+      "n_speakers": 19,
+      "overall_delta_err_pct": 0.0272,
+      "overall_ci95": [
+        -0.0502,
+        0.1189
+      ],
+      "per_tone_delta": {
+        "ngang": {
+          "delta_err_pct": 0.0003,
+          "ci95": [
+            -0.0002,
+            0.0007
+          ]
+        },
+        "huyen": {
+          "delta_err_pct": 0.0,
+          "ci95": [
+            -0.0003,
+            0.0008
+          ]
+        },
+        "sac": {
+          "delta_err_pct": 0.0003,
+          "ci95": [
+            -0.0001,
+            0.0013
+          ]
+        },
+        "hoi": {
+          "delta_err_pct": -0.0036,
+          "ci95": [
+            -0.3988,
+            0.4334
+          ]
+        },
+        "nga": {
+          "delta_err_pct": 0.277,
+          "ci95": [
+            -0.5883,
+            1.2599
+          ]
+        },
+        "nang": {
+          "delta_err_pct": 0.0831,
+          "ci95": [
+            -0.1737,
+            0.385
+          ]
+        }
+      }
+    },
+    "w8a8_bitexact_minus_fp32": {
+      "n_speakers": 19,
+      "overall_delta_err_pct": 0.0402,
+      "overall_ci95": [
+        -0.0003,
+        0.1081
+      ],
+      "per_tone_delta": {
+        "ngang": {
+          "delta_err_pct": -0.0001,
+          "ci95": [
+            -0.0006,
+            0.0
+          ]
+        },
+        "huyen": {
+          "delta_err_pct": 0.0,
+          "ci95": [
+            0.0,
+            0.0005
+          ]
+        },
+        "sac": {
+          "delta_err_pct": 0.0,
+          "ci95": [
+            -0.0003,
+            0.0002
+          ]
+        },
+        "hoi": {
+          "delta_err_pct": -0.0018,
+          "ci95": [
+            -0.0064,
+            0.0
+          ]
+        },
+        "nga": {
+          "delta_err_pct": 0.5571,
+          "ci95": [
+            0.0,
+            1.411
+          ]
+        },
+        "nang": {
+          "delta_err_pct": 0.0831,
+          "ci95": [
+            -0.0032,
+            0.2667
+          ]
+        }
+      }
+    },
+    "w3_g64_minus_w4_g64": {
+      "n_speakers": 19,
+      "overall_delta_err_pct": -0.0395,
+      "overall_ci95": [
+        -0.1299,
+        0.0417
+      ],
+      "per_tone_delta": {
+        "ngang": {
+          "delta_err_pct": -0.097,
+          "ci95": [
+            -0.245,
+            0.0001
+          ]
+        },
+        "huyen": {
+          "delta_err_pct": 0.0716,
+          "ci95": [
+            -0.0002,
+            0.2291
+          ]
+        },
+        "sac": {
+          "delta_err_pct": 0.0004,
+          "ci95": [
+            -0.0004,
+            0.0019
+          ]
+        },
+        "hoi": {
+          "delta_err_pct": 0.2816,
+          "ci95": [
+            -0.0106,
+            0.7375
+          ]
+        },
+        "nga": {
+          "delta_err_pct": -0.8427,
+          "ci95": [
+            -1.7911,
+            -0.0032
+          ]
+        },
+        "nang": {
+          "delta_err_pct": -0.0778,
+          "ci95": [
+            -0.3631,
+            0.1837
+          ]
+        }
+      }
+    }
+  }
+}

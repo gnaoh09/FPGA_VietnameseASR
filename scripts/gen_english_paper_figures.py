@@ -102,12 +102,12 @@ def generate_fig1_hybrid_architecture(out_path: Path) -> None:
     e.append(f'<line x1="250" y1="{185+dy}" x2="342" y2="{185+dy}" stroke="#1d4ed8" stroke-width="2.4" marker-end="url(#arr_blue)"/>')
     e.append(f'<rect x="254" y="{134+dy}" width="86" height="44" rx="4" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.2"/>')
     e.append(f'<text x="297" y="{152+dy}" text-anchor="middle" font-size="11.2" font-weight="bold" fill="#1e3a8a">x_q INT8</text>')
-    e.append(f'<text x="297" y="{169+dy}" text-anchor="middle" font-size="10.5" fill="#1e40af">53.6 KB/s wr</text>')
+    e.append(f'<text x="297" y="{169+dy}" text-anchor="middle" font-size="10.5" fill="#1e40af">55.7 KB/s wr</text>')
 
     e.append(f'<line x1="344" y1="{262+dy}" x2="252" y2="{262+dy}" stroke="#c2410c" stroke-width="2.4" marker-end="url(#arr_orange)"/>')
     e.append(f'<rect x="254" y="{270+dy}" width="86" height="44" rx="4" fill="#fff7ed" stroke="#fdba74" stroke-width="1.2"/>')
     e.append(f'<text x="297" y="{288+dy}" text-anchor="middle" font-size="11.2" font-weight="bold" fill="#9a3412">y_out INT8</text>')
-    e.append(f'<text x="297" y="{305+dy}" text-anchor="middle" font-size="10.5" fill="#c2410c">5.76 KB/s rd</text>')
+    e.append(f'<text x="297" y="{305+dy}" text-anchor="middle" font-size="10.5" fill="#c2410c">5.94 KB/s rd</text>')
 
     e.append(f'<rect x="253" y="{70+dy}" width="88" height="52" rx="4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2"/>')
     e.append(f'<text x="297" y="{87+dy}" text-anchor="middle" font-size="10.4" font-weight="bold" fill="#334155">1× Init Load</text>')
@@ -200,7 +200,7 @@ def generate_fig1_hybrid_architecture(out_path: Path) -> None:
 
     e.append(f'<rect x="736" y="{266+dy}" width="176" height="52" rx="4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.1" stroke-dasharray="4,3"/>')
     e.append(f'<text x="824" y="{287+dy}" text-anchor="middle" font-size="10.8" font-weight="bold" fill="#475569">Free: 1.48 MiB (18.55%)</text>')
-    e.append(f'<text x="824" y="{305+dy}" text-anchor="middle" font-size="9.8" fill="#64748b">(Full model: 17.12 MiB)</text>')
+    e.append(f'<text x="824" y="{305+dy}" text-anchor="middle" font-size="9.8" fill="#64748b">(Full enc.: 15.17–15.49 MiB)</text>')
 
     e.append(f'<rect x="736" y="{326+dy}" width="176" height="58" rx="4" fill="#ffffff" stroke="#0d9488" stroke-width="1.1"/>')
     e.append(f'<text x="824" y="{345+dy}" text-anchor="middle" font-size="10.8" font-weight="bold" fill="#0f766e">Full-Chip 8 MiB BIST</text>')
@@ -214,7 +214,7 @@ def generate_fig1_hybrid_architecture(out_path: Path) -> None:
     )
     e.append(
         f'<text x="470" y="{448+dy}" text-anchor="middle" font-size="11.0" fill="#166534">'
-        "Closed-Loop Host↔FPGA (T=491, 4.906 s): FPGA FFN = 1.015 s · Verified = 209.7 s / Unverified = 209.4 s · 3/3 ONNX transcript match</text>"
+        "Closed-Loop Host↔FPGA (T=491, 4.906 s): FPGA FFN = 1.015 s · Wall = 209.7 s (98.9% JTAG) · 3/3 ONNX match</text>"
     )
 
     out_path.write_text(wrap_svg(W, H, e), encoding="utf-8")
@@ -396,11 +396,11 @@ def generate_fig_rtl_timing(out_path: Path) -> None:
     # Row 2: MAC Compute
     e.append('<rect x="228" y="90" width="130" height="46" rx="4" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.6"/>')
     e.append('<text x="293" y="110" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1e3a8a">C_tile(i−1) [B0]</text>')
-    e.append('<text x="293" y="128" text-anchor="middle" font-size="10.8" fill="#1e40af">4K_chunk + epi (6/13)</text>')
+    e.append('<text x="293" y="128" text-anchor="middle" font-size="10.8" fill="#1e40af">T_tile·K_chunk + epi (6/13)</text>')
 
     e.append('<rect x="404" y="90" width="142" height="46" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>')
     e.append('<text x="475" y="110" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#78350f">C_tile(i) [Bank 1]</text>')
-    e.append('<text x="475" y="128" text-anchor="middle" font-size="10.8" fill="#92400e">4K_chunk + 13 (final K)</text>')
+    e.append('<text x="475" y="128" text-anchor="middle" font-size="10.8" fill="#92400e">T_tile·K_chunk + 13 (final K)</text>')
 
     # Row 3: Engine Stall
     e.append('<rect x="108" y="158" width="120" height="44" rx="4" fill="#fee2e2" stroke="#dc2626" stroke-width="1.6"/>')
@@ -960,56 +960,145 @@ def generate_fig5_mcu_breakeven(data: dict, g5b: dict, out_path: Path) -> None:
 
 
 def generate_fig5_60point_cycle_error(out_path: Path) -> None:
-    """Compact single-column 560px log-scale bar chart with explicit numeric labels above every bar."""
-    W, H = 560, 350
-    ml, mr, mt, mb = 68, 16, 26, 74
-    pw, ph = W - ml - mr, H - mt - mb
+    """Two-panel figure* (920x370):
+    (a) Per-frequency mean absolute total-cycle error (%) across 10 SDRAM setpoints (80 MHz engine).
+    (b) 32-offset (0..31) sawtooth validation on 192->640->192 at 80/90 MHz.
+    """
+    tw_path = BUILD_DIR / "three_way_78pt_0ppm_decomp.json"
+    p3_path = BUILD_DIR / "deep_rtl_validation_part3.json"
+    tw = json.loads(tw_path.read_text(encoding="utf-8"))
+    p3 = json.loads(p3_path.read_text(encoding="utf-8"))
+    pf = tw["per_freq_oos"]
+    off_data = p3["offset_0_31_n10_90mhz"]
+    off_rows = off_data["rows"]
 
-    # log10 range: 0.001% (-3) to 20% (~1.3) -> use -3 to 1.2
-    ymin_l, ymax_l = -3.0, 1.25
-
-    def py(val_pct: float) -> float:
-        lv = math.log10(max(val_pct, 1e-3))
-        return mt + (1.0 - (lv - ymin_l) / (ymax_l - ymin_l)) * ph
-
+    W, H = 920, 370
     e: list[str] = [f'<rect x="0" y="0" width="{W}" height="{H}" fill="#ffffff"/>']
 
-    for yv, lbl in [(0.001, "0.001"), (0.01, "0.01"), (0.1, "0.1"), (1.0, "1"), (10.0, "10")]:
-        yy = py(yv)
-        stroke = "#475569" if yv == 0.001 else "#cbd5e1"
-        e.append(f'<line x1="{ml}" y1="{yy:.1f}" x2="{ml+pw}" y2="{yy:.1f}" stroke="{stroke}" stroke-width="1.2"/>')
-        e.append(f'<text x="{ml-8}" y="{yy+5:.1f}" text-anchor="end" font-size="13.0" fill="#334155">{lbl}</text>')
+    # --- Panel (a): Per-frequency log-scale error ---
+    ml1, mt1, pw1, ph1 = 68, 38, 372, 260
+    ymin_l, ymax_l = -3.0, 1.15
+    freqs = [row["sdram_mhz"] for row in pf]
+    f_min, f_max = 57.0, 123.0
 
-    e.append(f'<line x1="{ml}" y1="{mt}" x2="{ml}" y2="{py(0.001):.1f}" stroke="#475569" stroke-width="1.4"/>')
+    def px1(f: float) -> float:
+        return ml1 + ((f - f_min) / (f_max - f_min)) * pw1
 
-    groups = [
-        ("White-Box RTL", [(0.0219, "0.022%", "#2563eb"), (0.0786, "0.079%", "#f59e0b"), (0.0899, "0.090%", "#dc2626")]),
-        ("Grey-Box LOSO", [(0.0108, "0.011%", "#2563eb"), (0.0314, "0.031%", "#f59e0b"), (0.0458, "0.046%", "#dc2626")]),
-        ("BIST Roofline", [(4.0349, "4.03%", "#2563eb"), (6.8055, "6.81%", "#f59e0b"), (7.2775, "7.28%", "#dc2626")]),
-    ]
-    centers = [ml + 88, ml + 240, ml + 392]
-    bw, gap = 34.0, 6.0
-    y0 = py(0.001)
-    for cx, (gname, bars) in zip(centers, groups):
-        x0 = cx - (3 * bw + 2 * gap) / 2.0
-        for bi, (val, lbl, col) in enumerate(bars):
-            bx = x0 + bi * (bw + gap)
-            by = py(val)
-            bh = y0 - by
-            e.append(f'<rect x="{bx:.1f}" y="{by:.1f}" width="{bw}" height="{bh:.1f}" fill="{col}" rx="2"/>')
-            e.append(f'<text x="{bx + bw/2:.1f}" y="{by - 5:.1f}" text-anchor="middle" font-size="10.8" font-weight="bold" fill="#0f172a">{lbl}</text>')
-        e.append(f'<text x="{cx:.1f}" y="{y0 + 22}" text-anchor="middle" font-size="13.0" font-weight="bold" fill="#0f172a">{gname}</text>')
-
-    # Legend at bottom
-    ly = H - 24
-    for lx, col, txt in [(ml + 32, "#2563eb", "Mean"), (ml + 148, "#f59e0b", "95th Percentile"), (ml + 320, "#dc2626", "Maximum")]:
-        e.append(f'<rect x="{lx}" y="{ly-12}" width="14" height="14" fill="{col}" rx="2"/>')
-        e.append(f'<text x="{lx+20}" y="{ly}" font-size="12.5" font-weight="bold" fill="#334155">{txt}</text>')
+    def py1(val_pct: float) -> float:
+        lv = math.log10(max(val_pct, 1e-3))
+        return mt1 + (1.0 - (lv - ymin_l) / (ymax_l - ymin_l)) * ph1
 
     e.append(
-        f'<text x="18" y="{mt + ph/2:.1f}" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#1e293b" transform="rotate(-90 18 {mt + ph/2:.1f})">'
-        "Relative Cycle Error (%) — Log Scale</text>"
+        f'<text x="{ml1 + pw1/2:.1f}" y="22" text-anchor="middle" font-size="13.2" font-weight="bold" fill="#1e293b">'
+        "(a) 60-Condition Mean Error vs. SDRAM Clock (80 MHz Eng.)</text>"
     )
+    for yv, lbl in [(0.001, "0.001"), (0.01, "0.01"), (0.1, "0.1"), (1.0, "1"), (10.0, "10")]:
+        yy = py1(yv)
+        stroke = "#475569" if yv == 0.001 else "#e2e8f0"
+        e.append(f'<line x1="{ml1}" y1="{yy:.1f}" x2="{ml1+pw1}" y2="{yy:.1f}" stroke="{stroke}" stroke-width="1.1"/>')
+        e.append(f'<text x="{ml1-8}" y="{yy+4:.1f}" text-anchor="end" font-size="11.8" fill="#334155">{lbl}</text>')
+    for fv in [60, 70, 80, 90, 100, 110, 120]:
+        xx = px1(fv)
+        e.append(f'<line x1="{xx:.1f}" y1="{mt1}" x2="{xx:.1f}" y2="{mt1+ph1}" stroke="#f1f5f9" stroke-width="1.0"/>')
+        e.append(f'<text x="{xx:.1f}" y="{mt1+ph1+18}" text-anchor="middle" font-size="11.5" fill="#334155">{fv}</text>')
+    e.append(f'<rect x="{ml1}" y="{mt1}" width="{pw1}" height="{ph1}" fill="none" stroke="#475569" stroke-width="1.3"/>')
+    e.append(f'<text x="{ml1+pw1/2:.1f}" y="{mt1+ph1+38}" text-anchor="middle" font-size="12.2" font-weight="bold" fill="#1e293b">SDRAM Clock Frequency (MHz)</text>')
+    e.append(
+        f'<text x="18" y="{mt1+ph1/2:.1f}" text-anchor="middle" font-size="12.4" font-weight="bold" fill="#1e293b" '
+        f'transform="rotate(-90 18 {mt1+ph1/2:.1f})">Mean Total-Cycle Error (%) — Log</text>'
+    )
+
+    # Highlight 80/80 MHz 1:1 CDC point
+    x80 = px1(80.0)
+    e.append(f'<line x1="{x80:.1f}" y1="{mt1}" x2="{x80:.1f}" y2="{mt1+ph1}" stroke="#fca5a5" stroke-width="1.4" stroke-dasharray="4,3"/>')
+
+    series_a = [
+        ("bist_mean_pct", "#dc2626", "6,3", "BIST Roofline", "square"),
+        ("wb_base_mean_pct", "#2563eb", "", "Base White-Box RTL", "circle"),
+        ("wb_ext_mean_pct", "#0d9488", "4,3", "Ext. 1:1 White-Box", "diamond"),
+        ("sim_0ppm_sil_mean_pct", "#7c3aed", "2,2", "0-ppm RTL Sim vs. Sil.", "hollow"),
+    ]
+    for key, col, dash, _lbl, shape in series_a:
+        pts = [(px1(row["sdram_mhz"]), py1(row[key])) for row in pf]
+        d_str = " ".join(f"{'M' if i == 0 else 'L'} {x:.1f} {y:.1f}" for i, (x, y) in enumerate(pts))
+        da = f' stroke-dasharray="{dash}"' if dash else ""
+        e.append(f'<path d="{d_str}" fill="none" stroke="{col}" stroke-width="2.1"{da}/>')
+        for x, y in pts:
+            if shape == "circle":
+                e.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.6" fill="{col}" stroke="#ffffff" stroke-width="0.9"/>')
+            elif shape == "square":
+                e.append(f'<rect x="{x-3.2:.1f}" y="{y-3.2:.1f}" width="6.4" height="6.4" fill="{col}" stroke="#ffffff" stroke-width="0.8"/>')
+            elif shape == "diamond":
+                e.append(f'<polygon points="{x:.1f},{y-4.2:.1f} {x+4.2:.1f},{y:.1f} {x:.1f},{y+4.2:.1f} {x-4.2:.1f},{y:.1f}" fill="{col}" stroke="#ffffff" stroke-width="0.8"/>')
+            else:
+                e.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.4" fill="#ffffff" stroke="{col}" stroke-width="1.8"/>')
+
+    # Annotate 80/80 MHz jump
+    y_80_base = py1(next(r["wb_base_mean_pct"] for r in pf if r["sdram_mhz"] == 80))
+    y_80_ext = py1(next(r["wb_ext_mean_pct"] for r in pf if r["sdram_mhz"] == 80))
+    e.append(f'<text x="{x80+7:.1f}" y="{y_80_base-7:.1f}" font-size="10.4" font-weight="bold" fill="#1d4ed8">80/80: 0.080%</text>')
+    e.append(f'<text x="{x80+7:.1f}" y="{y_80_ext+14:.1f}" font-size="10.4" font-weight="bold" fill="#0f766e">Ext: 0.0043%</text>')
+
+    # Legend for Panel (a) at bottom
+    leg_a = [(ml1 + 2, "#dc2626", "BIST Roofline"), (ml1 + 102, "#2563eb", "Base WB"), (ml1 + 178, "#0d9488", "Ext. 1:1 WB"), (ml1 + 272, "#7c3aed", "0-ppm Sim")]
+    for lx, col, txt in leg_a:
+        e.append(f'<rect x="{lx}" y="{H-24}" width="11" height="11" fill="{col}" rx="2"/>')
+        e.append(f'<text x="{lx+15}" y="{H-14}" font-size="10.8" font-weight="bold" fill="#334155">{txt}</text>')
+
+    # --- Panel (b): 32-Offset Sawtooth (192->640->192 @ 80/90 MHz) ---
+    ml2, mt2, pw2, ph2 = 528, 38, 376, 260
+    ymin2, ymax2 = 65050.0, 65365.0
+
+    def px2(off: float) -> float:
+        return ml2 + (off / 31.0) * pw2
+
+    def py2(cyc: float) -> float:
+        return mt2 + (1.0 - (cyc - ymin2) / (ymax2 - ymin2)) * ph2
+
+    e.append(
+        f'<text x="{ml2 + pw2/2:.1f}" y="22" text-anchor="middle" font-size="13.2" font-weight="bold" fill="#1e293b">'
+        "(b) 32-Offset Sawtooth (192→640→192 @ 80/90 MHz)</text>"
+    )
+    for yv, lbl in [(65100, "65,100"), (65180, "65,180"), (65260, "65,260"), (65340, "65,340")]:
+        yy = py2(yv)
+        e.append(f'<line x1="{ml2}" y1="{yy:.1f}" x2="{ml2+pw2}" y2="{yy:.1f}" stroke="#e2e8f0" stroke-width="1.1"/>')
+        e.append(f'<text x="{ml2-8}" y="{yy+4:.1f}" text-anchor="end" font-size="11.2" fill="#334155">{lbl}</text>')
+    for ov in [0, 8, 16, 24, 31]:
+        xx = px2(ov)
+        e.append(f'<line x1="{xx:.1f}" y1="{mt2}" x2="{xx:.1f}" y2="{mt2+ph2}" stroke="#f1f5f9" stroke-width="1.0"/>')
+        e.append(f'<text x="{xx:.1f}" y="{mt2+ph2+18}" text-anchor="middle" font-size="11.5" fill="#334155">{ov}</text>')
+    e.append(f'<rect x="{ml2}" y="{mt2}" width="{pw2}" height="{ph2}" fill="none" stroke="#475569" stroke-width="1.3"/>')
+    e.append(f'<text x="{ml2+pw2/2:.1f}" y="{mt2+ph2+38}" text-anchor="middle" font-size="12.2" font-weight="bold" fill="#1e293b">128-bit Word Offset (addr₀ mod 32)</text>')
+    e.append(
+        f'<text x="466" y="{mt2+ph2/2:.1f}" text-anchor="middle" font-size="12.4" font-weight="bold" fill="#1e293b" '
+        f'transform="rotate(-90 466 {mt2+ph2/2:.1f})">Total Layer Cycles</text>'
+    )
+
+    avg_const = sum(r["pred_tot"] for r in off_rows) / len(off_rows)
+    y_avg = py2(avg_const)
+    e.append(f'<line x1="{ml2}" y1="{y_avg:.1f}" x2="{ml2+pw2}" y2="{y_avg:.1f}" stroke="#d97706" stroke-width="2.0" stroke-dasharray="5,4"/>')
+
+    pts_pred = [(px2(r["offset"]), py2(r["pred_tot"])) for r in off_rows]
+    pts_meas = [(px2(r["offset"]), py2(r["meas_tot_mean"])) for r in off_rows]
+    d_pred = " ".join(f"{'M' if i == 0 else 'L'} {x:.1f} {y:.1f}" for i, (x, y) in enumerate(pts_pred))
+    d_meas = " ".join(f"{'M' if i == 0 else 'L'} {x:.1f} {y:.1f}" for i, (x, y) in enumerate(pts_meas))
+    e.append(f'<path d="{d_pred}" fill="none" stroke="#2563eb" stroke-width="2.0" stroke-dasharray="6,3"/>')
+    e.append(f'<path d="{d_meas}" fill="none" stroke="#0f172a" stroke-width="2.1"/>')
+    for x, y in pts_pred:
+        e.append(f'<rect x="{x-2.4:.1f}" y="{y-2.4:.1f}" width="4.8" height="4.8" fill="#2563eb"/>')
+    for x, y in pts_meas:
+        e.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.1" fill="#0f172a" stroke="#ffffff" stroke-width="0.7"/>')
+
+    # Annotation box in lower-right open area
+    e.append(f'<rect x="{ml2+130}" y="{mt2+ph2-50}" width="236" height="40" rx="4" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>')
+    e.append(f'<text x="{ml2+248}" y="{mt2+ph2-34}" text-anchor="middle" font-size="10.8" font-weight="bold" fill="#1e293b">Slope = {off_data["slope_meas_vs_pred"]:.3f} (n=10/offset)</text>')
+    e.append(f'<text x="{ml2+248}" y="{mt2+ph2-18}" text-anchor="middle" font-size="10.4" fill="#334155">Per-pkt MAE: {off_data["mae_cyc"]:.1f} vs. Avg-page: 63.5 cyc</text>')
+
+    leg_b = [(ml2 + 8, "#0f172a", "Silicon (n=10)"), (ml2 + 122, "#2563eb", "Per-Packet WB"), (ml2 + 244, "#d97706", "Avg-Page Const.")]
+    for lx, col, txt in leg_b:
+        e.append(f'<rect x="{lx}" y="{H-24}" width="11" height="11" fill="{col}" rx="2"/>')
+        e.append(f'<text x="{lx+15}" y="{H-14}" font-size="10.8" font-weight="bold" fill="#334155">{txt}</text>')
+
     out_path.write_text(wrap_svg(W, H, e), encoding="utf-8")
 
 

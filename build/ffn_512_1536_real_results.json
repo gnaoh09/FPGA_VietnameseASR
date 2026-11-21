@@ -1,0 +1,81 @@
+{
+  "device": "EP4CE6E22C8",
+  "capability_reg": "0x0000000000100200",
+  "measured_pll_clk_mhz_samples": [
+    79.992,
+    79.996,
+    79.996
+  ],
+  "measured_pll_clk_mhz_mean": 79.995,
+  "w4a8_512_1536_512": {
+    "mode": "W4A8",
+    "shape": "T=4, 512 -> 1536 -> 512",
+    "k_tile": 512,
+    "l1_tiles": 96,
+    "l2_tiles": 96,
+    "total_macs": 6291456,
+    "ideal_mac_cycles_16lane": 393216,
+    "hw_total_cycles": 395264,
+    "hw_mac_cycles": 393216,
+    "l1_cycles": 197856,
+    "l2_cycles": 197408,
+    "mac_lane_utilization_pct": 99.482,
+    "hw_exec_ms_at_80mhz": 4.9411,
+    "hw_effective_gmac_s": 1.2733,
+    "peak_16lane_gmac_s_at_80mhz": 1.2799,
+    "weights_streamed_bytes": 786432,
+    "params_streamed_bytes": 16384,
+    "total_stream_bytes": 802816,
+    "init_act_lut_jtag_ms": 90.02,
+    "weight_stream_jtag_s": 28.262,
+    "jtag_stream_bw_kBps": 27.74,
+    "hw_wgt_bram_reads": 196608,
+    "hpost_mismatch_words_of_384": 0,
+    "yout_mismatch_words_of_128": 0,
+    "zero_lsb_verified": true,
+    "sqnr_hpost_db": 16.782,
+    "sqnr_yout_db": 13.884,
+    "bandwidth_bound_analysis": {
+      "jtag_vs_compute_ratio": 5719.86,
+      "required_ext_mem_bw_MBps_for_100pct_util": 151.79
+    }
+  },
+  "w8a8_512_1536_512": {
+    "mode": "W8A8",
+    "shape": "T=4, 512 -> 1536 -> 512",
+    "k_tile": 256,
+    "l1_tiles": 192,
+    "l2_tiles": 192,
+    "total_macs": 6291456,
+    "ideal_mac_cycles_16lane": 393216,
+    "hw_total_cycles": 396416,
+    "hw_mac_cycles": 393216,
+    "l1_cycles": 198432,
+    "l2_cycles": 197984,
+    "mac_lane_utilization_pct": 99.193,
+    "hw_exec_ms_at_80mhz": 4.9555,
+    "hw_effective_gmac_s": 1.2696,
+    "peak_16lane_gmac_s_at_80mhz": 1.2799,
+    "weights_streamed_bytes": 1572864,
+    "params_streamed_bytes": 16384,
+    "total_stream_bytes": 1589248,
+    "init_act_lut_jtag_ms": 90.55,
+    "weight_stream_jtag_s": 56.357,
+    "jtag_stream_bw_kBps": 27.54,
+    "hw_wgt_bram_reads": 393216,
+    "hpost_mismatch_words_of_384": 0,
+    "yout_mismatch_words_of_128": 0,
+    "zero_lsb_verified": true,
+    "sqnr_hpost_db": 32.055,
+    "sqnr_yout_db": 30.981,
+    "bandwidth_bound_analysis": {
+      "jtag_vs_compute_ratio": 11372.66,
+      "required_ext_mem_bw_MBps_for_100pct_util": 302.69
+    }
+  },
+  "stress_loop_1s_check": {
+    "active_tile_passes_in_1s": 77520,
+    "elapsed_s": 1.012
+  },
+  "power_measurement_note": "On-chip 80MHz PLL + continuous stress_loop verified on live silicon. No external USB/RS232 wattmeter is attached to host macOS; Quartus PowerPlay reports 132.93 mW (63.66 mW core dynamic) at 80 MHz."
+}

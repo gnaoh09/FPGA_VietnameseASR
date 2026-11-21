@@ -1,0 +1,359 @@
+{
+  "config": {
+    "dataset": "vivos_test",
+    "num_utts": 760,
+    "num_speakers": 19,
+    "num_threads": 1,
+    "boot_b": 2000
+  },
+  "vivos_clean": {
+    "fp32_wer_pct": 4.61,
+    "w8a8_wer_pct": 4.584,
+    "w4a8_wer_pct": 4.688,
+    "w4a8_vs_w8a8": {
+      "n_units": 760,
+      "cluster_grouped": false,
+      "delta_wer_pct": 0.104,
+      "delta_wer_ci95": [
+        -0.053,
+        0.284
+      ],
+      "passes_ni_margin_0_10": false,
+      "delta_tone_gap_pct": -0.013,
+      "delta_tone_ci95": [
+        -0.066,
+        0.039
+      ],
+      "passes_tone_margin_0_10": true,
+      "cand_better_utts": 14,
+      "tied_utts": 725,
+      "cand_worse_utts": 21
+    },
+    "w4a8_vs_w8a8_speaker_clustered": {
+      "n_units": 19,
+      "cluster_grouped": true,
+      "delta_wer_pct": 0.104,
+      "delta_wer_ci95": [
+        -0.071,
+        0.3
+      ],
+      "passes_ni_margin_0_10": false,
+      "delta_tone_gap_pct": -0.013,
+      "delta_tone_ci95": [
+        -0.064,
+        0.043
+      ],
+      "passes_tone_margin_0_10": true
+    },
+    "w4a8_vs_fp32": {
+      "n_units": 760,
+      "cluster_grouped": false,
+      "delta_wer_pct": 0.078,
+      "delta_wer_ci95": [
+        -0.09,
+        0.257
+      ],
+      "passes_ni_margin_0_10": false,
+      "delta_tone_gap_pct": 0.026,
+      "delta_tone_ci95": [
+        -0.052,
+        0.116
+      ],
+      "passes_tone_margin_0_10": false,
+      "cand_better_utts": 16,
+      "tied_utts": 724,
+      "cand_worse_utts": 20
+    },
+    "w4a8_vs_fp32_speaker_clustered": {
+      "n_units": 19,
+      "cluster_grouped": true,
+      "delta_wer_pct": 0.078,
+      "delta_wer_ci95": [
+        -0.1,
+        0.264
+      ],
+      "passes_ni_margin_0_10": false,
+      "delta_tone_gap_pct": 0.026,
+      "delta_tone_ci95": [
+        -0.049,
+        0.113
+      ],
+      "passes_tone_margin_0_10": false
+    },
+    "w8a8_vs_fp32": {
+      "n_units": 760,
+      "cluster_grouped": false,
+      "delta_wer_pct": -0.026,
+      "delta_wer_ci95": [
+        -0.118,
+        0.077
+      ],
+      "passes_ni_margin_0_10": true,
+      "delta_tone_gap_pct": 0.039,
+      "delta_tone_ci95": [
+        -0.0,
+        0.104
+      ],
+      "passes_tone_margin_0_10": false,
+      "cand_better_utts": 7,
+      "tied_utts": 749,
+      "cand_worse_utts": 4
+    },
+    "w8a8_vs_fp32_speaker_clustered": {
+      "n_units": 19,
+      "cluster_grouped": true,
+      "delta_wer_pct": -0.026,
+      "delta_wer_ci95": [
+        -0.121,
+        0.086
+      ],
+      "passes_ni_margin_0_10": true,
+      "delta_tone_gap_pct": 0.039,
+      "delta_tone_ci95": [
+        0.0,
+        0.104
+      ],
+      "passes_tone_margin_0_10": false
+    }
+  },
+  "vivos_clean_all_models_utt_vs_speaker": {
+    "30M_FP32": {
+      "wer_pct": 4.61,
+      "tone_only_gap_pct": 0.375
+    },
+    "30M_fpga_bitexact_w8a8": {
+      "wer_pct": 4.584,
+      "tone_only_gap_pct": 0.414,
+      "utterance_bootstrap_vs_fp32": {
+        "n_units": 760,
+        "cluster_grouped": false,
+        "delta_wer_pct": -0.026,
+        "delta_wer_ci95": [
+          -0.118,
+          0.077
+        ],
+        "passes_ni_margin_0_10": true,
+        "delta_tone_gap_pct": 0.039,
+        "delta_tone_ci95": [
+          -0.0,
+          0.104
+        ],
+        "passes_tone_margin_0_10": false,
+        "cand_better_utts": 7,
+        "tied_utts": 749,
+        "cand_worse_utts": 4
+      },
+      "speaker_clustered_bootstrap_vs_fp32": {
+        "n_units": 19,
+        "cluster_grouped": true,
+        "delta_wer_pct": -0.026,
+        "delta_wer_ci95": [
+          -0.121,
+          0.086
+        ],
+        "passes_ni_margin_0_10": true,
+        "delta_tone_gap_pct": 0.039,
+        "delta_tone_ci95": [
+          0.0,
+          0.104
+        ],
+        "passes_tone_margin_0_10": false
+      }
+    },
+    "30M_W8A8": {
+      "wer_pct": 4.688,
+      "tone_only_gap_pct": 0.363,
+      "utterance_bootstrap_vs_fp32": {
+        "n_units": 760,
+        "cluster_grouped": false,
+        "delta_wer_pct": 0.078,
+        "delta_wer_ci95": [
+          -0.064,
+          0.219
+        ],
+        "passes_ni_margin_0_10": false,
+        "delta_tone_gap_pct": -0.013,
+        "delta_tone_ci95": [
+          -0.078,
+          0.039
+        ],
+        "passes_tone_margin_0_10": true,
+        "cand_better_utts": 11,
+        "tied_utts": 733,
+        "cand_worse_utts": 16
+      },
+      "speaker_clustered_bootstrap_vs_fp32": {
+        "n_units": 19,
+        "cluster_grouped": true,
+        "delta_wer_pct": 0.078,
+        "delta_wer_ci95": [
+          -0.058,
+          0.237
+        ],
+        "passes_ni_margin_0_10": false,
+        "delta_tone_gap_pct": -0.013,
+        "delta_tone_ci95": [
+          -0.068,
+          0.042
+        ],
+        "passes_tone_margin_0_10": true
+      }
+    },
+    "30M_fpga_bitexact_w4a8": {
+      "wer_pct": 4.688,
+      "tone_only_gap_pct": 0.402,
+      "utterance_bootstrap_vs_fp32": {
+        "n_units": 760,
+        "cluster_grouped": false,
+        "delta_wer_pct": 0.078,
+        "delta_wer_ci95": [
+          -0.09,
+          0.257
+        ],
+        "passes_ni_margin_0_10": false,
+        "delta_tone_gap_pct": 0.026,
+        "delta_tone_ci95": [
+          -0.052,
+          0.116
+        ],
+        "passes_tone_margin_0_10": false,
+        "cand_better_utts": 16,
+        "tied_utts": 724,
+        "cand_worse_utts": 20
+      },
+      "speaker_clustered_bootstrap_vs_fp32": {
+        "n_units": 19,
+        "cluster_grouped": true,
+        "delta_wer_pct": 0.078,
+        "delta_wer_ci95": [
+          -0.1,
+          0.264
+        ],
+        "passes_ni_margin_0_10": false,
+        "delta_tone_gap_pct": 0.026,
+        "delta_tone_ci95": [
+          -0.049,
+          0.113
+        ],
+        "passes_tone_margin_0_10": false
+      }
+    },
+    "30M_ffn_w3_g64": {
+      "wer_pct": 4.882,
+      "tone_only_gap_pct": 0.375,
+      "utterance_bootstrap_vs_fp32": {
+        "n_units": 760,
+        "cluster_grouped": false,
+        "delta_wer_pct": 0.272,
+        "delta_wer_ci95": [
+          0.026,
+          0.53
+        ],
+        "passes_ni_margin_0_10": false,
+        "delta_tone_gap_pct": 0.0,
+        "delta_tone_ci95": [
+          -0.079,
+          0.089
+        ],
+        "passes_tone_margin_0_10": true,
+        "cand_better_utts": 26,
+        "tied_utts": 691,
+        "cand_worse_utts": 43
+      },
+      "speaker_clustered_bootstrap_vs_fp32": {
+        "n_units": 19,
+        "cluster_grouped": true,
+        "delta_wer_pct": 0.272,
+        "delta_wer_ci95": [
+          0.057,
+          0.508
+        ],
+        "passes_ni_margin_0_10": false,
+        "delta_tone_gap_pct": 0.0,
+        "delta_tone_ci95": [
+          -0.078,
+          0.069
+        ],
+        "passes_tone_margin_0_10": true
+      }
+    },
+    "30M_all_w4_perch": {
+      "wer_pct": 4.895,
+      "tone_only_gap_pct": 0.401,
+      "utterance_bootstrap_vs_fp32": {
+        "n_units": 760,
+        "cluster_grouped": false,
+        "delta_wer_pct": 0.285,
+        "delta_wer_ci95": [
+          0.039,
+          0.527
+        ],
+        "passes_ni_margin_0_10": false,
+        "delta_tone_gap_pct": 0.026,
+        "delta_tone_ci95": [
+          -0.064,
+          0.116
+        ],
+        "passes_tone_margin_0_10": false,
+        "cand_better_utts": 24,
+        "tied_utts": 694,
+        "cand_worse_utts": 42
+      },
+      "speaker_clustered_bootstrap_vs_fp32": {
+        "n_units": 19,
+        "cluster_grouped": true,
+        "delta_wer_pct": 0.285,
+        "delta_wer_ci95": [
+          0.037,
+          0.578
+        ],
+        "passes_ni_margin_0_10": false,
+        "delta_tone_gap_pct": 0.026,
+        "delta_tone_ci95": [
+          -0.052,
+          0.109
+        ],
+        "passes_tone_margin_0_10": false
+      }
+    },
+    "30M_ffn_w2_u4_g64": {
+      "wer_pct": 6.229,
+      "tone_only_gap_pct": 0.453,
+      "utterance_bootstrap_vs_fp32": {
+        "n_units": 760,
+        "cluster_grouped": false,
+        "delta_wer_pct": 1.619,
+        "delta_wer_ci95": [
+          1.178,
+          2.084
+        ],
+        "passes_ni_margin_0_10": false,
+        "delta_tone_gap_pct": 0.078,
+        "delta_tone_ci95": [
+          -0.064,
+          0.218
+        ],
+        "passes_tone_margin_0_10": false,
+        "cand_better_utts": 31,
+        "tied_utts": 613,
+        "cand_worse_utts": 116
+      },
+      "speaker_clustered_bootstrap_vs_fp32": {
+        "n_units": 19,
+        "cluster_grouped": true,
+        "delta_wer_pct": 1.619,
+        "delta_wer_ci95": [
+          1.106,
+          2.133
+        ],
+        "passes_ni_margin_0_10": false,
+        "delta_tone_gap_pct": 0.078,
+        "delta_tone_ci95": [
+          -0.053,
+          0.235
+        ],
+        "passes_tone_margin_0_10": false
+      }
+    }
+  }
+}

@@ -8,6 +8,7 @@ TOP_MODULE="${TOP_MODULE:-top}"
 ENG_MHZ="${ENG_MHZ:-80}"
 SDRAM_MHZ="${SDRAM_MHZ:-100}"
 MAX_T_TILE="${MAX_T_TILE:-4}"
+CLK1_PHASE_DEG="${CLK1_PHASE_DEG:-0}"
 QUARTUS_IMAGE="${QUARTUS_IMAGE:-raetro/quartus:21.1.1}"
 BOARD_DIR="${ROOT_DIR}/boards/omdazz_ep4ce10"
 
@@ -26,6 +27,7 @@ EOF
   echo "set_parameter -name ENG_MHZ ${ENG_MHZ}"
   echo "set_parameter -name SDRAM_MHZ ${SDRAM_MHZ}"
   echo "set_parameter -name MAX_T_TILE ${MAX_T_TILE}"
+  echo "set_parameter -name CLK1_PHASE_DEG ${CLK1_PHASE_DEG}"
   for src in "${ROOT_DIR}"/rtl/*.v "${ROOT_DIR}"/rtl/*.sv; do
     [ -e "${src}" ] || continue
     rel="../rtl/$(basename "${src}")"

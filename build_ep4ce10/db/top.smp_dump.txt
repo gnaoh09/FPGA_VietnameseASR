@@ -1,0 +1,18 @@
+
+State Machine - |top|zipformer_engine:u_engine|jn_wait
+Name jn_wait.11 jn_wait.10 jn_wait.01 jn_wait.00 
+jn_wait.00 0 0 0 0 
+jn_wait.01 0 0 1 1 
+jn_wait.10 0 1 0 1 
+jn_wait.11 1 0 0 1 
+
+State Machine - |top|zipformer_engine:u_engine|state
+Name state.ST_GEMM_DRAIN state.ST_GEMM_RUN state.ST_JOINER_LUT state.ST_JOINER_WDEC state.ST_JOINER_RDEC state.ST_JOINER_WENC state.ST_JOINER_RENC state.ST_IDLE 
+state.ST_IDLE 0 0 0 0 0 0 0 0 
+state.ST_JOINER_RENC 0 0 0 0 0 0 1 1 
+state.ST_JOINER_WENC 0 0 0 0 0 1 0 1 
+state.ST_JOINER_RDEC 0 0 0 0 1 0 0 1 
+state.ST_JOINER_WDEC 0 0 0 1 0 0 0 1 
+state.ST_JOINER_LUT 0 0 1 0 0 0 0 1 
+state.ST_GEMM_RUN 0 1 0 0 0 0 0 1 
+state.ST_GEMM_DRAIN 1 0 0 0 0 0 0 1 

@@ -1,0 +1,138 @@
+{
+  "gate": "G1",
+  "host_machine": "arm64",
+  "host_cpu": "Apple M5",
+  "compiler": "Apple clang version 17.0.0 (clang-1700.0.13.5)",
+  "correctness": {
+    "neon_classic_vs_scalar_mismatch": 0,
+    "neon_sdot_vs_scalar_mismatch": 0
+  },
+  "measured_arm64_kernels_1thread": {
+    "gemm_fp32_neon": {
+      "median_ms": 6.024,
+      "min_ms": 5.752,
+      "max_ms": 7.258,
+      "gmac_per_s_1thread": 16.71
+    },
+    "gemm_int8_scalar": {
+      "median_ms": 27.29,
+      "min_ms": 27.011,
+      "max_ms": 27.585,
+      "gmac_per_s_1thread": 3.689
+    },
+    "gemm_int8_neon_classic": {
+      "median_ms": 1.965,
+      "min_ms": 1.893,
+      "max_ms": 2.031,
+      "gmac_per_s_1thread": 51.228
+    },
+    "gemm_int8_neon_sdot": {
+      "median_ms": 0.799,
+      "min_ms": 0.77,
+      "max_ms": 0.822,
+      "gmac_per_s_1thread": 125.987
+    },
+    "swoosh_fp32": {
+      "median_ms": 0.498,
+      "min_ms": 0.4915,
+      "max_ms": 0.5064,
+      "melem_per_s_1thread": 394.815
+    },
+    "swoosh_int8_lut": {
+      "median_ms": 0.0345,
+      "min_ms": 0.0339,
+      "max_ms": 0.0354,
+      "melem_per_s_1thread": 5697.131
+    }
+  },
+  "host_arm64_kernel_only_150m_T500": {
+    "fp32_neon_s": 0.5044,
+    "fp32_neon_rtf": 0.1009,
+    "int8_neon_classic_s": 0.1645,
+    "int8_neon_classic_rtf": 0.0329,
+    "int8_neon_sdot_s": 0.0669,
+    "int8_neon_sdot_rtf": 0.0134,
+    "speedup_sdot_vs_scalar": 34.16,
+    "speedup_classic_vs_scalar": 13.89,
+    "speedup_swoosh_lut_vs_fp32": 14.43
+  },
+  "x86_server_reference_i7_12700F": {
+    "datasets": {
+      "test_vivos": {
+        "utt": 686,
+        "hours": 0.7,
+        "fp32_wer": 3.82,
+        "int8_wer": 3.88,
+        "fp32_rtf": 0.0191,
+        "int8_rtf": 0.0125,
+        "fp32_rss_mib": 910.93,
+        "int8_rss_mib": 412.3,
+        "fp32_tone_sb": 0.321,
+        "int8_tone_sb": 0.321
+      },
+      "test_mcv_vi": {
+        "utt": 1367,
+        "hours": 1.446,
+        "fp32_wer": 5.87,
+        "int8_wer": 6.05,
+        "fp32_rtf": 0.0222,
+        "int8_rtf": 0.0152,
+        "fp32_rss_mib": 902.9,
+        "int8_rss_mib": 451.9,
+        "fp32_tone_sb": 0.682,
+        "int8_tone_sb": 0.703
+      },
+      "test_fleurs_vi": {
+        "utt": 841,
+        "hours": 2.871,
+        "fp32_wer": 5.48,
+        "int8_wer": 5.46,
+        "fp32_rtf": 0.0187,
+        "int8_rtf": 0.012,
+        "fp32_rss_mib": 1290.2,
+        "int8_rss_mib": 758.4,
+        "fp32_tone_sb": 0.115,
+        "int8_tone_sb": 0.103
+      },
+      "test_vlsp2020_eval": {
+        "utt": 500,
+        "hours": 1.198,
+        "fp32_wer": 10.83,
+        "int8_wer": 10.77,
+        "fp32_rtf": 0.0203,
+        "int8_rtf": 0.012,
+        "fp32_rss_mib": 1264.6,
+        "int8_rss_mib": 782.82,
+        "fp32_tone_sb": 0.265,
+        "int8_tone_sb": 0.259
+      }
+    },
+    "clean_group_2053utt_fp32_rtf": 0.0212,
+    "clean_group_2053utt_int8_rtf": 0.0143
+  },
+  "embedded_arm_targets": {
+    "cortex_a9_dual_800mhz_no_sdot": {
+      "scalar_int8_150m_rtf_est": 4.82,
+      "neon_classic_int8_150m_rtf_range": [
+        0.43,
+        1.08
+      ],
+      "neon_classic_int8_30m_rtf_range": [
+        0.08,
+        0.18
+      ],
+      "fp32_150m_ram_status": "OOM (~1240 MiB C++ RSS > 1 GB DDR3 on long utterances)",
+      "int8_150m_ram_status": "Fits 1 GB DDR3 (~362-733 MiB), OOM on <=512 MB"
+    },
+    "cortex_a53_quad_1200mhz_no_sdot": {
+      "neon_classic_int8_150m_rtf_range": [
+        0.22,
+        0.52
+      ],
+      "neon_classic_int8_30m_rtf_range": [
+        0.04,
+        0.09
+      ]
+    }
+  }
+}

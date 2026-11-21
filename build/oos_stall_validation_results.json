@@ -1,0 +1,810 @@
+{
+  "experiment": "Q2_Priority_2_Out_Of_Sample_Stall_Validation",
+  "model_notes": "Locked purely from RTL schedules (rtl/zipformer_engine.v & rtl/sdram_ctrl.v); 0 parameters fit from 512->1536->512 or target runs.",
+  "sdram_upload_bytes": 492032,
+  "locked_nominal_predictions": {
+    "sdram_60mhz": {
+      "ffn_192_384_192": {
+        "l1": {
+          "pred_active_cyc": 18744,
+          "pred_dma_cyc": 28911,
+          "pred_stall_cyc": 10948,
+          "pred_total_cyc": 29692,
+          "pred_stall_pct": 36.87,
+          "f_crit_mhz": 92.71,
+          "predicted_regime": "bandwidth_bound"
+        },
+        "l2": {
+          "pred_active_cyc": 18588,
+          "pred_dma_cyc": 27539,
+          "pred_stall_cyc": 10500,
+          "pred_total_cyc": 29088,
+          "pred_stall_pct": 36.1,
+          "f_crit_mhz": 88.97,
+          "predicted_regime": "bandwidth_bound"
+        },
+        "pred_total_cyc": 58780,
+        "pred_stall_cyc": 21448,
+        "pred_stall_pct": 36.49,
+        "f_crit_l1_mhz": 92.71,
+        "f_crit_l2_mhz": 88.97
+      },
+      "ffn_256_576_256": {
+        "l1": {
+          "pred_active_cyc": 37332,
+          "pred_dma_cyc": 56450,
+          "pred_stall_cyc": 20155,
+          "pred_total_cyc": 57487,
+          "pred_stall_pct": 35.06,
+          "f_crit_mhz": 90.85,
+          "predicted_regime": "bandwidth_bound"
+        },
+        "l2": {
+          "pred_active_cyc": 37168,
+          "pred_dma_cyc": 55992,
+          "pred_stall_cyc": 19989,
+          "pred_total_cyc": 57157,
+          "pred_stall_pct": 34.97,
+          "f_crit_mhz": 90.49,
+          "predicted_regime": "bandwidth_bound"
+        },
+        "pred_total_cyc": 114644,
+        "pred_stall_cyc": 40144,
+        "pred_stall_pct": 35.02,
+        "f_crit_l1_mhz": 90.85,
+        "f_crit_l2_mhz": 90.49
+      },
+      "ffn_256_960_256": {
+        "l1": {
+          "pred_active_cyc": 62220,
+          "pred_dma_cyc": 94083,
+          "pred_stall_cyc": 32900,
+          "pred_total_cyc": 95120,
+          "pred_stall_pct": 34.59,
+          "f_crit_mhz": 90.85,
+          "predicted_regime": "bandwidth_bound"
+        },
+        "l2": {
+          "pred_active_cyc": 61744,
+          "pred_dma_cyc": 90882,
+          "pred_stall_cyc": 31071,
+          "pred_total_cyc": 92815,
+          "pred_stall_pct": 33.48,
+          "f_crit_mhz": 88.37,
+          "predicted_regime": "bandwidth_bound"
+        },
+        "pred_total_cyc": 187935,
+        "pred_stall_cyc": 63971,
+        "pred_stall_pct": 34.04,
+        "f_crit_l1_mhz": 90.85,
+        "f_crit_l2_mhz": 88.37
+      }
+    },
+    "sdram_90mhz": {
+      "ffn_192_384_192": {
+        "l1": {
+          "pred_active_cyc": 18744,
+          "pred_dma_cyc": 19246,
+          "pred_stall_cyc": 1283,
+          "pred_total_cyc": 20027,
+          "pred_stall_pct": 6.41,
+          "f_crit_mhz": 92.42,
+          "predicted_regime": "bandwidth_bound"
+        },
+        "l2": {
+          "pred_active_cyc": 18588,
+          "pred_dma_cyc": 18318,
+          "pred_stall_cyc": 1526,
+          "pred_total_cyc": 20114,
+          "pred_stall_pct": 7.59,
+          "f_crit_mhz": 88.69,
+          "predicted_regime": "compute_bound"
+        },
+        "pred_total_cyc": 40141,
+        "pred_stall_cyc": 2809,
+        "pred_stall_pct": 7.0,
+        "f_crit_l1_mhz": 92.42,
+        "f_crit_l2_mhz": 88.69
+      },
+      "ffn_256_576_256": {
+        "l1": {
+          "pred_active_cyc": 37332,
+          "pred_dma_cyc": 37563,
+          "pred_stall_cyc": 1268,
+          "pred_total_cyc": 38600,
+          "pred_stall_pct": 3.29,
+          "f_crit_mhz": 90.56,
+          "predicted_regime": "bandwidth_bound"
+        },
+        "l2": {
+          "pred_active_cyc": 37168,
+          "pred_dma_cyc": 37254,
+          "pred_stall_cyc": 1301,
+          "pred_total_cyc": 38469,
+          "pred_stall_pct": 3.38,
+          "f_crit_mhz": 90.21,
+          "predicted_regime": "bandwidth_bound"
+        },
+        "pred_total_cyc": 77069,
+        "pred_stall_cyc": 2569,
+        "pred_stall_pct": 3.33,
+        "f_crit_l1_mhz": 90.56,
+        "f_crit_l2_mhz": 90.21
+      },
+      "ffn_256_960_256": {
+        "l1": {
+          "pred_active_cyc": 62220,
+          "pred_dma_cyc": 62606,
+          "pred_stall_cyc": 1423,
+          "pred_total_cyc": 63643,
+          "pred_stall_pct": 2.24,
+          "f_crit_mhz": 90.56,
+          "predicted_regime": "bandwidth_bound"
+        },
+        "l2": {
+          "pred_active_cyc": 61744,
+          "pred_dma_cyc": 60440,
+          "pred_stall_cyc": 1883,
+          "pred_total_cyc": 63627,
+          "pred_stall_pct": 2.96,
+          "f_crit_mhz": 88.1,
+          "predicted_regime": "compute_bound"
+        },
+        "pred_total_cyc": 127270,
+        "pred_stall_cyc": 3306,
+        "pred_stall_pct": 2.6,
+        "f_crit_l1_mhz": 90.56,
+        "f_crit_l2_mhz": 88.1
+      }
+    },
+    "sdram_100mhz": {
+      "ffn_192_384_192": {
+        "l1": {
+          "pred_active_cyc": 18744,
+          "pred_dma_cyc": 17320,
+          "pred_stall_cyc": 722,
+          "pred_total_cyc": 19466,
+          "pred_stall_pct": 3.71,
+          "f_crit_mhz": 92.36,
+          "predicted_regime": "compute_bound"
+        },
+        "l2": {
+          "pred_active_cyc": 18588,
+          "pred_dma_cyc": 16480,
+          "pred_stall_cyc": 1373,
+          "pred_total_cyc": 19961,
+          "pred_stall_pct": 6.88,
+          "f_crit_mhz": 88.63,
+          "predicted_regime": "compute_bound"
+        },
+        "pred_total_cyc": 39427,
+        "pred_stall_cyc": 2095,
+        "pred_stall_pct": 5.31,
+        "f_crit_l1_mhz": 92.36,
+        "f_crit_l2_mhz": 88.63
+      },
+      "ffn_256_576_256": {
+        "l1": {
+          "pred_active_cyc": 37332,
+          "pred_dma_cyc": 33800,
+          "pred_stall_cyc": 939,
+          "pred_total_cyc": 38271,
+          "pred_stall_pct": 2.45,
+          "f_crit_mhz": 90.5,
+          "predicted_regime": "compute_bound"
+        },
+        "l2": {
+          "pred_active_cyc": 37168,
+          "pred_dma_cyc": 33520,
+          "pred_stall_cyc": 1042,
+          "pred_total_cyc": 38210,
+          "pred_stall_pct": 2.73,
+          "f_crit_mhz": 90.15,
+          "predicted_regime": "compute_bound"
+        },
+        "pred_total_cyc": 76481,
+        "pred_stall_cyc": 1981,
+        "pred_stall_pct": 2.59,
+        "f_crit_l1_mhz": 90.5,
+        "f_crit_l2_mhz": 90.15
+      },
+      "ffn_256_960_256": {
+        "l1": {
+          "pred_active_cyc": 62220,
+          "pred_dma_cyc": 56334,
+          "pred_stall_cyc": 939,
+          "pred_total_cyc": 63159,
+          "pred_stall_pct": 1.49,
+          "f_crit_mhz": 90.5,
+          "predicted_regime": "compute_bound"
+        },
+        "l2": {
+          "pred_active_cyc": 61744,
+          "pred_dma_cyc": 54375,
+          "pred_stall_cyc": 1694,
+          "pred_total_cyc": 63438,
+          "pred_stall_pct": 2.67,
+          "f_crit_mhz": 88.04,
+          "predicted_regime": "compute_bound"
+        },
+        "pred_total_cyc": 126597,
+        "pred_stall_cyc": 2633,
+        "pred_stall_pct": 2.08,
+        "f_crit_l1_mhz": 90.5,
+        "f_crit_l2_mhz": 88.04
+      }
+    },
+    "sdram_120mhz": {
+      "ffn_192_384_192": {
+        "l1": {
+          "pred_active_cyc": 18744,
+          "pred_dma_cyc": 14444,
+          "pred_stall_cyc": 602,
+          "pred_total_cyc": 19346,
+          "pred_stall_pct": 3.11,
+          "f_crit_mhz": 92.33,
+          "predicted_regime": "compute_bound"
+        },
+        "l2": {
+          "pred_active_cyc": 18588,
+          "pred_dma_cyc": 13737,
+          "pred_stall_cyc": 1145,
+          "pred_total_cyc": 19733,
+          "pred_stall_pct": 5.8,
+          "f_crit_mhz": 88.6,
+          "predicted_regime": "compute_bound"
+        },
+        "pred_total_cyc": 39079,
+        "pred_stall_cyc": 1747,
+        "pred_stall_pct": 4.47,
+        "f_crit_l1_mhz": 92.33,
+        "f_crit_l2_mhz": 88.6
+      },
+      "ffn_256_576_256": {
+        "l1": {
+          "pred_active_cyc": 37332,
+          "pred_dma_cyc": 28181,
+          "pred_stall_cyc": 783,
+          "pred_total_cyc": 38115,
+          "pred_stall_pct": 2.05,
+          "f_crit_mhz": 90.47,
+          "predicted_regime": "compute_bound"
+        },
+        "l2": {
+          "pred_active_cyc": 37168,
+          "pred_dma_cyc": 27945,
+          "pred_stall_cyc": 869,
+          "pred_total_cyc": 38037,
+          "pred_stall_pct": 2.28,
+          "f_crit_mhz": 90.12,
+          "predicted_regime": "compute_bound"
+        },
+        "pred_total_cyc": 76152,
+        "pred_stall_cyc": 1652,
+        "pred_stall_pct": 2.17,
+        "f_crit_l1_mhz": 90.47,
+        "f_crit_l2_mhz": 90.12
+      },
+      "ffn_256_960_256": {
+        "l1": {
+          "pred_active_cyc": 62220,
+          "pred_dma_cyc": 46968,
+          "pred_stall_cyc": 783,
+          "pred_total_cyc": 63003,
+          "pred_stall_pct": 1.24,
+          "f_crit_mhz": 90.47,
+          "predicted_regime": "compute_bound"
+        },
+        "l2": {
+          "pred_active_cyc": 61744,
+          "pred_dma_cyc": 45318,
+          "pred_stall_cyc": 1411,
+          "pred_total_cyc": 63155,
+          "pred_stall_pct": 2.23,
+          "f_crit_mhz": 88.01,
+          "predicted_regime": "compute_bound"
+        },
+        "pred_total_cyc": 126158,
+        "pred_stall_cyc": 2194,
+        "pred_stall_pct": 1.74,
+        "f_crit_l1_mhz": 90.47,
+        "f_crit_l2_mhz": 88.01
+      }
+    }
+  },
+  "per_frequency": {
+    "sdram_60mhz": {
+      "target_sdram_mhz": 60,
+      "measured_eng_mhz": 79.963,
+      "measured_sdram_mhz": 59.996,
+      "bist_1mib_rd_MBps": 112.69,
+      "bist_1mib_rd_pct": 93.91,
+      "upload_s": 15.58,
+      "shapes": {
+        "ffn_192_384_192": {
+          "shape": "192->384->192 (stage_0)",
+          "zero_lsb_hpost_bytes": 1536,
+          "zero_lsb_yout_bytes": 768,
+          "l1": {
+            "meas_total_cyc": 29714,
+            "meas_stall_cyc": 10970,
+            "meas_stall_pct": 36.92,
+            "pred_total_cyc": 29692,
+            "pred_stall_cyc": 10948,
+            "pred_stall_pct": 36.87,
+            "f_crit_pred_mhz": 92.71,
+            "stall_err_pp": -0.05
+          },
+          "l2": {
+            "meas_total_cyc": 29102,
+            "meas_stall_cyc": 10514,
+            "meas_stall_pct": 36.13,
+            "pred_total_cyc": 29088,
+            "pred_stall_cyc": 10500,
+            "pred_stall_pct": 36.1,
+            "f_crit_pred_mhz": 88.97,
+            "stall_err_pp": -0.03
+          },
+          "combined": {
+            "meas_total_cyc": 58816,
+            "meas_stall_cyc": 21484,
+            "meas_stall_pct": 36.53,
+            "pred_total_cyc": 58780,
+            "pred_stall_cyc": 21448,
+            "pred_stall_pct": 36.49,
+            "total_cyc_err": -36,
+            "total_cyc_err_pct": -0.06,
+            "stall_cyc_err": -36,
+            "stall_err_pp": -0.04
+          }
+        },
+        "ffn_256_576_256": {
+          "shape": "256->576->256 (stage_1..5 FFN1)",
+          "zero_lsb_hpost_bytes": 2304,
+          "zero_lsb_yout_bytes": 1024,
+          "l1": {
+            "meas_total_cyc": 57486,
+            "meas_stall_cyc": 20154,
+            "meas_stall_pct": 35.06,
+            "pred_total_cyc": 57487,
+            "pred_stall_cyc": 20155,
+            "pred_stall_pct": 35.06,
+            "f_crit_pred_mhz": 90.85,
+            "stall_err_pp": 0.0
+          },
+          "l2": {
+            "meas_total_cyc": 57165,
+            "meas_stall_cyc": 19997,
+            "meas_stall_pct": 34.98,
+            "pred_total_cyc": 57157,
+            "pred_stall_cyc": 19989,
+            "pred_stall_pct": 34.97,
+            "f_crit_pred_mhz": 90.49,
+            "stall_err_pp": -0.01
+          },
+          "combined": {
+            "meas_total_cyc": 114651,
+            "meas_stall_cyc": 40151,
+            "meas_stall_pct": 35.02,
+            "pred_total_cyc": 114644,
+            "pred_stall_cyc": 40144,
+            "pred_stall_pct": 35.02,
+            "total_cyc_err": -7,
+            "total_cyc_err_pct": -0.01,
+            "stall_cyc_err": -7,
+            "stall_err_pp": 0.0
+          }
+        },
+        "ffn_256_960_256": {
+          "shape": "256->960->256 (stage_1..5 FFN3)",
+          "zero_lsb_hpost_bytes": 3840,
+          "zero_lsb_yout_bytes": 1024,
+          "l1": {
+            "meas_total_cyc": 95114,
+            "meas_stall_cyc": 32894,
+            "meas_stall_pct": 34.58,
+            "pred_total_cyc": 95120,
+            "pred_stall_cyc": 32900,
+            "pred_stall_pct": 34.59,
+            "f_crit_pred_mhz": 90.85,
+            "stall_err_pp": 0.01
+          },
+          "l2": {
+            "meas_total_cyc": 92827,
+            "meas_stall_cyc": 31083,
+            "meas_stall_pct": 33.48,
+            "pred_total_cyc": 92815,
+            "pred_stall_cyc": 31071,
+            "pred_stall_pct": 33.48,
+            "f_crit_pred_mhz": 88.37,
+            "stall_err_pp": 0.0
+          },
+          "combined": {
+            "meas_total_cyc": 187941,
+            "meas_stall_cyc": 63977,
+            "meas_stall_pct": 34.04,
+            "pred_total_cyc": 187935,
+            "pred_stall_cyc": 63971,
+            "pred_stall_pct": 34.04,
+            "total_cyc_err": -6,
+            "total_cyc_err_pct": -0.0,
+            "stall_cyc_err": -6,
+            "stall_err_pp": 0.0
+          }
+        }
+      }
+    },
+    "sdram_90mhz": {
+      "target_sdram_mhz": 90,
+      "measured_eng_mhz": 79.929,
+      "measured_sdram_mhz": 89.996,
+      "bist_1mib_rd_MBps": 169.58,
+      "bist_1mib_rd_pct": 94.21,
+      "upload_s": 15.61,
+      "shapes": {
+        "ffn_192_384_192": {
+          "shape": "192->384->192 (stage_0)",
+          "zero_lsb_hpost_bytes": 1536,
+          "zero_lsb_yout_bytes": 768,
+          "l1": {
+            "meas_total_cyc": 20041,
+            "meas_stall_cyc": 1297,
+            "meas_stall_pct": 6.47,
+            "pred_total_cyc": 20027,
+            "pred_stall_cyc": 1283,
+            "pred_stall_pct": 6.41,
+            "f_crit_pred_mhz": 92.42,
+            "stall_err_pp": -0.06
+          },
+          "l2": {
+            "meas_total_cyc": 20121,
+            "meas_stall_cyc": 1533,
+            "meas_stall_pct": 7.62,
+            "pred_total_cyc": 20114,
+            "pred_stall_cyc": 1526,
+            "pred_stall_pct": 7.59,
+            "f_crit_pred_mhz": 88.69,
+            "stall_err_pp": -0.03
+          },
+          "combined": {
+            "meas_total_cyc": 40162,
+            "meas_stall_cyc": 2830,
+            "meas_stall_pct": 7.05,
+            "pred_total_cyc": 40141,
+            "pred_stall_cyc": 2809,
+            "pred_stall_pct": 7.0,
+            "total_cyc_err": -21,
+            "total_cyc_err_pct": -0.05,
+            "stall_cyc_err": -21,
+            "stall_err_pp": -0.05
+          }
+        },
+        "ffn_256_576_256": {
+          "shape": "256->576->256 (stage_1..5 FFN1)",
+          "zero_lsb_hpost_bytes": 2304,
+          "zero_lsb_yout_bytes": 1024,
+          "l1": {
+            "meas_total_cyc": 38620,
+            "meas_stall_cyc": 1288,
+            "meas_stall_pct": 3.34,
+            "pred_total_cyc": 38600,
+            "pred_stall_cyc": 1268,
+            "pred_stall_pct": 3.29,
+            "f_crit_pred_mhz": 90.56,
+            "stall_err_pp": -0.05
+          },
+          "l2": {
+            "meas_total_cyc": 38488,
+            "meas_stall_cyc": 1320,
+            "meas_stall_pct": 3.43,
+            "pred_total_cyc": 38469,
+            "pred_stall_cyc": 1301,
+            "pred_stall_pct": 3.38,
+            "f_crit_pred_mhz": 90.21,
+            "stall_err_pp": -0.05
+          },
+          "combined": {
+            "meas_total_cyc": 77108,
+            "meas_stall_cyc": 2608,
+            "meas_stall_pct": 3.38,
+            "pred_total_cyc": 77069,
+            "pred_stall_cyc": 2569,
+            "pred_stall_pct": 3.33,
+            "total_cyc_err": -39,
+            "total_cyc_err_pct": -0.05,
+            "stall_cyc_err": -39,
+            "stall_err_pp": -0.05
+          }
+        },
+        "ffn_256_960_256": {
+          "shape": "256->960->256 (stage_1..5 FFN3)",
+          "zero_lsb_hpost_bytes": 3840,
+          "zero_lsb_yout_bytes": 1024,
+          "l1": {
+            "meas_total_cyc": 63662,
+            "meas_stall_cyc": 1442,
+            "meas_stall_pct": 2.27,
+            "pred_total_cyc": 63643,
+            "pred_stall_cyc": 1423,
+            "pred_stall_pct": 2.24,
+            "f_crit_pred_mhz": 90.56,
+            "stall_err_pp": -0.03
+          },
+          "l2": {
+            "meas_total_cyc": 63631,
+            "meas_stall_cyc": 1887,
+            "meas_stall_pct": 2.97,
+            "pred_total_cyc": 63627,
+            "pred_stall_cyc": 1883,
+            "pred_stall_pct": 2.96,
+            "f_crit_pred_mhz": 88.1,
+            "stall_err_pp": -0.01
+          },
+          "combined": {
+            "meas_total_cyc": 127293,
+            "meas_stall_cyc": 3329,
+            "meas_stall_pct": 2.62,
+            "pred_total_cyc": 127270,
+            "pred_stall_cyc": 3306,
+            "pred_stall_pct": 2.6,
+            "total_cyc_err": -23,
+            "total_cyc_err_pct": -0.02,
+            "stall_cyc_err": -23,
+            "stall_err_pp": -0.02
+          }
+        }
+      }
+    },
+    "sdram_100mhz": {
+      "target_sdram_mhz": 100,
+      "measured_eng_mhz": 79.947,
+      "measured_sdram_mhz": 99.993,
+      "bist_1mib_rd_MBps": 188.53,
+      "bist_1mib_rd_pct": 94.27,
+      "upload_s": 15.61,
+      "shapes": {
+        "ffn_192_384_192": {
+          "shape": "192->384->192 (stage_0)",
+          "zero_lsb_hpost_bytes": 1536,
+          "zero_lsb_yout_bytes": 768,
+          "l1": {
+            "meas_total_cyc": 19464,
+            "meas_stall_cyc": 720,
+            "meas_stall_pct": 3.7,
+            "pred_total_cyc": 19466,
+            "pred_stall_cyc": 722,
+            "pred_stall_pct": 3.71,
+            "f_crit_pred_mhz": 92.36,
+            "stall_err_pp": 0.01
+          },
+          "l2": {
+            "meas_total_cyc": 19962,
+            "meas_stall_cyc": 1374,
+            "meas_stall_pct": 6.88,
+            "pred_total_cyc": 19961,
+            "pred_stall_cyc": 1373,
+            "pred_stall_pct": 6.88,
+            "f_crit_pred_mhz": 88.63,
+            "stall_err_pp": 0.0
+          },
+          "combined": {
+            "meas_total_cyc": 39426,
+            "meas_stall_cyc": 2094,
+            "meas_stall_pct": 5.31,
+            "pred_total_cyc": 39427,
+            "pred_stall_cyc": 2095,
+            "pred_stall_pct": 5.31,
+            "total_cyc_err": 1,
+            "total_cyc_err_pct": 0.0,
+            "stall_cyc_err": 1,
+            "stall_err_pp": 0.0
+          }
+        },
+        "ffn_256_576_256": {
+          "shape": "256->576->256 (stage_1..5 FFN1)",
+          "zero_lsb_hpost_bytes": 2304,
+          "zero_lsb_yout_bytes": 1024,
+          "l1": {
+            "meas_total_cyc": 38274,
+            "meas_stall_cyc": 942,
+            "meas_stall_pct": 2.46,
+            "pred_total_cyc": 38271,
+            "pred_stall_cyc": 939,
+            "pred_stall_pct": 2.45,
+            "f_crit_pred_mhz": 90.5,
+            "stall_err_pp": -0.01
+          },
+          "l2": {
+            "meas_total_cyc": 38213,
+            "meas_stall_cyc": 1045,
+            "meas_stall_pct": 2.73,
+            "pred_total_cyc": 38210,
+            "pred_stall_cyc": 1042,
+            "pred_stall_pct": 2.73,
+            "f_crit_pred_mhz": 90.15,
+            "stall_err_pp": 0.0
+          },
+          "combined": {
+            "meas_total_cyc": 76487,
+            "meas_stall_cyc": 1987,
+            "meas_stall_pct": 2.6,
+            "pred_total_cyc": 76481,
+            "pred_stall_cyc": 1981,
+            "pred_stall_pct": 2.59,
+            "total_cyc_err": -6,
+            "total_cyc_err_pct": -0.01,
+            "stall_cyc_err": -6,
+            "stall_err_pp": -0.01
+          }
+        },
+        "ffn_256_960_256": {
+          "shape": "256->960->256 (stage_1..5 FFN3)",
+          "zero_lsb_hpost_bytes": 3840,
+          "zero_lsb_yout_bytes": 1024,
+          "l1": {
+            "meas_total_cyc": 63156,
+            "meas_stall_cyc": 936,
+            "meas_stall_pct": 1.48,
+            "pred_total_cyc": 63159,
+            "pred_stall_cyc": 939,
+            "pred_stall_pct": 1.49,
+            "f_crit_pred_mhz": 90.5,
+            "stall_err_pp": 0.01
+          },
+          "l2": {
+            "meas_total_cyc": 63443,
+            "meas_stall_cyc": 1699,
+            "meas_stall_pct": 2.68,
+            "pred_total_cyc": 63438,
+            "pred_stall_cyc": 1694,
+            "pred_stall_pct": 2.67,
+            "f_crit_pred_mhz": 88.04,
+            "stall_err_pp": -0.01
+          },
+          "combined": {
+            "meas_total_cyc": 126599,
+            "meas_stall_cyc": 2635,
+            "meas_stall_pct": 2.08,
+            "pred_total_cyc": 126597,
+            "pred_stall_cyc": 2633,
+            "pred_stall_pct": 2.08,
+            "total_cyc_err": -2,
+            "total_cyc_err_pct": -0.0,
+            "stall_cyc_err": -2,
+            "stall_err_pp": 0.0
+          }
+        }
+      }
+    },
+    "sdram_120mhz": {
+      "target_sdram_mhz": 120,
+      "measured_eng_mhz": 79.981,
+      "measured_sdram_mhz": 119.992,
+      "bist_1mib_rd_MBps": 226.32,
+      "bist_1mib_rd_pct": 94.31,
+      "upload_s": 15.58,
+      "shapes": {
+        "ffn_192_384_192": {
+          "shape": "192->384->192 (stage_0)",
+          "zero_lsb_hpost_bytes": 1536,
+          "zero_lsb_yout_bytes": 768,
+          "l1": {
+            "meas_total_cyc": 19351,
+            "meas_stall_cyc": 607,
+            "meas_stall_pct": 3.14,
+            "pred_total_cyc": 19346,
+            "pred_stall_cyc": 602,
+            "pred_stall_pct": 3.11,
+            "f_crit_pred_mhz": 92.33,
+            "stall_err_pp": -0.03
+          },
+          "l2": {
+            "meas_total_cyc": 19735,
+            "meas_stall_cyc": 1147,
+            "meas_stall_pct": 5.81,
+            "pred_total_cyc": 19733,
+            "pred_stall_cyc": 1145,
+            "pred_stall_pct": 5.8,
+            "f_crit_pred_mhz": 88.6,
+            "stall_err_pp": -0.01
+          },
+          "combined": {
+            "meas_total_cyc": 39086,
+            "meas_stall_cyc": 1754,
+            "meas_stall_pct": 4.49,
+            "pred_total_cyc": 39079,
+            "pred_stall_cyc": 1747,
+            "pred_stall_pct": 4.47,
+            "total_cyc_err": -7,
+            "total_cyc_err_pct": -0.02,
+            "stall_cyc_err": -7,
+            "stall_err_pp": -0.02
+          }
+        },
+        "ffn_256_576_256": {
+          "shape": "256->576->256 (stage_1..5 FFN1)",
+          "zero_lsb_hpost_bytes": 2304,
+          "zero_lsb_yout_bytes": 1024,
+          "l1": {
+            "meas_total_cyc": 38113,
+            "meas_stall_cyc": 781,
+            "meas_stall_pct": 2.05,
+            "pred_total_cyc": 38115,
+            "pred_stall_cyc": 783,
+            "pred_stall_pct": 2.05,
+            "f_crit_pred_mhz": 90.47,
+            "stall_err_pp": 0.0
+          },
+          "l2": {
+            "meas_total_cyc": 38034,
+            "meas_stall_cyc": 866,
+            "meas_stall_pct": 2.28,
+            "pred_total_cyc": 38037,
+            "pred_stall_cyc": 869,
+            "pred_stall_pct": 2.28,
+            "f_crit_pred_mhz": 90.12,
+            "stall_err_pp": 0.0
+          },
+          "combined": {
+            "meas_total_cyc": 76147,
+            "meas_stall_cyc": 1647,
+            "meas_stall_pct": 2.16,
+            "pred_total_cyc": 76152,
+            "pred_stall_cyc": 1652,
+            "pred_stall_pct": 2.17,
+            "total_cyc_err": 5,
+            "total_cyc_err_pct": 0.01,
+            "stall_cyc_err": 5,
+            "stall_err_pp": 0.01
+          }
+        },
+        "ffn_256_960_256": {
+          "shape": "256->960->256 (stage_1..5 FFN3)",
+          "zero_lsb_hpost_bytes": 3840,
+          "zero_lsb_yout_bytes": 1024,
+          "l1": {
+            "meas_total_cyc": 63007,
+            "meas_stall_cyc": 787,
+            "meas_stall_pct": 1.25,
+            "pred_total_cyc": 63003,
+            "pred_stall_cyc": 783,
+            "pred_stall_pct": 1.24,
+            "f_crit_pred_mhz": 90.47,
+            "stall_err_pp": -0.01
+          },
+          "l2": {
+            "meas_total_cyc": 63162,
+            "meas_stall_cyc": 1418,
+            "meas_stall_pct": 2.25,
+            "pred_total_cyc": 63155,
+            "pred_stall_cyc": 1411,
+            "pred_stall_pct": 2.23,
+            "f_crit_pred_mhz": 88.01,
+            "stall_err_pp": -0.02
+          },
+          "combined": {
+            "meas_total_cyc": 126169,
+            "meas_stall_cyc": 2205,
+            "meas_stall_pct": 1.75,
+            "pred_total_cyc": 126158,
+            "pred_stall_cyc": 2194,
+            "pred_stall_pct": 1.74,
+            "total_cyc_err": -11,
+            "total_cyc_err_pct": -0.01,
+            "stall_cyc_err": -11,
+            "stall_err_pp": -0.01
+          }
+        }
+      }
+    }
+  },
+  "summary_errors": {
+    "n_ffn_points": 12,
+    "n_layer_points": 24,
+    "max_abs_total_cyc_err_pct": 0.06,
+    "mean_abs_total_cyc_err_pct": 0.02,
+    "max_abs_ffn_stall_err_pp": 0.05,
+    "mean_abs_ffn_stall_err_pp": 0.02,
+    "max_abs_layer_stall_err_pp": 0.06
+  }
+}

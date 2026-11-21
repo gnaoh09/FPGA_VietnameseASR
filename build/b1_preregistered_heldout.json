@@ -1,0 +1,243 @@
+{
+  "timestamp_utc": "2026-11-21T08:43:57.422787+00:00",
+  "code_hashes_sha256": {
+    "rtl/zipformer_engine.v": "f9b0a5a3bcd4dcbe224b925ae879855601a4ea1d85fdb25ee16aeee62801c31b",
+    "rtl/sdram_ctrl.v": "4babf00993153c525c8f32449831826aeeb035e866084abec0cb3ffa8ed6d542",
+    "scripts/run_oos_stall_validation.py": "e54d5cd7cbd497794700c1857dc25bb0be31164a66c3093053f89910d48cbcd3",
+    "scripts/run_deep_rtl_validation_part2.py": "a6af91da4b74c52a1dd07bb78ff2f0f0534817b5c114f68d505eec8e13d6afe5",
+    "scripts/run_t_tile8_ep4ce10.py": "c8331d49ebf2a32bbe64b8e9ff39dd665566a45200bfdfe9d0833105562fe409"
+  },
+  "frozen_whitebox_constants": {
+    "c_page": 14,
+    "c_cdc_sd": 3,
+    "c_cdc_eng": 4,
+    "t_rfc_le100": 8
+  },
+  "frozen_greybox_constants": {
+    "c_page": 14.644666666666666,
+    "c_cdc_sd": 3.333,
+    "c_cdc_eng": 3.1468333333333334,
+    "t_rfc": 5.906833333333332,
+    "source": "mean of 6 LOSO folds in build/deep_rtl_validation_part2.json"
+  },
+  "b1_t4_predictions": [
+    {
+      "tag": "e60_s90",
+      "shape": "ffn_192_448_192",
+      "eng_mhz": 60,
+      "sdram_mhz": 90,
+      "l1_base": 0,
+      "l2_base": 2912,
+      "active_cyc": 43528,
+      "wb_pred_tot": 45457.431,
+      "wb_pred_stall": 1929.431,
+      "gb_pred_tot": 45458.185,
+      "gb_pred_stall": 1930.185
+    },
+    {
+      "tag": "e60_s90",
+      "shape": "ffn_256_640_256",
+      "eng_mhz": 60,
+      "sdram_mhz": 90,
+      "l1_base": 5696,
+      "l2_base": 11136,
+      "active_cyc": 82744,
+      "wb_pred_tot": 84492.288,
+      "wb_pred_stall": 1748.288,
+      "gb_pred_tot": 84492.909,
+      "gb_pred_stall": 1748.909
+    },
+    {
+      "tag": "e60_s90",
+      "shape": "ffn_384_1024_384",
+      "eng_mhz": 60,
+      "sdram_mhz": 90,
+      "l1_base": 16512,
+      "l2_base": 29312,
+      "active_cyc": 197896,
+      "wb_pred_tot": 200550.002,
+      "wb_pred_stall": 2654.002,
+      "gb_pred_tot": 200551.287,
+      "gb_pred_stall": 2655.287
+    },
+    {
+      "tag": "e70_s100",
+      "shape": "ffn_192_448_192",
+      "eng_mhz": 70,
+      "sdram_mhz": 100,
+      "l1_base": 0,
+      "l2_base": 2912,
+      "active_cyc": 43528,
+      "wb_pred_tot": 45552.232,
+      "wb_pred_stall": 2024.232,
+      "gb_pred_tot": 45553.439,
+      "gb_pred_stall": 2025.439
+    },
+    {
+      "tag": "e70_s100",
+      "shape": "ffn_256_640_256",
+      "eng_mhz": 70,
+      "sdram_mhz": 100,
+      "l1_base": 5696,
+      "l2_base": 11136,
+      "active_cyc": 82744,
+      "wb_pred_tot": 84578.152,
+      "wb_pred_stall": 1834.152,
+      "gb_pred_tot": 84579.188,
+      "gb_pred_stall": 1835.188
+    },
+    {
+      "tag": "e70_s100",
+      "shape": "ffn_384_1024_384",
+      "eng_mhz": 70,
+      "sdram_mhz": 100,
+      "l1_base": 16512,
+      "l2_base": 29312,
+      "active_cyc": 197896,
+      "wb_pred_tot": 200680.552,
+      "wb_pred_stall": 2784.552,
+      "gb_pred_tot": 200682.441,
+      "gb_pred_stall": 2786.441
+    },
+    {
+      "tag": "e90_s100",
+      "shape": "ffn_192_448_192",
+      "eng_mhz": 90,
+      "sdram_mhz": 100,
+      "l1_base": 0,
+      "l2_base": 2912,
+      "active_cyc": 43528,
+      "wb_pred_tot": 46948.342,
+      "wb_pred_stall": 3420.342,
+      "gb_pred_tot": 46966.065,
+      "gb_pred_stall": 3438.065
+    },
+    {
+      "tag": "e90_s100",
+      "shape": "ffn_256_640_256",
+      "eng_mhz": 90,
+      "sdram_mhz": 100,
+      "l1_base": 5696,
+      "l2_base": 11136,
+      "active_cyc": 82744,
+      "wb_pred_tot": 86165.195,
+      "wb_pred_stall": 3421.195,
+      "gb_pred_tot": 86229.83,
+      "gb_pred_stall": 3485.83
+    },
+    {
+      "tag": "e90_s100",
+      "shape": "ffn_384_1024_384",
+      "eng_mhz": 90,
+      "sdram_mhz": 100,
+      "l1_base": 16512,
+      "l2_base": 29312,
+      "active_cyc": 197896,
+      "wb_pred_tot": 201473.853,
+      "wb_pred_stall": 3577.853,
+      "gb_pred_tot": 201476.769,
+      "gb_pred_stall": 3580.769
+    }
+  ],
+  "b1_t8_predictions": [
+    {
+      "tag": "t8_e80_s40",
+      "shape": "ffn_192_448_192",
+      "eng_mhz": 80,
+      "sdram_mhz": 40,
+      "l1_base": 0,
+      "l2_base": 2912,
+      "active_cyc": 86536,
+      "wb_pred_tot": 103972,
+      "wb_pred_stall": 17436
+    },
+    {
+      "tag": "t8_e80_s40",
+      "shape": "ffn_256_640_256",
+      "eng_mhz": 80,
+      "sdram_mhz": 40,
+      "l1_base": 5696,
+      "l2_base": 11136,
+      "active_cyc": 164664,
+      "wb_pred_tot": 192162,
+      "wb_pred_stall": 27498
+    },
+    {
+      "tag": "t8_e80_s40",
+      "shape": "ffn_384_1024_384",
+      "eng_mhz": 80,
+      "sdram_mhz": 40,
+      "l1_base": 16512,
+      "l2_base": 29312,
+      "active_cyc": 394504,
+      "wb_pred_tot": 446908,
+      "wb_pred_stall": 52404
+    },
+    {
+      "tag": "t8_e80_s50",
+      "shape": "ffn_192_448_192",
+      "eng_mhz": 80,
+      "sdram_mhz": 50,
+      "l1_base": 0,
+      "l2_base": 2912,
+      "active_cyc": 86536,
+      "wb_pred_tot": 91178,
+      "wb_pred_stall": 4642
+    },
+    {
+      "tag": "t8_e80_s50",
+      "shape": "ffn_256_640_256",
+      "eng_mhz": 80,
+      "sdram_mhz": 50,
+      "l1_base": 5696,
+      "l2_base": 11136,
+      "active_cyc": 164664,
+      "wb_pred_tot": 168869,
+      "wb_pred_stall": 4205
+    },
+    {
+      "tag": "t8_e80_s50",
+      "shape": "ffn_384_1024_384",
+      "eng_mhz": 80,
+      "sdram_mhz": 50,
+      "l1_base": 16512,
+      "l2_base": 29312,
+      "active_cyc": 394504,
+      "wb_pred_tot": 400894,
+      "wb_pred_stall": 6390
+    },
+    {
+      "tag": "t8_e80_s100",
+      "shape": "ffn_192_448_192",
+      "eng_mhz": 80,
+      "sdram_mhz": 100,
+      "l1_base": 0,
+      "l2_base": 2912,
+      "active_cyc": 86536,
+      "wb_pred_tot": 88849,
+      "wb_pred_stall": 2313
+    },
+    {
+      "tag": "t8_e80_s100",
+      "shape": "ffn_256_640_256",
+      "eng_mhz": 80,
+      "sdram_mhz": 100,
+      "l1_base": 5696,
+      "l2_base": 11136,
+      "active_cyc": 164664,
+      "wb_pred_tot": 166759,
+      "wb_pred_stall": 2095
+    },
+    {
+      "tag": "t8_e80_s100",
+      "shape": "ffn_384_1024_384",
+      "eng_mhz": 80,
+      "sdram_mhz": 100,
+      "l1_base": 16512,
+      "l2_base": 29312,
+      "active_cyc": 394504,
+      "wb_pred_tot": 397685,
+      "wb_pred_stall": 3181
+    }
+  ]
+}

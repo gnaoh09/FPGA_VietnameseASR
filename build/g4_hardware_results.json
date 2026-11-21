@@ -1,0 +1,87 @@
+{
+  "gate": "G4",
+  "device": "EP4CE6E22C8",
+  "magic": "0x5a463445",
+  "num_lanes": 16,
+  "echo_loopback_pass": true,
+  "measured_board_clk_mhz_samples": [
+    80.013,
+    79.987,
+    79.973
+  ],
+  "measured_board_clk_mhz_mean": 79.991,
+  "w4_weight_read_reduction_pct": 50.0,
+  "workloads": {
+    "ffn_w8a8": {
+      "workload": "stage0_layer0_ffn1_W8A8",
+      "w4_mode": false,
+      "upload_jtag_ms": 237.63,
+      "readback_jtag_ms": 277.78,
+      "mode_s_poll_ms": 6.36,
+      "hpost_mismatch_words": 0,
+      "yout_mismatch_words": 0,
+      "zero_lsb_verified": true,
+      "counters": {
+        "status": "0x5a46344500000002",
+        "total_cycles": 4122,
+        "mac_cycles": 4096,
+        "epilogue_cycles": 4104,
+        "wgt_reads": 4096,
+        "out_checksum": "0xb24319d6",
+        "run_count": 3
+      },
+      "mac_lane_utilization_pct": 99.37,
+      "mode_v": {
+        "host_wall_ms": 340.59,
+        "l1_cycles": 2061,
+        "l2_cycles": 2061,
+        "l1_mismatch_words": 0,
+        "l2_mismatch_words": 0
+      },
+      "hw_exec_us_at_50mhz": 51.531,
+      "hw_exec_us_at_fmax_80_34mhz": 51.307
+    },
+    "ffn_w4a8": {
+      "workload": "stage0_layer0_ffn1_W4A8",
+      "w4_mode": true,
+      "upload_jtag_ms": 152.79,
+      "readback_jtag_ms": 282.32,
+      "mode_s_poll_ms": 32.41,
+      "hpost_mismatch_words": 0,
+      "yout_mismatch_words": 0,
+      "zero_lsb_verified": true,
+      "counters": {
+        "status": "0x5a46344500000002",
+        "total_cycles": 4122,
+        "mac_cycles": 4096,
+        "epilogue_cycles": 4104,
+        "wgt_reads": 2048,
+        "out_checksum": "0x1e179b18",
+        "run_count": 4
+      },
+      "mac_lane_utilization_pct": 99.37,
+      "mode_v": null,
+      "hw_exec_us_at_50mhz": 51.531,
+      "hw_exec_us_at_fmax_80_34mhz": 51.307
+    },
+    "joiner_w8a8": {
+      "workload": "joiner_W8A8",
+      "upload_jtag_ms": 85.93,
+      "readback_jtag_ms": 90.79,
+      "logit_mismatch_words": 0,
+      "zero_lsb_verified": true,
+      "counters": {
+        "status": "0x5a46344500000002",
+        "total_cycles": 2733,
+        "mac_cycles": 1024,
+        "epilogue_cycles": 1029,
+        "wgt_reads": 1024,
+        "out_checksum": "0x83bf4fc4",
+        "run_count": 5
+      },
+      "j_act_bytes": 512,
+      "hw_exec_us_at_50mhz": 34.166,
+      "hw_exec_us_at_fmax_80_34mhz": 34.018
+    }
+  }
+}

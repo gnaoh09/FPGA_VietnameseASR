@@ -1,0 +1,107 @@
+{
+  "total_150m_t500_gmac": 8.4283,
+  "total_30m_t500_gmac": 1.25,
+  "level_coverage": {
+    "level1_ffn_only_pct": 55.45,
+    "level2_all_gemm_pct": 88.43,
+    "level3_with_embed_dwconv_pct": 98.81
+  },
+  "descriptors": [
+    {
+      "desc_id": 0,
+      "stage": "encoder_embed",
+      "layers": 1,
+      "macs_150m_t500_g": 0.8011,
+      "macs_30m_t500_g": 0.1188,
+      "ffn_w4_bytes_150m": 422860,
+      "ffn_w4_bytes_30m": 63626,
+      "weight_offset_150m": 0,
+      "weight_offset_30m": 0,
+      "lut_epilogue": "Bypass"
+    },
+    {
+      "desc_id": 1,
+      "stage": "stage_0",
+      "layers": 2,
+      "macs_150m_t500_g": 0.5523,
+      "macs_30m_t500_g": 0.0819,
+      "ffn_w4_bytes_150m": 1422024,
+      "ffn_w4_bytes_30m": 213966,
+      "weight_offset_150m": 422860,
+      "weight_offset_30m": 63626,
+      "lut_epilogue": "SwooshL_256"
+    },
+    {
+      "desc_id": 2,
+      "stage": "stage_1",
+      "layers": 2,
+      "macs_150m_t500_g": 0.4823,
+      "macs_30m_t500_g": 0.0715,
+      "ffn_w4_bytes_150m": 2643249,
+      "ffn_w4_bytes_30m": 397719,
+      "weight_offset_150m": 1844884,
+      "weight_offset_30m": 277592,
+      "lut_epilogue": "SwooshL_256"
+    },
+    {
+      "desc_id": 3,
+      "stage": "stage_2",
+      "layers": 4,
+      "macs_150m_t500_g": 1.8283,
+      "macs_30m_t500_g": 0.2712,
+      "ffn_w4_bytes_150m": 20305853,
+      "ffn_w4_bytes_30m": 3055340,
+      "weight_offset_150m": 4488133,
+      "weight_offset_30m": 675311,
+      "lut_epilogue": "SwooshL_256"
+    },
+    {
+      "desc_id": 4,
+      "stage": "stage_3",
+      "layers": 5,
+      "macs_150m_t500_g": 2.4053,
+      "macs_30m_t500_g": 0.3567,
+      "ffn_w4_bytes_150m": 53568739,
+      "ffn_w4_bytes_30m": 8060273,
+      "weight_offset_150m": 24793986,
+      "weight_offset_30m": 3730651,
+      "lut_epilogue": "SwooshL_256"
+    },
+    {
+      "desc_id": 5,
+      "stage": "stage_4",
+      "layers": 4,
+      "macs_150m_t500_g": 1.8283,
+      "macs_30m_t500_g": 0.2712,
+      "ffn_w4_bytes_150m": 20305853,
+      "ffn_w4_bytes_30m": 3055340,
+      "weight_offset_150m": 78362725,
+      "weight_offset_30m": 11790924,
+      "lut_epilogue": "SwooshL_256"
+    },
+    {
+      "desc_id": 6,
+      "stage": "stage_5",
+      "layers": 2,
+      "macs_150m_t500_g": 0.4823,
+      "macs_30m_t500_g": 0.0715,
+      "ffn_w4_bytes_150m": 2643249,
+      "ffn_w4_bytes_30m": 397719,
+      "weight_offset_150m": 98668578,
+      "weight_offset_30m": 14846264,
+      "lut_epilogue": "SwooshL_256"
+    },
+    {
+      "desc_id": 7,
+      "stage": "encoder_out_proj",
+      "layers": 1,
+      "macs_150m_t500_g": 0.0484,
+      "macs_30m_t500_g": 0.0072,
+      "ffn_w4_bytes_150m": 272066,
+      "ffn_w4_bytes_30m": 40937,
+      "weight_offset_150m": 101311827,
+      "weight_offset_30m": 15243983,
+      "lut_epilogue": "Bypass"
+    }
+  ]
+}

@@ -6,10 +6,11 @@
 //   c1: SDRAM_MHZ (80 or 100 MHz) -> sdram_ctrl
 //   c2: SDRAM_MHZ (-3 ns phase shift) -> PIN_43 sdram_clk
 module top #(
-    parameter integer NUM_LANES  = 16,
-    parameter integer ENG_MHZ    = 80,
-    parameter integer SDRAM_MHZ  = 100,
-    parameter integer MAX_T_TILE = 4
+    parameter integer NUM_LANES      = 16,
+    parameter integer ENG_MHZ        = 80,
+    parameter integer SDRAM_MHZ      = 100,
+    parameter integer MAX_T_TILE     = 4,
+    parameter integer CLK1_PHASE_DEG = 0
 ) (
     input  wire        clk,
     input  wire        rst_n,
@@ -45,8 +46,9 @@ module top #(
     wire        sys_rst_n = rst_n & pll_locked;
 
     pll_80m #(
-        .ENG_MHZ   (ENG_MHZ),
-        .SDRAM_MHZ (SDRAM_MHZ)
+        .ENG_MHZ        (ENG_MHZ),
+        .SDRAM_MHZ      (SDRAM_MHZ),
+        .CLK1_PHASE_DEG (CLK1_PHASE_DEG)
     ) u_pll (
         .inclk0 (clk),
         .areset (~rst_n),

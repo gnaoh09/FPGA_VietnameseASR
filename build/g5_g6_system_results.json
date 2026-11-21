@@ -1,0 +1,280 @@
+{
+  "gate": "G5_G6",
+  "schedule_summary": {
+    "total_150m_t500_gmac": 8.4283,
+    "total_30m_t500_gmac": 1.25,
+    "level_coverage": {
+      "level1_ffn_only_pct": 55.45,
+      "level2_all_gemm_pct": 88.43,
+      "level3_with_embed_dwconv_pct": 98.81
+    }
+  },
+  "g5_hardware_stage_chain": {
+    "stages_verified": [
+      {
+        "stage": "stage_0_ffn_w4",
+        "mismatch_words": 0,
+        "total_cycles": 4122,
+        "csum": "0x1e179b18"
+      },
+      {
+        "stage": "stage_1_ffn_w4",
+        "mismatch_words": 0,
+        "total_cycles": 4122,
+        "csum": "0x1e179b18"
+      },
+      {
+        "stage": "stage_2_ffn_w4",
+        "mismatch_words": 0,
+        "total_cycles": 4122,
+        "csum": "0x1e179b18"
+      },
+      {
+        "stage": "stage_3_ffn_w8",
+        "mismatch_words": 0,
+        "total_cycles": 4122,
+        "csum": "0xb24319d6"
+      },
+      {
+        "stage": "stage_4_ffn_w8",
+        "mismatch_words": 0,
+        "total_cycles": 4122,
+        "csum": "0xb24319d6"
+      },
+      {
+        "stage": "stage_5_linear_lut",
+        "mismatch_words": 0,
+        "total_cycles": 2061,
+        "csum": "0x24c97cf0"
+      }
+    ],
+    "all_zero_lsb": true
+  },
+  "g6_hardware_10x_sweep": {
+    "runs_per_point": 10,
+    "total_hw_runs": 50,
+    "sweep": [
+      {
+        "audio_s": 2.0,
+        "T_full": 200,
+        "T_tile_hw": 4,
+        "runs": 10,
+        "deterministic_checksum": "0x7d76f236",
+        "cycles_median": 1050.0,
+        "cycles_min": 1050,
+        "cycles_max": 1050,
+        "mac_cycles_median": 1024.0,
+        "lane_util_pct": 97.52,
+        "tile_macs": 16384,
+        "hw_time_us_50mhz": 21.0,
+        "hw_time_us_80_34mhz": 13.07,
+        "jtag_poll_ms_median": 5.79,
+        "jtag_poll_ms_range": [
+          5.4,
+          28.46
+        ],
+        "measured_gmac_s_at_80_34mhz": 1.254
+      },
+      {
+        "audio_s": 4.0,
+        "T_full": 400,
+        "T_tile_hw": 8,
+        "runs": 10,
+        "deterministic_checksum": "0xed8489bb",
+        "cycles_median": 2074.0,
+        "cycles_min": 2074,
+        "cycles_max": 2074,
+        "mac_cycles_median": 2048.0,
+        "lane_util_pct": 98.75,
+        "tile_macs": 32768,
+        "hw_time_us_50mhz": 41.49,
+        "hw_time_us_80_34mhz": 25.82,
+        "jtag_poll_ms_median": 5.88,
+        "jtag_poll_ms_range": [
+          5.53,
+          16.41
+        ],
+        "measured_gmac_s_at_80_34mhz": 1.269
+      },
+      {
+        "audio_s": 5.0,
+        "T_full": 500,
+        "T_tile_hw": 10,
+        "runs": 10,
+        "deterministic_checksum": "0xd6d3db95",
+        "cycles_median": 2586.0,
+        "cycles_min": 2586,
+        "cycles_max": 2586,
+        "mac_cycles_median": 2560.0,
+        "lane_util_pct": 98.99,
+        "tile_macs": 40960,
+        "hw_time_us_50mhz": 51.73,
+        "hw_time_us_80_34mhz": 32.19,
+        "jtag_poll_ms_median": 5.53,
+        "jtag_poll_ms_range": [
+          5.38,
+          16.01
+        ],
+        "measured_gmac_s_at_80_34mhz": 1.273
+      },
+      {
+        "audio_s": 8.0,
+        "T_full": 800,
+        "T_tile_hw": 14,
+        "runs": 10,
+        "deterministic_checksum": "0x1bf3a1ee",
+        "cycles_median": 3610.0,
+        "cycles_min": 3610,
+        "cycles_max": 3610,
+        "mac_cycles_median": 3584.0,
+        "lane_util_pct": 99.28,
+        "tile_macs": 57344,
+        "hw_time_us_50mhz": 72.21,
+        "hw_time_us_80_34mhz": 44.93,
+        "jtag_poll_ms_median": 5.52,
+        "jtag_poll_ms_range": [
+          5.45,
+          9.57
+        ],
+        "measured_gmac_s_at_80_34mhz": 1.276
+      },
+      {
+        "audio_s": 10.0,
+        "T_full": 1000,
+        "T_tile_hw": 16,
+        "runs": 10,
+        "deterministic_checksum": "0x1e179b18",
+        "cycles_median": 4122.0,
+        "cycles_min": 4122,
+        "cycles_max": 4122,
+        "mac_cycles_median": 4096.0,
+        "lane_util_pct": 99.37,
+        "tile_macs": 65536,
+        "hw_time_us_50mhz": 82.46,
+        "hw_time_us_80_34mhz": 51.31,
+        "jtag_poll_ms_median": 5.64,
+        "jtag_poll_ms_range": [
+          5.45,
+          15.29
+        ],
+        "measured_gmac_s_at_80_34mhz": 1.277
+      }
+    ]
+  },
+  "g6_extrapolated_rtf_and_energy": {
+    "quartus_powerplay": {
+      "ep4ce6_50mhz_mw": {
+        "total_mw": 97.95,
+        "core_dyn_mw": 34.24,
+        "core_static_mw": 43.47,
+        "io_mw": 20.24
+      },
+      "ep4ce6_80_34mhz_scaled_mw": 118.73,
+      "ep4ce10_50mhz_mw": {
+        "total_mw": 109.5,
+        "core_dyn_mw": 45.64,
+        "core_static_mw": 43.62,
+        "io_mw": 20.24
+      },
+      "ep4ce10_70_77mhz_scaled_mw": 128.46
+    },
+    "rtf_by_T": [
+      {
+        "audio_s": 2.0,
+        "T_full": 200,
+        "ep4ce6_16lane_30m_compute_s": 0.458,
+        "ep4ce6_16lane_30m_rtf_compute_only": 0.229,
+        "ep4ce10_32lane_30m_est_s": 0.324,
+        "ep4ce10_32lane_30m_rtf": 0.162,
+        "ep4ce10_32lane_150m_rtf_extrap": 1.08,
+        "de10_nano_150m_rtf_extrap": 0.042
+      },
+      {
+        "audio_s": 4.0,
+        "T_full": 400,
+        "ep4ce6_16lane_30m_compute_s": 0.915,
+        "ep4ce6_16lane_30m_rtf_compute_only": 0.229,
+        "ep4ce10_32lane_30m_est_s": 0.648,
+        "ep4ce10_32lane_30m_rtf": 0.162,
+        "ep4ce10_32lane_150m_rtf_extrap": 1.08,
+        "de10_nano_150m_rtf_extrap": 0.042
+      },
+      {
+        "audio_s": 5.0,
+        "T_full": 500,
+        "ep4ce6_16lane_30m_compute_s": 1.144,
+        "ep4ce6_16lane_30m_rtf_compute_only": 0.229,
+        "ep4ce10_32lane_30m_est_s": 0.81,
+        "ep4ce10_32lane_30m_rtf": 0.162,
+        "ep4ce10_32lane_150m_rtf_extrap": 1.08,
+        "de10_nano_150m_rtf_extrap": 0.042
+      },
+      {
+        "audio_s": 8.0,
+        "T_full": 800,
+        "ep4ce6_16lane_30m_compute_s": 1.83,
+        "ep4ce6_16lane_30m_rtf_compute_only": 0.229,
+        "ep4ce10_32lane_30m_est_s": 1.296,
+        "ep4ce10_32lane_30m_rtf": 0.162,
+        "ep4ce10_32lane_150m_rtf_extrap": 1.08,
+        "de10_nano_150m_rtf_extrap": 0.042
+      },
+      {
+        "audio_s": 10.0,
+        "T_full": 1000,
+        "ep4ce6_16lane_30m_compute_s": 2.288,
+        "ep4ce6_16lane_30m_rtf_compute_only": 0.229,
+        "ep4ce10_32lane_30m_est_s": 1.62,
+        "ep4ce10_32lane_30m_rtf": 0.162,
+        "ep4ce10_32lane_150m_rtf_extrap": 1.08,
+        "de10_nano_150m_rtf_extrap": 0.042
+      }
+    ],
+    "energy_comparison_T500": [
+      {
+        "platform": "x86 Server (i7-12700F INT8, 65 W TDP)",
+        "model": "ZipFormer-150M",
+        "power_w": 65.0,
+        "rtf_t500": 0.0143,
+        "time_s_5s": 0.0715,
+        "energy_j_per_utt": 4.647,
+        "energy_j_per_audio_s": 0.929
+      },
+      {
+        "platform": "ARM Cortex-A9 Dual @ 800 MHz (NEON est., 2.5 W)",
+        "model": "ZipFormer-30M",
+        "power_w": 2.5,
+        "rtf_t500": 0.13,
+        "time_s_5s": 0.65,
+        "energy_j_per_utt": 1.625,
+        "energy_j_per_audio_s": 0.325
+      },
+      {
+        "platform": "Cyclone IV EP4CE6E22C8 (16 lanes @ 80.34 MHz, Core PowerPlay)",
+        "model": "ZipFormer-30M (compute extrap.)",
+        "power_w": 0.1187,
+        "rtf_t500": 0.229,
+        "time_s_5s": 1.144,
+        "energy_j_per_utt": 0.136,
+        "energy_j_per_audio_s": 0.0272
+      },
+      {
+        "platform": "Cyclone IV EP4CE10E22C8 (32 lanes @ 70.77 MHz, Core + Est. SDRAM Board)",
+        "model": "ZipFormer-30M (Scenario A extrap.)",
+        "power_w": 0.678,
+        "rtf_t500": 0.162,
+        "time_s_5s": 0.81,
+        "energy_j_per_utt": 0.55,
+        "energy_j_per_audio_s": 0.11
+      }
+    ]
+  },
+  "reproducibility_sha256": {
+    "ep4ce6_sof": "d524c806442150a5b187741f50bb023bfa509a78a45ae6180d87abd16ef9d3fc",
+    "ep4ce6_svf": "e1b3fbf516bcc716a1b14ce743dc60ecb45faeff0ed0adf90cddf749f688ca44",
+    "ep4ce6_rbf": "6fa10e2addd519cd4d85a72cdd7bf7f15e4dd57dfefbc85eaa651b51472aa611",
+    "ep4ce10_sof": "687f9dd6aa4850c01bd3d67ebd2647917c1807ba5632f8f6f2074ae8fd89d14d",
+    "golden_summary": "9b61c685e4109ef038413b25994e8abbb6e0bb8adc0f7fbf8893ff080224ee1d",
+    "schedule_json": "228e74209f01794bfbc8fc9a15641494919a8feef53e62978bd1bfd1af8f6aae"
+  }
+}

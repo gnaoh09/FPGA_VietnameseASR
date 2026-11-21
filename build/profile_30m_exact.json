@@ -1,0 +1,11 @@
+{
+  "ffn": 1236271104,
+  "conv_lin": 424181760,
+  "nonlin_attn": 212090880,
+  "attn_proj": 148532736,
+  "other_lin": 130990080,
+  "conv": 702289920,
+  "attn_bmm": 83743808,
+  "total_macs": 2938100288,
+  "ffn_pct_of_total": 42.08
+}
