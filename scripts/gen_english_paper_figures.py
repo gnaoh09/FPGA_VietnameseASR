@@ -990,10 +990,13 @@ def generate_fig5_60point_cycle_error(out_path: Path) -> None:
         f'transform="rotate(-90 18 {mt1+ph1/2:.1f})">Mean Stall Error (Cycles) — Log</text>'
     )
 
-    # Repeat-SD floor (~8.04 cycles) and 80/80 MHz 1:1 CDC line
-    y_floor = py1(8.04)
-    e.append(f'<line x1="{ml1}" y1="{y_floor:.1f}" x2="{ml1+pw1}" y2="{y_floor:.1f}" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3,3"/>')
-    e.append(f'<text x="{ml1+pw1-6}" y="{y_floor-5:.1f}" text-anchor="end" font-size="9.8" font-weight="bold" fill="#475569">Repeat SD floor (8.0 cyc)</text>')
+    # 1-Run Repeat SD (~8.04 cycles) and 10-Run Mean SE (~2.54 cycles)
+    y_sd = py1(8.04)
+    y_se = py1(2.54)
+    e.append(f'<line x1="{ml1}" y1="{y_sd:.1f}" x2="{ml1+pw1}" y2="{y_sd:.1f}" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3,3"/>')
+    e.append(f'<text x="{ml1+pw1-6}" y="{y_sd-5:.1f}" text-anchor="end" font-size="9.6" font-weight="bold" fill="#475569">1-Run SD (8.0 cyc)</text>')
+    e.append(f'<line x1="{ml1}" y1="{y_se:.1f}" x2="{ml1+pw1}" y2="{y_se:.1f}" stroke="#0f766e" stroke-width="1.2" stroke-dasharray="2,3"/>')
+    e.append(f'<text x="{ml1+pw1-6}" y="{y_se+11:.1f}" text-anchor="end" font-size="9.6" font-weight="bold" fill="#0f766e">10-Run Mean SE (2.5 cyc)</text>')
 
     x80 = px1(80.0)
     e.append(f'<line x1="{x80:.1f}" y1="{mt1}" x2="{x80:.1f}" y2="{mt1+ph1}" stroke="#fca5a5" stroke-width="1.4" stroke-dasharray="4,3"/>')
