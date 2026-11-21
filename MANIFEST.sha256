@@ -1,4 +1,10 @@
 # Full SHA-256 Artifact Manifest (EP4CE10E22C8 16-lane bitstreams, RTL, scripts, frozen predictions)
+# RTL Commit Lineage:
+#   - Commit cfa0540 (pre-phase-sweep RTL: rtl/top.v=eb65c32ee04278eb..., rtl/pll_80m.v=216ce095c2470725...):
+#     Built the original 27 bitstreams (top.sof, top_sdram{60..120,64}.sof, top_eng{50,60,70,90}_sd{50,60,70,90}.sof, top_eng{60_sd90,70_sd100,90_sd100}.sof, top_t8*.sof).
+#   - Commit 8d4ce0c (added parameter CLK1_PHASE_DEG=0 to rtl/top.v=fbc15465debf7b51... and rtl/pll_80m.v=d83c105aedba9d7a...):
+#     Built the 6 phase-sweep bitstreams (top_eng{40_sd40,75_sd75,80_sd80_p90,80_sd80_p180,80_sd80_p270,90_sd90_p180}.sof) plus equivalence-check top_equiv_p0.sof.
+#   - Hardware Equivalence Proof: top.rbf and top_equiv_p0.rbf have the EXACT SAME SHA-256 (dbc4f14106b8979b02fc7ef01bfc5f7e02b02664eecd9b7aaa975baa8b54491b).
 # Note: top_eng70_sd70.{sof,svf} compiled with TNS=0.000 ns (Slow 1200mV 85C) but PLL c1 failed to lock on hardware and was skipped in silicon runs.
 917f0cdd90a4cb66778582600c7d7e4a9fabc618f9181a63a5f2b627b909d82e  rtl/jtag_bridge.v
 d83c105aedba9d7aaa16d0b275b7099b414a8403c11f9a95a798fa11f3fc9442  rtl/pll_80m.v
@@ -12,6 +18,10 @@ c2d72f64f4d8a6f2a7129659ae619c4275f66dc4a1a9ff25040522ff8d2c0e73  build/b23_cdc_
 259bc2ae9bd37450f3db5720aeb6e59aff5be81d5d0226f87bf50335b02ab5e8  build/e1_e6_sim_analysis_results.json
 d6ae049dfe1e077151a6edc1eae15da0235dc4251ee98653f148d5cc6ec6380f  build/e7_e9_silicon_results.json
 8fa25a0120cfe605a736f034265ff7d6ffa0c8068f8a0c3b28434c0827d3117d  build/frozen_e8_e9_predictions.json
+dbc4f14106b8979b02fc7ef01bfc5f7e02b02664eecd9b7aaa975baa8b54491b  build/output_files/top.rbf
+dbc4f14106b8979b02fc7ef01bfc5f7e02b02664eecd9b7aaa975baa8b54491b  build/output_files/top_equiv_p0.rbf
+40e7d8f62b35ed8c448870d8c762949cf35633bb9d56c2a1217b78904e045b9d  build/round6_analyses_results.json
+c72637588aab31feafa3b1412bd6a9ca0ea47f35c24f76219b7adf712972a315  build/round6_silicon_checks.json
 a762ba9e61c93187518f0bffa1078b4dfced903484aee35fb3aab81ea5feb58b  build/three_way_78pt_0ppm_decomp.json
 1f1aaab51c355d143b5e9fbe4f6c8dde62a1fa3834a6475859da83d7851ea030  scripts/build_quartus.sh
 ff44a503bd82155679f3d7b675cf05cab8da7a85fc8be158de354ae7da602611  scripts/eval_78pt_3way_0ppm.py
@@ -23,6 +33,8 @@ f6c6c346ab7e5359218f43a97ffe7b3ab99f23ffbb6cab475a63c3645ea90cf0  scripts/run_43
 d4d05425b6a3e5bc180dbee89561e1c5ddd0a81d36cf705431e31717857b0ee3  scripts/run_closed_loop_24utts.py
 732def8f9c6b2956da16a07fabe70744e04833d73634c03b20b766795a784afd  scripts/run_e1_e6_sim_analysis.py
 01ca49b1f6a4d0fc1112befb8a3b35ead99a538fd8f0295478534f0f8c4eb5d8  scripts/run_e7_e9_silicon.py
+826782063b18fda9b709d94e00c635152fd255f5142743dc07d2b10801cef3d7  scripts/run_round6_analyses.py
+c1b5769fa2db4fc679cff36b12b93e545d4ec41b023e577e0371950713e88de8  scripts/run_round6_silicon_checks.py
 2b3384d95bf5313ad309ceb4a0e7b982a71cbbeb8ed16b559fe1e270e1746deb  build/output_files/top.sof
 cf2807a79ec102c66f6fc0d3be19f8b674e0446419edb46d7a01f7721508a6cb  build/output_files/top_eng40_sd40.sof
 ff995c8a990777132bf9c7321ef287c21c2b76c0e3469cd2a1b617e09d168b67  build/output_files/top_eng50_sd50.sof
@@ -37,6 +49,7 @@ f2290f5ea194e348f61bb6aed4a84a2e0d6ee46f59742c836520ddb777e47115  build/output_f
 10114a75a6ee3f1d1880427865f2479f787238b75844a5e0b0043d6cd4c9d343  build/output_files/top_eng90_sd100.sof
 446bddcc99853bccbf153c9bf78bb4b49265cc06c40eada14985c480287734be  build/output_files/top_eng90_sd90.sof
 2343d97defa0bc4ba1724e287f0f49a7c816e158756062904b7fe6630b65e3b6  build/output_files/top_eng90_sd90_p180.sof
+b95411da1a87150ba5c75d127d62a42b08a0e2210bc55300d41cada48653b145  build/output_files/top_equiv_p0.sof
 c3175dc221e6be519b780d433e074a459211067ddfc63f932088752222feab9d  build/output_files/top_sdram110.sof
 c3c702db737ed4be569993281e6d163237e0b7c626aa172fe739e86d550ab902  build/output_files/top_sdram120.sof
 6cda41e001e94818724a069164b1a758c9b19eb23ac169a137a2e8861c8f7dac  build/output_files/top_sdram60.sof
@@ -70,6 +83,7 @@ c3f1eebc5001fc5559908eee0bbd16b04e03b3f09184e0c6ad0605604c6d41bf  build/output_f
 be326bc97c2b3c7293bb66f2fb97c193798e5942c140aea8db72057ce6de83f0  build/output_files/top_eng90_sd100.svf
 b1baab348bfb92e6aca9d59da62644d06de6bc08a9a59fad41826fec8de3caaf  build/output_files/top_eng90_sd90.svf
 3389e67d0c05cebd7fda1e8ff3362691a9ed1a91b77af5e64aeb54cee2708689  build/output_files/top_eng90_sd90_p180.svf
+48e60ce5aa0d41861eb40f4a9ca626c1511c4bb3c6c981bcae10551ec8d5bc28  build/output_files/top_equiv_p0.svf
 9b98ca4461d1bc4ca4b73e615ae1c30c2338df86b51a02622a222f6b193f91f3  build/output_files/top_sdram110.svf
 a550d11f182f9594d00ae0fc363cd075a9b0ff0df28eeb1ec693cce089f068a5  build/output_files/top_sdram120.svf
 ec8ef1dc707b952fb436bf9a8147510f1afdd5bd5c5960a6e0b7edde2ad86cd0  build/output_files/top_sdram60.svf

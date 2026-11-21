@@ -87,7 +87,7 @@ def generate_fig1_hybrid_architecture(out_path: Path) -> None:
         (106+dy, 44, "#e2e8f0", "#475569", "16 kHz Audio → 80-bin Fbank", "Arbitrary length T_fbank"),
         (162+dy, 56, "#dbeafe", "#1d4ed8", "Embed + Conv + Attention", "1.702 GMAC (57.92%) @ T=500"),
         (230+dy, 56, "#fef3c7", "#b45309", "Tail Pad / Slice (T_tile = 4)", "Pads 1–3 frames when mod 4 ≠ 0"),
-        (298+dy, 84, "#dcfce7", "#15803d", "RNN-T Decoder &amp; Joiner", "Encoder diff = 0.0 · 3/3 ONNX match"),
+        (298+dy, 84, "#dcfce7", "#15803d", "RNN-T Decoder &amp; Joiner", "Encoder diff = 0.0 · 24/24 ONNX match"),
     ]
     for by, bh, fill, stroke, t1, t2 in host_boxes:
         e.append(f'<rect x="26" y="{by}" width="212" height="{bh}" rx="5" fill="{fill}" stroke="{stroke}" stroke-width="1.3"/>')
@@ -214,7 +214,7 @@ def generate_fig1_hybrid_architecture(out_path: Path) -> None:
     )
     e.append(
         f'<text x="470" y="{448+dy}" text-anchor="middle" font-size="11.0" fill="#166534">'
-        "Closed-Loop Host↔FPGA (T=491, 4.906 s): FPGA FFN = 1.015 s · Wall = 209.7 s (98.9% JTAG) · 3/3 ONNX match</text>"
+        "Closed-Loop Host↔FPGA (T=491, 4.906 s): FPGA FFN = 1.015 s · Wall = 209.7 s (98.9% JTAG) · 24/24 ONNX match</text>"
     )
 
     out_path.write_text(wrap_svg(W, H, e), encoding="utf-8")

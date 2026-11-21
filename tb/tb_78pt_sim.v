@@ -8,8 +8,9 @@ module tb_78pt_sim;
     reg clk_sdram = 1'b0;
     reg rst_n     = 1'b0;
 
-    real eng_half_ns   = 6.25;
-    real sdram_half_ns = 5.555556;
+    real eng_half_ns    = 6.25;
+    real sdram_half_ns  = 5.555556;
+    real sdram_phase_ns = 0.0;
     integer ref_int_cfg = 1260;
     integer t_rfc_cfg   = 8;
 
@@ -31,6 +32,7 @@ module tb_78pt_sim;
     initial begin
         if (!$value$plusargs("ENG_HALF_NS=%f", eng_half_ns)) eng_half_ns = 6.25;
         if (!$value$plusargs("SDRAM_HALF_NS=%f", sdram_half_ns)) sdram_half_ns = 5.555556;
+        if (!$value$plusargs("SDRAM_PHASE_NS=%f", sdram_phase_ns)) sdram_phase_ns = 0.0;
         if (!$value$plusargs("REF_INT=%d", ref_int_cfg)) ref_int_cfg = 1260;
         if (!$value$plusargs("T_RFC=%d", t_rfc_cfg)) t_rfc_cfg = 8;
         if (!$value$plusargs("L1_KC=%d", l1_k_chunk)) l1_k_chunk = 192;
@@ -47,8 +49,12 @@ module tb_78pt_sim;
         if (!$value$plusargs("DF=%d", d_ff)) d_ff = 640;
     end
 
-    always #(eng_half_ns)   clk_eng   = ~clk_eng;
-    always #(sdram_half_ns) clk_sdram = ~clk_sdram;
+    always #(eng_half_ns) clk_eng = ~clk_eng;
+    initial begin
+        #0;
+        if (sdram_phase_ns > 0.0) #(sdram_phase_ns);
+        forever #(sdram_half_ns) clk_sdram = ~clk_sdram;
+    end
 
     wire        sdram_cke, sdram_cs_n, sdram_ras_n, sdram_cas_n, sdram_we_n;
     wire [1:0]  sdram_ba, sdram_dqm;
