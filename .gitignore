@@ -26,3 +26,20 @@ build/_seg_dtype_probe.tmp.onnx
 data/
 golden_vectors/
 !build/frozen_heldout_predictions_c1_c4.json
+
+# OS / agent / build artifacts / extra manuscript scratch
+.DS_Store
+**/.DS_Store
+.gemini/
+*.pdf
+*.zip
+docs/
+paper_ieee_zipformer/
+paper_ieee_zipformer/prism-uploads/
+paper_ieee_zipformer/*.aux
+paper_ieee_zipformer/*.bbl
+paper_ieee_zipformer/*.blg
+paper_ieee_zipformer/*.log
+paper_ieee_zipformer/*.out
+paper_ieee_zipformer/*.toc
+paper_ieee_zipformer/svg-inkscape/

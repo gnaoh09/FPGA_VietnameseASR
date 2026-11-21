@@ -15,7 +15,7 @@ Môi trường phát triển RTL & RISC-V trên macOS Apple Silicon cho board **
 - **RISC-V Compiler (native macOS):** `riscv64-elf-gcc` (hỗ trợ `-march=rv32i -mabi=ilp32` / `rv32im`)
 
 ## Báo cáo Thực nghiệm ZipFormer-150M / 30M trên Cyclone IV
-- Xem nhật ký & số liệu đo trực tiếp trên board tại: [docs/KET_QUA_THUC_NGHIEM_CYCLONE_IV.md](docs/KET_QUA_THUC_NGHIEM_CYCLONE_IV.md)
+- Số liệu thực nghiệm & kịch bản tái lập được lưu trong `build/*.json` và `scripts/`.
 - Chạy lại toàn bộ thực nghiệm G0 → G6: `bash scripts/run_all_experiments.sh`
 
 ## Các lệnh nhanh

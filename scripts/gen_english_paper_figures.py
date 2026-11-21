@@ -73,148 +73,135 @@ def arrow_defs() -> str:
 
 
 def generate_fig1_hybrid_architecture(out_path: Path) -> None:
-    W, H = 940, 430
-    dy = -44
+    W, H = 940, 355
     e: list[str] = [arrow_defs(), f'<rect x="0" y="0" width="{W}" height="{H}" fill="#ffffff"/>']
 
-    # Panel 1: HOST
-    e.append(f'<rect x="14" y="{58+dy}" width="236" height="338" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.8"/>')
-    e.append(f'<rect x="14" y="{58+dy}" width="236" height="36" rx="8" fill="#1e293b"/>')
-    e.append(f'<rect x="14" y="{82+dy}" width="236" height="12" fill="#1e293b"/>')
-    e.append(f'<text x="132" y="{82+dy}" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#ffffff">HOST (37 ONNX Segments)</text>')
+    # Panel 1: HOST (ONNX Runtime)
+    e.append('<rect x="14" y="14" width="218" height="270" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.8"/>')
+    e.append('<rect x="14" y="14" width="218" height="34" rx="8" fill="#1e293b"/>')
+    e.append('<rect x="14" y="36" width="218" height="12" fill="#1e293b"/>')
+    e.append('<text x="123" y="36" text-anchor="middle" font-size="13.0" font-weight="bold" fill="#ffffff">HOST (ONNX Runtime)</text>')
 
     host_boxes = [
-        (106+dy, 44, "#e2e8f0", "#475569", "16 kHz Audio → 80-bin Fbank", "Arbitrary length T_fbank"),
-        (162+dy, 56, "#dbeafe", "#1d4ed8", "Embed + Conv + Attention", "1.702 GMAC (57.92%) @ T=500"),
-        (230+dy, 56, "#fef3c7", "#b45309", "Tail Pad / Slice (T_tile = 4)", "Pads 1–3 frames when mod 4 ≠ 0"),
-        (298+dy, 84, "#dcfce7", "#15803d", "RNN-T Decoder &amp; Joiner", "Encoder diff = 0.0 · 24/24 ONNX match"),
+        (60, 44, "#e2e8f0", "#475569", "Audio → 80-bin Fbank", "Embed + Conv + Attention"),
+        (118, 48, "#dbeafe", "#1d4ed8", "36 Zipformer FFN Blocks", "Offloaded to FPGA (W4A8)"),
+        (180, 44, "#fef3c7", "#b45309", "Tail Pad / Slice (T_tile)", "Zero-pad when T mod 4 ≠ 0"),
+        (236, 38, "#dcfce7", "#15803d", "RNN-T Decoder &amp; Joiner", "24/24 bit-exact vs ONNX"),
     ]
     for by, bh, fill, stroke, t1, t2 in host_boxes:
-        e.append(f'<rect x="26" y="{by}" width="212" height="{bh}" rx="5" fill="{fill}" stroke="{stroke}" stroke-width="1.3"/>')
-        e.append(f'<text x="132" y="{by + bh*0.44:.1f}" text-anchor="middle" font-size="12.2" font-weight="bold" fill="#0f172a">{t1}</text>')
-        e.append(f'<text x="132" y="{by + bh*0.78:.1f}" text-anchor="middle" font-size="11.0" fill="#334155">{t2}</text>')
+        e.append(f'<rect x="26" y="{by}" width="194" height="{bh}" rx="5" fill="{fill}" stroke="{stroke}" stroke-width="1.3"/>')
+        e.append(f'<text x="123" y="{by + bh*0.44:.1f}" text-anchor="middle" font-size="11.6" font-weight="bold" fill="#0f172a">{t1}</text>')
+        e.append(f'<text x="123" y="{by + bh*0.79:.1f}" text-anchor="middle" font-size="10.2" fill="#334155">{t2}</text>')
 
-    e.append(f'<line x1="132" y1="{150+dy}" x2="132" y2="{160+dy}" stroke="#475569" stroke-width="1.6" marker-end="url(#arr_slate)"/>')
-    e.append(f'<line x1="132" y1="{218+dy}" x2="132" y2="{228+dy}" stroke="#475569" stroke-width="1.6" marker-end="url(#arr_slate)"/>')
-    e.append(f'<line x1="132" y1="{286+dy}" x2="132" y2="{296+dy}" stroke="#475569" stroke-width="1.6" marker-end="url(#arr_slate)"/>')
+    e.append('<line x1="123" y1="104" x2="123" y2="116" stroke="#475569" stroke-width="1.5" marker-end="url(#arr_slate)"/>')
+    e.append('<line x1="123" y1="166" x2="123" y2="178" stroke="#475569" stroke-width="1.5" marker-end="url(#arr_slate)"/>')
+    e.append('<line x1="123" y1="224" x2="123" y2="234" stroke="#475569" stroke-width="1.5" marker-end="url(#arr_slate)"/>')
 
-    # Bridge Host <-> FPGA
-    e.append(f'<line x1="250" y1="{185+dy}" x2="342" y2="{185+dy}" stroke="#1d4ed8" stroke-width="2.4" marker-end="url(#arr_blue)"/>')
-    e.append(f'<rect x="254" y="{134+dy}" width="86" height="44" rx="4" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.2"/>')
-    e.append(f'<text x="297" y="{152+dy}" text-anchor="middle" font-size="11.2" font-weight="bold" fill="#1e3a8a">x_q INT8</text>')
-    e.append(f'<text x="297" y="{169+dy}" text-anchor="middle" font-size="10.5" fill="#1e40af">55.7 KB/s wr</text>')
+    # Bridge Host <-> FPGA via JTAG
+    e.append('<line x1="232" y1="124" x2="314" y2="124" stroke="#1d4ed8" stroke-width="2.4" marker-end="url(#arr_blue)"/>')
+    e.append('<text x="273" y="114" text-anchor="middle" font-size="10.8" font-weight="bold" fill="#1e3a8a">x_q INT8</text>')
+    e.append('<rect x="236" y="34" width="76" height="44" rx="4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.1"/>')
+    e.append('<text x="274" y="52" text-anchor="middle" font-size="10.2" font-weight="bold" fill="#334155">1× Weights</text>')
+    e.append('<text x="274" y="68" text-anchor="middle" font-size="10.0" fill="#0f766e">6.52 MiB</text>')
 
-    e.append(f'<line x1="344" y1="{262+dy}" x2="252" y2="{262+dy}" stroke="#c2410c" stroke-width="2.4" marker-end="url(#arr_orange)"/>')
-    e.append(f'<rect x="254" y="{270+dy}" width="86" height="44" rx="4" fill="#fff7ed" stroke="#fdba74" stroke-width="1.2"/>')
-    e.append(f'<text x="297" y="{288+dy}" text-anchor="middle" font-size="11.2" font-weight="bold" fill="#9a3412">y_out INT8</text>')
-    e.append(f'<text x="297" y="{305+dy}" text-anchor="middle" font-size="10.5" fill="#c2410c">5.94 KB/s rd</text>')
+    e.append('<line x1="316" y1="164" x2="234" y2="164" stroke="#c2410c" stroke-width="2.4" marker-end="url(#arr_orange)"/>')
+    e.append('<text x="275" y="180" text-anchor="middle" font-size="10.8" font-weight="bold" fill="#9a3412">y_out INT8</text>')
 
-    e.append(f'<rect x="253" y="{70+dy}" width="88" height="52" rx="4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2"/>')
-    e.append(f'<text x="297" y="{87+dy}" text-anchor="middle" font-size="10.4" font-weight="bold" fill="#334155">1× Init Load</text>')
-    e.append(f'<text x="297" y="{102+dy}" text-anchor="middle" font-size="10.2" fill="#475569">6.52 MiB</text>')
-    e.append(f'<text x="297" y="{116+dy}" text-anchor="middle" font-size="10.0" font-weight="bold" fill="#0f766e">0 B wgt/utt.</text>')
+    # Panel 2: FPGA (Cyclone IV EP4CE10) — highlighting DMA path, Ping-Pong, and Counter Taps
+    e.append('<rect x="318" y="14" width="400" height="270" rx="8" fill="#f8fafc" stroke="#1d4ed8" stroke-width="1.8"/>')
+    e.append('<rect x="318" y="14" width="400" height="34" rx="8" fill="#1d4ed8"/>')
+    e.append('<rect x="318" y="36" width="400" height="12" fill="#1d4ed8"/>')
+    e.append('<text x="518" y="35" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#ffffff">EP4CE10 Silicon (6,056 LE · 26/46 M9K)</text>')
 
-    e.append(f'<rect x="253" y="{324+dy}" width="88" height="58" rx="4" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.2"/>')
-    e.append(f'<text x="297" y="{341+dy}" text-anchor="middle" font-size="10.2" font-weight="bold" fill="#065f46">Bus Target</text>')
-    e.append(f'<text x="297" y="{356+dy}" text-anchor="middle" font-size="10.0" fill="#047857">5–10 MB/s</text>')
-    e.append(f'<text x="297" y="{371+dy}" text-anchor="middle" font-size="9.8" fill="#047857">(FIFO/FT232H)</text>')
+    # Dual clock domains banner
+    e.append('<rect x="330" y="54" width="214" height="26" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.1"/>')
+    e.append('<text x="437" y="71" text-anchor="middle" font-size="10.6" font-weight="bold" fill="#1e3a8a">clk_eng Domain (altpll)</text>')
+    e.append('<rect x="556" y="54" width="150" height="26" rx="4" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.1"/>')
+    e.append('<text x="631" y="71" text-anchor="middle" font-size="10.6" font-weight="bold" fill="#115e59">clk_sdram Domain</text>')
 
-    # Panel 2: FPGA
-    e.append(f'<rect x="346" y="{58+dy}" width="316" height="338" rx="8" fill="#f8fafc" stroke="#1d4ed8" stroke-width="1.8"/>')
-    e.append(f'<rect x="346" y="{58+dy}" width="316" height="38" rx="8" fill="#1d4ed8"/>')
-    e.append(f'<rect x="346" y="{84+dy}" width="316" height="12" fill="#1d4ed8"/>')
-    e.append(f'<text x="504" y="{78+dy}" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#ffffff">EP4CE10E22C8N Silicon (EP4CE10 Target)</text>')
-    e.append(f'<text x="504" y="{93+dy}" text-anchor="middle" font-size="10.0" fill="#dbeafe">6,056/10,320 LE (59%) · 26/46 M9K · 20/46 Mult (T_tile=4)</text>')
+    # Compute side: act M9K -> 16 MAC Lanes -> Epilogue
+    e.append('<rect x="330" y="90" width="84" height="52" rx="5" fill="#ffffff" stroke="#3b82f6" stroke-width="1.3"/>')
+    e.append('<text x="372" y="112" text-anchor="middle" font-size="10.8" font-weight="bold" fill="#0f172a">act / h M9K</text>')
+    e.append('<text x="372" y="129" text-anchor="middle" font-size="9.8" fill="#475569">12 local M9K</text>')
 
-    e.append(f'<rect x="356" y="{104+dy}" width="140" height="40" rx="4" fill="#e2e8f0" stroke="#64748b" stroke-width="1.1"/>')
-    e.append(f'<text x="426" y="{121+dy}" text-anchor="middle" font-size="11.0" font-weight="bold" fill="#0f172a">sld_virtual_jtag</text>')
-    e.append(f'<text x="426" y="{137+dy}" text-anchor="middle" font-size="9.8" fill="#475569">2-FF CDC · STA TNS=0</text>')
+    e.append('<rect x="428" y="90" width="96" height="52" rx="5" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.4"/>')
+    e.append('<text x="476" y="112" text-anchor="middle" font-size="11.0" font-weight="bold" fill="#1e3a8a">16 MAC Lanes</text>')
+    e.append('<text x="476" y="129" text-anchor="middle" font-size="9.8" fill="#1e40af">W4→I8 · psum</text>')
 
-    e.append(f'<rect x="502" y="{104+dy}" width="150" height="40" rx="4" fill="#e0e7ff" stroke="#4f46e5" stroke-width="1.1"/>')
-    e.append(f'<text x="577" y="{121+dy}" text-anchor="middle" font-size="11.0" font-weight="bold" fill="#312e81">altpll: Dual Clocks</text>')
-    e.append(f'<text x="577" y="{137+dy}" text-anchor="middle" font-size="9.8" fill="#3730a3">80M Eng | 100M SDRAM</text>')
+    e.append('<rect x="538" y="90" width="86" height="52" rx="5" fill="#fef3c7" stroke="#d97706" stroke-width="1.3"/>')
+    e.append('<text x="581" y="112" text-anchor="middle" font-size="10.8" font-weight="bold" fill="#92400e">Epilogue</text>')
+    e.append('<text x="581" y="129" text-anchor="middle" font-size="9.8" fill="#78350f">M,S · SwooshL</text>')
 
-    e.append(f'<rect x="356" y="{152+dy}" width="296" height="134" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.4"/>')
-    e.append(f'<text x="504" y="{170+dy}" text-anchor="middle" font-size="11.8" font-weight="bold" fill="#1e3a8a">0-LSB Bit-Exact FFN Pipeline (T_tile = 4)</text>')
+    e.append('<line x1="414" y1="116" x2="426" y2="116" stroke="#1d4ed8" stroke-width="1.6" marker-end="url(#arr_blue)"/>')
+    e.append('<line x1="524" y1="116" x2="536" y2="116" stroke="#1d4ed8" stroke-width="1.6" marker-end="url(#arr_blue)"/>')
 
-    e.append(f'<rect x="364" y="{178+dy}" width="88" height="58" rx="4" fill="#ffffff" stroke="#60a5fa" stroke-width="1.1"/>')
-    e.append(f'<text x="408" y="{196+dy}" text-anchor="middle" font-size="10.8" font-weight="bold" fill="#0f172a">act/h/y M9K</text>')
-    e.append(f'<text x="408" y="{212+dy}" text-anchor="middle" font-size="10.0" fill="#334155">12 local M9K</text>')
-    e.append(f'<text x="408" y="{227+dy}" text-anchor="middle" font-size="10.0" fill="#334155">psum 64×32b</text>')
+    # Highlighted DMA Path: SDRAM Controller -> Toggle CDC -> Ping-Pong M9K (Bank A/B) -> 16 MAC Lanes
+    e.append('<rect x="330" y="158" width="176" height="62" rx="6" fill="#f0fdfa" stroke="#0d9488" stroke-width="2.0"/>')
+    e.append('<text x="418" y="177" text-anchor="middle" font-size="11.2" font-weight="bold" fill="#115e59">Ping-Pong DMA Buffers</text>')
+    e.append('<rect x="342" y="185" width="70" height="24" rx="3" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.1"/>')
+    e.append('<text x="377" y="201" text-anchor="middle" font-size="9.8" font-weight="bold" fill="#134e4a">Bank A (4K)</text>')
+    e.append('<rect x="424" y="185" width="70" height="24" rx="3" fill="#ffffff" stroke="#0f766e" stroke-width="1.1"/>')
+    e.append('<text x="459" y="201" text-anchor="middle" font-size="9.8" font-weight="bold" fill="#134e4a">Bank B (4K)</text>')
 
-    e.append(f'<rect x="462" y="{178+dy}" width="94" height="58" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.1"/>')
-    e.append(f'<text x="509" y="{196+dy}" text-anchor="middle" font-size="10.8" font-weight="bold" fill="#1e3a8a">16 MAC Lanes</text>')
-    e.append(f'<text x="509" y="{212+dy}" text-anchor="middle" font-size="10.0" fill="#1e40af">W4→I8 unpack</text>')
-    e.append(f'<text x="509" y="{227+dy}" text-anchor="middle" font-size="10.0" fill="#1e40af">K-tile + adder</text>')
+    e.append('<rect x="520" y="164" width="60" height="50" rx="5" fill="#e0e7ff" stroke="#4f46e5" stroke-width="1.5"/>')
+    e.append('<text x="550" y="185" text-anchor="middle" font-size="10.2" font-weight="bold" fill="#312e81">2-FF</text>')
+    e.append('<text x="550" y="201" text-anchor="middle" font-size="9.6" fill="#3730a3">CDC</text>')
 
-    e.append(f'<rect x="566" y="{178+dy}" width="78" height="58" rx="4" fill="#fef3c7" stroke="#d97706" stroke-width="1.1"/>')
-    e.append(f'<text x="605" y="{196+dy}" text-anchor="middle" font-size="10.8" font-weight="bold" fill="#92400e">Epilogue</text>')
-    e.append(f'<text x="605" y="{212+dy}" text-anchor="middle" font-size="10.0" fill="#78350f">Dyadic M,S</text>')
-    e.append(f'<text x="605" y="{227+dy}" text-anchor="middle" font-size="10.0" fill="#78350f">SwooshL LUT</text>')
+    e.append('<rect x="594" y="158" width="112" height="62" rx="6" fill="#ecfeff" stroke="#0891b2" stroke-width="2.0"/>')
+    e.append('<text x="650" y="179" text-anchor="middle" font-size="11.0" font-weight="bold" fill="#155e75">SDRAM Ctrl</text>')
+    e.append('<text x="650" y="196" text-anchor="middle" font-size="9.8" fill="#164e63">256-col burst</text>')
+    e.append('<text x="650" y="211" text-anchor="middle" font-size="9.8" fill="#0e7490">Refresh FSM</text>')
 
-    e.append(f'<line x1="452" y1="{207+dy}" x2="460" y2="{207+dy}" stroke="#1d4ed8" stroke-width="1.5" marker-end="url(#arr_blue)"/>')
-    e.append(f'<line x1="556" y1="{207+dy}" x2="564" y2="{207+dy}" stroke="#1d4ed8" stroke-width="1.5" marker-end="url(#arr_blue)"/>')
+    # Thick teal DMA data path arrows
+    e.append('<line x1="594" y1="189" x2="582" y2="189" stroke="#0f766e" stroke-width="2.2" marker-end="url(#arr_teal)"/>')
+    e.append('<line x1="520" y1="189" x2="508" y2="189" stroke="#0f766e" stroke-width="2.2" marker-end="url(#arr_teal)"/>')
+    e.append('<path d="M 476 158 L 476 144" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#arr_teal)"/>')
 
-    e.append(f'<rect x="364" y="{244+dy}" width="280" height="32" rx="4" fill="#ffffff" stroke="#93c5fd" stroke-width="1.1"/>')
-    e.append(f'<text x="504" y="{264+dy}" text-anchor="middle" font-size="10.2" font-weight="bold" fill="#1e293b">'
-             '32-bit Counters: C_tot, C_mac, C_stall, C_dma + free_clk</text>')
+    # Hardware Counter Tap Bar & Tap Callouts
+    e.append('<rect x="330" y="232" width="376" height="42" rx="5" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>')
+    e.append('<text x="518" y="248" text-anchor="middle" font-size="10.4" font-weight="bold" fill="#92400e">32-bit Hardware Cycle Counter Tap Points</text>')
+    e.append('<text x="518" y="264" text-anchor="middle" font-size="9.8" fill="#78350f">'
+             'C_tot (Run) · C_mac (Compute) · C_stall (ST_WAIT_DMA) · C_dma (req→done)</text>')
 
-    e.append(f'<rect x="356" y="{294+dy}" width="142" height="92" rx="5" fill="#f0fdfa" stroke="#0d9488" stroke-width="1.3"/>')
-    e.append(f'<text x="427" y="{314+dy}" text-anchor="middle" font-size="11.2" font-weight="bold" fill="#115e59">Ping-Pong DMA</text>')
-    e.append(f'<text x="427" y="{331+dy}" text-anchor="middle" font-size="10.0" fill="#134e4a">2×4 KiB Wgt+Param</text>')
-    e.append(f'<text x="427" y="{346+dy}" text-anchor="middle" font-size="10.0" fill="#134e4a">(8 M9K W4 prefetch)</text>')
-    e.append(f'<text x="427" y="{363+dy}" text-anchor="middle" font-size="10.0" font-weight="bold" fill="#0f766e">Overlap ≥ 90 MHz</text>')
-    e.append(f'<text x="427" y="{378+dy}" text-anchor="middle" font-size="9.8" fill="#0f766e">512→1536: 0.91% @ 100M</text>')
-
-    e.append(f'<rect x="508" y="{294+dy}" width="144" height="92" rx="5" fill="#ecfeff" stroke="#0891b2" stroke-width="1.3"/>')
-    e.append(f'<text x="580" y="{314+dy}" text-anchor="middle" font-size="11.2" font-weight="bold" fill="#155e75">SDRAM Controller</text>')
-    e.append(f'<text x="580" y="{331+dy}" text-anchor="middle" font-size="10.0" fill="#164e63">256-col Page-Burst</text>')
-    e.append(f'<text x="580" y="{346+dy}" text-anchor="middle" font-size="10.0" fill="#164e63">rd_lat = 4 · 16b SDR</text>')
-    e.append(f'<text x="580" y="{363+dy}" text-anchor="middle" font-size="10.0" font-weight="bold" fill="#0e7490">Rd 188.5 MB/s (94%)</text>')
-    e.append(f'<text x="580" y="{378+dy}" text-anchor="middle" font-size="10.0" fill="#0e7490">Wr 192.1 MB/s (96%)</text>')
-
-    e.append(f'<line x1="427" y1="{294+dy}" x2="488" y2="{238+dy}" stroke="#0f766e" stroke-width="1.6" marker-end="url(#arr_teal)"/>')
-    e.append(f'<line x1="508" y1="{340+dy}" x2="498" y2="{340+dy}" stroke="#0f766e" stroke-width="1.6" marker-end="url(#arr_teal)"/>')
+    # Vertical orange tap lines cleanly routed through empty corridors
+    e.append('<line x1="513" y1="142" x2="513" y2="232" stroke="#d97706" stroke-width="1.2" stroke-dasharray="3,2"/>')
+    e.append('<line x1="550" y1="214" x2="550" y2="232" stroke="#d97706" stroke-width="1.2" stroke-dasharray="3,2"/>')
+    e.append('<line x1="650" y1="220" x2="650" y2="232" stroke="#d97706" stroke-width="1.2" stroke-dasharray="3,2"/>')
 
     # Bus SDRAM Ctrl <-> External SDRAM
-    e.append(f'<line x1="720" y1="{322+dy}" x2="664" y2="{322+dy}" stroke="#0f766e" stroke-width="2.6" marker-end="url(#arr_teal)"/>')
-    e.append(f'<line x1="662" y1="{352+dy}" x2="718" y2="{352+dy}" stroke="#475569" stroke-width="1.6" marker-end="url(#arr_slate)"/>')
-    e.append(f'<text x="692" y="{308+dy}" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#0f766e">16-bit</text>')
-    e.append(f'<text x="692" y="{372+dy}" text-anchor="middle" font-size="10.4" fill="#334155">100 MHz</text>')
+    e.append('<line x1="772" y1="184" x2="720" y2="184" stroke="#0f766e" stroke-width="2.8" marker-end="url(#arr_teal)"/>')
+    e.append('<text x="746" y="172" text-anchor="middle" font-size="10.2" font-weight="bold" fill="#0f766e">16b SDR</text>')
+    e.append('<text x="746" y="202" text-anchor="middle" font-size="9.8" fill="#334155">60–120M</text>')
 
-    # Panel 3: EXTERNAL SDRAM
-    e.append(f'<rect x="722" y="{58+dy}" width="204" height="338" rx="8" fill="#f8fafc" stroke="#0f766e" stroke-width="1.8"/>')
-    e.append(f'<rect x="722" y="{58+dy}" width="204" height="38" rx="8" fill="#0f766e"/>')
-    e.append(f'<rect x="722" y="{84+dy}" width="204" height="12" fill="#0f766e"/>')
-    e.append(f'<text x="824" y="{78+dy}" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#ffffff">On-Board SDRAM</text>')
-    e.append(f'<text x="824" y="{93+dy}" text-anchor="middle" font-size="10.2" fill="#ccfbf1">HY57V641620FTP-H · 8 MiB</text>')
+    # Panel 3: External SDRAM
+    e.append('<rect x="774" y="14" width="152" height="270" rx="8" fill="#f8fafc" stroke="#0f766e" stroke-width="1.8"/>')
+    e.append('<rect x="774" y="14" width="152" height="34" rx="8" fill="#0f766e"/>')
+    e.append('<rect x="774" y="36" width="152" height="12" fill="#0f766e"/>')
+    e.append('<text x="850" y="35" text-anchor="middle" font-size="12.2" font-weight="bold" fill="#ffffff">External SDRAM</text>')
 
-    e.append(f'<rect x="736" y="{108+dy}" width="176" height="152" rx="4" fill="#99f6e4" stroke="#0f766e" stroke-width="1.3"/>')
-    e.append(f'<text x="824" y="{130+dy}" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#134e4a">36 Resident FFNs</text>')
-    e.append(f'<text x="824" y="{149+dy}" text-anchor="middle" font-size="10.6" font-weight="bold" fill="#115e59">6.52 MiB (81.45%)</text>')
-    e.append(f'<text x="824" y="{169+dy}" text-anchor="middle" font-size="10.2" fill="#134e4a">• W4 weights: 6.19 MiB</text>')
-    e.append(f'<text x="824" y="{187+dy}" text-anchor="middle" font-size="10.2" fill="#134e4a">• Headers: 336 KiB</text>')
-    e.append(f'<text x="824" y="{205+dy}" text-anchor="middle" font-size="10.2" fill="#134e4a">• 427,008 128b words</text>')
-    e.append(f'<text x="824" y="{227+dy}" text-anchor="middle" font-size="10.2" font-weight="bold" fill="#0f766e">24.22× re-reads @ T=500</text>')
-    e.append(f'<text x="824" y="{245+dy}" text-anchor="middle" font-size="10.0" fill="#115e59">157.8 MiB (165.4 MB)</text>')
+    e.append('<rect x="784" y="58" width="132" height="114" rx="5" fill="#99f6e4" stroke="#0f766e" stroke-width="1.3"/>')
+    e.append('<text x="850" y="78" text-anchor="middle" font-size="11.0" font-weight="bold" fill="#134e4a">36 Resident FFNs</text>')
+    e.append('<text x="850" y="96" text-anchor="middle" font-size="10.4" font-weight="bold" fill="#115e59">6.52 MiB / 8 MiB</text>')
+    e.append('<text x="850" y="114" text-anchor="middle" font-size="9.8" fill="#134e4a">W4 wgts + headers</text>')
+    e.append('<text x="850" y="132" text-anchor="middle" font-size="9.8" fill="#0f766e">0 B weight reload</text>')
+    e.append('<text x="850" y="149" text-anchor="middle" font-size="9.8" fill="#0f766e">per utterance</text>')
 
-    e.append(f'<rect x="736" y="{266+dy}" width="176" height="52" rx="4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.1" stroke-dasharray="4,3"/>')
-    e.append(f'<text x="824" y="{287+dy}" text-anchor="middle" font-size="10.8" font-weight="bold" fill="#475569">Free: 1.48 MiB (18.55%)</text>')
-    e.append(f'<text x="824" y="{305+dy}" text-anchor="middle" font-size="9.8" fill="#64748b">(Full enc.: 15.17–15.49 MiB)</text>')
+    e.append('<rect x="784" y="180" width="132" height="38" rx="4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.1" stroke-dasharray="4,3"/>')
+    e.append('<text x="850" y="203" text-anchor="middle" font-size="10.2" font-weight="bold" fill="#475569">Free: 1.48 MiB</text>')
 
-    e.append(f'<rect x="736" y="{326+dy}" width="176" height="58" rx="4" fill="#ffffff" stroke="#0d9488" stroke-width="1.1"/>')
-    e.append(f'<text x="824" y="{345+dy}" text-anchor="middle" font-size="10.8" font-weight="bold" fill="#0f766e">Full-Chip 8 MiB BIST</text>')
-    e.append(f'<text x="824" y="{362+dy}" text-anchor="middle" font-size="10.2" fill="#1e293b">0 bit errors (60–120 MHz)</text>')
-    e.append(f'<text x="824" y="{377+dy}" text-anchor="middle" font-size="9.8" fill="#475569">4 banks × 4,096 × 256</text>')
+    e.append('<rect x="784" y="226" width="132" height="48" rx="4" fill="#ffffff" stroke="#0d9488" stroke-width="1.1"/>')
+    e.append('<text x="850" y="246" text-anchor="middle" font-size="10.4" font-weight="bold" fill="#0f766e">8 MiB Full-Chip BIST</text>')
+    e.append('<text x="850" y="263" text-anchor="middle" font-size="9.8" fill="#1e293b">0 errors (60–120 MHz)</text>')
 
-    e.append(f'<rect x="14" y="{406+dy}" width="912" height="54" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.3"/>')
+    # Bottom verification bar
+    e.append('<rect x="14" y="294" width="912" height="48" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.3"/>')
     e.append(
-        f'<text x="470" y="{427+dy}" text-anchor="middle" font-size="11.4" font-weight="bold" fill="#14532d">'
-        "Byte-Exact Verification: 2,448/2,448 y_out tiles (2,374,656 B) + 144 stress h_post tiles (417,792 B) = 2,792,448 B (0 errors, 0 LSB)</text>"
+        '<text x="470" y="314" text-anchor="middle" font-size="11.2" font-weight="bold" fill="#14532d">'
+        "Bit-Exact Silicon Verification: 2,792,448 B Readback (0 LSB errors) · 24/24 Utterances Closed-Loop ONNX Match</text>"
     )
     e.append(
-        f'<text x="470" y="{448+dy}" text-anchor="middle" font-size="11.0" fill="#166534">'
-        "Closed-Loop Host↔FPGA (T=491, 4.906 s): FPGA FFN = 1.015 s · Wall = 209.7 s (98.9% JTAG) · 24/24 ONNX match</text>"
+        '<text x="470" y="333" text-anchor="middle" font-size="10.6" fill="#166534">'
+        "DMA path: External SDRAM → 256-col Page-Burst Controller → Toggle CDC → 2×4 KiB M9K Ping-Pong → 16 MAC Lanes</text>"
     )
 
     out_path.write_text(wrap_svg(W, H, e), encoding="utf-8")
@@ -230,7 +217,7 @@ def generate_fig2_m9k_bandwidth_tradeoff(mem_data: dict, g4b: dict, out_path: Pa
 
     # Panel (a)
     ml1, mt1, pw1, ph1 = 72, 38, 360, 294
-    ymax1 = 72.0
+    ymax1 = 82.0
 
     def py1(v: float) -> float:
         return mt1 + (1.0 - v / ymax1) * ph1
@@ -239,7 +226,7 @@ def generate_fig2_m9k_bandwidth_tradeoff(mem_data: dict, g4b: dict, out_path: Pa
         f'<text x="{ml1 + pw1/2:.1f}" y="24" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#1e293b">'
         "(a) On-Chip M9K Memory Blocks Required</text>"
     )
-    for yv in [0, 10, 20, 30, 40, 50, 60, 70]:
+    for yv in [0, 10, 20, 30, 40, 50, 60, 70, 80]:
         yy = py1(yv)
         stroke = "#cbd5e1" if yv == 0 else "#e2e8f0"
         e.append(f'<line x1="{ml1}" y1="{yy:.1f}" x2="{ml1+pw1}" y2="{yy:.1f}" stroke="{stroke}" stroke-width="1"/>')
@@ -252,7 +239,7 @@ def generate_fig2_m9k_bandwidth_tradeoff(mem_data: dict, g4b: dict, out_path: Pa
     ]:
         yy = py1(cap)
         e.append(f'<line x1="{ml1}" y1="{yy:.1f}" x2="{ml1+pw1}" y2="{yy:.1f}" stroke="{col}" stroke-width="1.6" stroke-dasharray="5,4"/>')
-        e.append(f'<text x="{lx_lbl}" y="{yy+dy:.1f}" text-anchor="{anc}" font-size="11.2" font-weight="bold" fill="{col}">{lbl}</text>')
+        e.append(f'<text x="{lx_lbl}" y="{yy+dy:.1f}" text-anchor="{anc}" font-size="10.8" font-weight="bold" fill="{col}">{lbl}</text>')
 
     t_vals = [4, 8, 16]
     bar_w = 25.0
@@ -276,18 +263,14 @@ def generate_fig2_m9k_bandwidth_tradeoff(mem_data: dict, g4b: dict, out_path: Pa
             by = py1(val)
             bh = py1(0) - by
             e.append(f'<rect x="{bx:.1f}" y="{by:.1f}" width="{bar_w}" height="{bh:.1f}" fill="{bfill}" stroke="{bstroke}" stroke-width="1.2"/>')
-            e.append(f'<text x="{bx + bar_w/2:.1f}" y="{by - 4:.1f}" text-anchor="middle" font-size="11.2" font-weight="bold" fill="#0f172a">{val}</text>')
+            e.append(f'<text x="{bx + bar_w/2:.1f}" y="{by - 4:.1f}" text-anchor="middle" font-size="11.0" font-weight="bold" fill="#0f172a">{val}</text>')
         e.append(f'<text x="{cx:.1f}" y="{mt1+ph1+24}" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1e293b">T_tile = {tv}</text>')
 
-    e.append(f'<rect x="{ml1+8}" y="{mt1+76}" width="174" height="36" rx="4" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.1"/>')
-    e.append(f'<text x="{ml1+95}" y="{mt1+92}" text-anchor="middle" font-size="10.6" font-weight="bold" fill="#15803d">Meas.: T=4 (26≤46), T=8 (33≤46)</text>')
-    e.append(f'<text x="{ml1+95}" y="{mt1+106}" text-anchor="middle" font-size="10.0" fill="#166534">T=16 (50) &amp; Fused: Est.</text>')
-
-    e.append(f'<rect x="{ml1+8}" y="{mt1+8}" width="202" height="62" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.1"/>')
-    for li, (col, text) in enumerate([("#93c5fd", "Standard (Single Wgt)"), ("#2563eb", "Standard (Double DMA)"), ("#f59e0b", "Hidden-Fused (Double DMA)")]):
-        ly = mt1 + 16 + li * 17
-        e.append(f'<rect x="{ml1+16}" y="{ly}" width="13" height="11" fill="{col}" stroke="#475569" stroke-width="0.6"/>')
-        e.append(f'<text x="{ml1+35}" y="{ly+10}" font-size="10.8" fill="#0f172a">{text}</text>')
+    e.append(f'<rect x="{ml1+8}" y="{mt1+6}" width="194" height="58" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.1"/>')
+    for li, (col, text) in enumerate([("#93c5fd", "Standard (Single Wgt)"), ("#2563eb", "Standard (Double DMA)"), ("#f59e0b", "Hidden-Fused (Dbl DMA)")]):
+        ly = mt1 + 13 + li * 16
+        e.append(f'<rect x="{ml1+16}" y="{ly}" width="12" height="10" fill="{col}" stroke="#475569" stroke-width="0.6"/>')
+        e.append(f'<text x="{ml1+34}" y="{ly+9}" font-size="10.4" fill="#0f172a">{text}</text>')
 
     e.append(f'<text x="22" y="{mt1+ph1/2:.1f}" text-anchor="middle" font-size="12.8" font-weight="bold" fill="#1e293b" transform="rotate(-90 22 {mt1+ph1/2:.1f})">Block RAM Usage (M9K Blocks)</text>')
 
@@ -312,9 +295,11 @@ def generate_fig2_m9k_bandwidth_tradeoff(mem_data: dict, g4b: dict, out_path: Pa
     y200 = py2(200.0)
     y188 = py2(bist_100_rd)
     e.append(f'<line x1="{ml2}" y1="{y200:.1f}" x2="{ml2+pw2}" y2="{y200:.1f}" stroke="#64748b" stroke-width="1.4" stroke-dasharray="3,3"/>')
-    e.append(f'<text x="{ml2+pw2-8}" y="{y200-6:.1f}" text-anchor="end" font-size="11.0" font-weight="bold" fill="#475569">Theoretical Peak: 200.0 MB/s</text>')
+    e.append(f'<rect x="{ml2+pw2-176}" y="{y200-17:.1f}" width="172" height="14" rx="2" fill="#ffffff" fill-opacity="0.88"/>')
+    e.append(f'<text x="{ml2+pw2-6}" y="{y200-6:.1f}" text-anchor="end" font-size="10.4" font-weight="bold" fill="#475569">Theoretical Peak: 200.0 MB/s</text>')
     e.append(f'<line x1="{ml2}" y1="{y188:.1f}" x2="{ml2+pw2}" y2="{y188:.1f}" stroke="#0f766e" stroke-width="1.8" stroke-dasharray="6,3"/>')
-    e.append(f'<text x="{ml2+pw2-8}" y="{y188+15:.1f}" text-anchor="end" font-size="11.0" font-weight="bold" fill="#0f766e">BIST Read: {fmt_en(bist_100_rd, 2)} MB/s</text>')
+    e.append(f'<rect x="{ml2+pw2-118}" y="{y188+3:.1f}" width="114" height="15" rx="2" fill="#ffffff" fill-opacity="0.90"/>')
+    e.append(f'<text x="{ml2+pw2-6}" y="{y188+14:.1f}" text-anchor="end" font-size="10.2" font-weight="bold" fill="#0f766e">BIST: {fmt_en(bist_100_rd, 2)} MB/s</text>')
 
     group_centers2 = [ml2 + 68, ml2 + 192, ml2 + 316]
     bar_w2 = 26.0
@@ -338,7 +323,7 @@ def generate_fig2_m9k_bandwidth_tradeoff(mem_data: dict, g4b: dict, out_path: Pa
             by = py2(val)
             bh = py2(0) - by
             e.append(f'<rect x="{bx:.1f}" y="{by:.1f}" width="{bar_w2}" height="{bh:.1f}" fill="{bfill}" stroke="{bstroke}" stroke-width="1.2"/>')
-            lbl = fmt_en(val, 1 if val >= 80 or val == 40.0 else 2)
+            lbl = fmt_en(val, 1 if val >= 80 or abs(val - 40.0) < 0.2 else 2)
             if abs(val - 165.0) < 0.2:
                 lbl = "165.0"
             elif abs(val - 160.0) < 0.2:
@@ -348,8 +333,8 @@ def generate_fig2_m9k_bandwidth_tradeoff(mem_data: dict, g4b: dict, out_path: Pa
             elif abs(val - 82.5) < 0.2:
                 lbl = "82.5"
             elif abs(val - 41.25) < 0.2:
-                lbl = "41.25"
-            e.append(f'<text x="{bx + bar_w2/2:.1f}" y="{by - 4:.1f}" text-anchor="middle" font-size="10.4" font-weight="bold" fill="#0f172a">{lbl}</text>')
+                lbl = "41.3"
+            e.append(f'<text x="{bx + bar_w2/2:.1f}" y="{by - 4:.1f}" text-anchor="middle" font-size="9.8" font-weight="bold" fill="#0f172a">{lbl}</text>')
         e.append(f'<text x="{cx:.1f}" y="{mt2+ph2+24}" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1e293b">T_tile = {tv}</text>')
 
     e.append(f'<rect x="{ml2+pw2-204}" y="{mt2+8}" width="196" height="62" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.1"/>')
@@ -395,12 +380,12 @@ def generate_fig_rtl_timing(out_path: Path) -> None:
 
     # Row 2: MAC Compute
     e.append('<rect x="228" y="90" width="130" height="46" rx="4" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.6"/>')
-    e.append('<text x="293" y="110" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1e3a8a">C_tile(i−1) [B0]</text>')
-    e.append('<text x="293" y="128" text-anchor="middle" font-size="10.8" fill="#1e40af">T_tile·K_chunk + epi (6/13)</text>')
+    e.append('<text x="293" y="110" text-anchor="middle" font-size="12.2" font-weight="bold" fill="#1e3a8a">C_tile(i−1) [B0]</text>')
+    e.append('<text x="293" y="128" text-anchor="middle" font-size="10.4" fill="#1e40af">T·K + epi (6/13)</text>')
 
     e.append('<rect x="404" y="90" width="142" height="46" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="1.6"/>')
-    e.append('<text x="475" y="110" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#78350f">C_tile(i) [Bank 1]</text>')
-    e.append('<text x="475" y="128" text-anchor="middle" font-size="10.8" fill="#92400e">T_tile·K_chunk + 13 (final K)</text>')
+    e.append('<text x="475" y="110" text-anchor="middle" font-size="12.2" font-weight="bold" fill="#78350f">C_tile(i) [Bank 1]</text>')
+    e.append('<text x="475" y="128" text-anchor="middle" font-size="10.4" fill="#92400e">T·K + 13 (final K)</text>')
 
     # Row 3: Engine Stall
     e.append('<rect x="108" y="158" width="120" height="44" rx="4" fill="#fee2e2" stroke="#dc2626" stroke-width="1.6"/>')
@@ -961,40 +946,37 @@ def generate_fig5_mcu_breakeven(data: dict, g5b: dict, out_path: Path) -> None:
 
 def generate_fig5_60point_cycle_error(out_path: Path) -> None:
     """Two-panel figure* (920x370):
-    (a) Per-frequency mean absolute total-cycle error (%) across 10 SDRAM setpoints (80 MHz engine).
-    (b) 32-offset (0..31) sawtooth validation on 192->640->192 at 80/90 MHz.
+    (a) Per-frequency mean absolute stall error (cycles, log scale) across 10 SDRAM setpoints (80 MHz engine).
+    (b) 32-offset (0..31) sawtooth validation on 192->640->192 at 80/90 MHz (Base vs Stateful WB).
     """
-    tw_path = BUILD_DIR / "three_way_78pt_0ppm_decomp.json"
-    p3_path = BUILD_DIR / "deep_rtl_validation_part3.json"
-    tw = json.loads(tw_path.read_text(encoding="utf-8"))
-    p3 = json.loads(p3_path.read_text(encoding="utf-8"))
-    pf = tw["per_freq_oos"]
-    off_data = p3["offset_0_31_n10_90mhz"]
-    off_rows = off_data["rows"]
+    rev_path = BUILD_DIR / "revision_stateful_refresh_results.json"
+    rev = json.loads(rev_path.read_text(encoding="utf-8"))
+    pf = rev["per_freq_60"]
+    off_rows = rev["offset32_640_rows"]
+    off_stats = rev["offset32_comparison"]["192->640->192"]
 
     W, H = 920, 370
     e: list[str] = [f'<rect x="0" y="0" width="{W}" height="{H}" fill="#ffffff"/>']
 
-    # --- Panel (a): Per-frequency log-scale error ---
+    # --- Panel (a): Per-frequency log-scale stall error (cycles) ---
     ml1, mt1, pw1, ph1 = 68, 38, 372, 260
-    ymin_l, ymax_l = -3.0, 1.15
-    freqs = [row["sdram_mhz"] for row in pf]
+    ymin_l, ymax_l = 0.0, 3.85  # 1 to ~7,000 cycles
     f_min, f_max = 57.0, 123.0
 
     def px1(f: float) -> float:
         return ml1 + ((f - f_min) / (f_max - f_min)) * pw1
 
-    def py1(val_pct: float) -> float:
-        lv = math.log10(max(val_pct, 1e-3))
+    def py1(val_cyc: float) -> float:
+        lv = math.log10(max(val_cyc, 1.0))
         return mt1 + (1.0 - (lv - ymin_l) / (ymax_l - ymin_l)) * ph1
 
     e.append(
-        f'<text x="{ml1 + pw1/2:.1f}" y="22" text-anchor="middle" font-size="13.2" font-weight="bold" fill="#1e293b">'
-        "(a) 60-Condition Mean Error vs. SDRAM Clock (80 MHz Eng.)</text>"
+        f'<text x="{ml1 + pw1/2:.1f}" y="22" text-anchor="middle" font-size="13.0" font-weight="bold" fill="#1e293b">'
+        "(a) 60-Condition Stall MAE vs. SDRAM Clock (80 MHz Eng.)</text>"
     )
-    for yv, lbl in [(0.001, "0.001"), (0.01, "0.01"), (0.1, "0.1"), (1.0, "1"), (10.0, "10")]:
+    for yv, lbl in [(1.0, "1"), (10.0, "10"), (100.0, "100"), (1000.0, "1k")]:
         yy = py1(yv)
-        stroke = "#475569" if yv == 0.001 else "#e2e8f0"
+        stroke = "#475569" if yv == 1.0 else "#e2e8f0"
         e.append(f'<line x1="{ml1}" y1="{yy:.1f}" x2="{ml1+pw1}" y2="{yy:.1f}" stroke="{stroke}" stroke-width="1.1"/>')
         e.append(f'<text x="{ml1-8}" y="{yy+4:.1f}" text-anchor="end" font-size="11.8" fill="#334155">{lbl}</text>')
     for fv in [60, 70, 80, 90, 100, 110, 120]:
@@ -1004,19 +986,23 @@ def generate_fig5_60point_cycle_error(out_path: Path) -> None:
     e.append(f'<rect x="{ml1}" y="{mt1}" width="{pw1}" height="{ph1}" fill="none" stroke="#475569" stroke-width="1.3"/>')
     e.append(f'<text x="{ml1+pw1/2:.1f}" y="{mt1+ph1+38}" text-anchor="middle" font-size="12.2" font-weight="bold" fill="#1e293b">SDRAM Clock Frequency (MHz)</text>')
     e.append(
-        f'<text x="18" y="{mt1+ph1/2:.1f}" text-anchor="middle" font-size="12.4" font-weight="bold" fill="#1e293b" '
-        f'transform="rotate(-90 18 {mt1+ph1/2:.1f})">Mean Total-Cycle Error (%) — Log</text>'
+        f'<text x="18" y="{mt1+ph1/2:.1f}" text-anchor="middle" font-size="12.2" font-weight="bold" fill="#1e293b" '
+        f'transform="rotate(-90 18 {mt1+ph1/2:.1f})">Mean Stall Error (Cycles) — Log</text>'
     )
 
-    # Highlight 80/80 MHz 1:1 CDC point
+    # Repeat-SD floor (~8.04 cycles) and 80/80 MHz 1:1 CDC line
+    y_floor = py1(8.04)
+    e.append(f'<line x1="{ml1}" y1="{y_floor:.1f}" x2="{ml1+pw1}" y2="{y_floor:.1f}" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3,3"/>')
+    e.append(f'<text x="{ml1+pw1-6}" y="{y_floor-5:.1f}" text-anchor="end" font-size="9.8" font-weight="bold" fill="#475569">Repeat SD floor (8.0 cyc)</text>')
+
     x80 = px1(80.0)
     e.append(f'<line x1="{x80:.1f}" y1="{mt1}" x2="{x80:.1f}" y2="{mt1+ph1}" stroke="#fca5a5" stroke-width="1.4" stroke-dasharray="4,3"/>')
 
     series_a = [
-        ("bist_mean_pct", "#dc2626", "6,3", "BIST Roofline", "square"),
-        ("wb_base_mean_pct", "#2563eb", "", "Base White-Box RTL", "circle"),
-        ("wb_ext_mean_pct", "#0d9488", "4,3", "Ext. 1:1 White-Box", "diamond"),
-        ("sim_0ppm_sil_mean_pct", "#7c3aed", "2,2", "0-ppm RTL Sim vs. Sil.", "hollow"),
+        ("bist_stall_mae_cyc", "#dc2626", "6,3", "BIST Roofline", "square"),
+        ("wb_stall_mae_cyc", "#2563eb", "", "Base WB (Duty-Cyc.)", "circle"),
+        ("sf_dropin_stall_mae_cyc", "#0d9488", "4,3", "Stateful Refresh WB", "diamond"),
+        ("sim_0ppm_stall_mae_cyc", "#7c3aed", "2,2", "0-ppm RTL Sim", "hollow"),
     ]
     for key, col, dash, _lbl, shape in series_a:
         pts = [(px1(row["sdram_mhz"]), py1(row[key])) for row in pf]
@@ -1033,21 +1019,17 @@ def generate_fig5_60point_cycle_error(out_path: Path) -> None:
             else:
                 e.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.4" fill="#ffffff" stroke="{col}" stroke-width="1.8"/>')
 
-    # Annotate 80/80 MHz jump
-    y_80_base = py1(next(r["wb_base_mean_pct"] for r in pf if r["sdram_mhz"] == 80))
-    y_80_ext = py1(next(r["wb_ext_mean_pct"] for r in pf if r["sdram_mhz"] == 80))
-    e.append(f'<text x="{x80+7:.1f}" y="{y_80_base-7:.1f}" font-size="10.4" font-weight="bold" fill="#1d4ed8">80/80: 0.080%</text>')
-    e.append(f'<text x="{x80+7:.1f}" y="{y_80_ext+14:.1f}" font-size="10.4" font-weight="bold" fill="#0f766e">Ext: 0.0043%</text>')
+    y_80_base = py1(next(r["wb_stall_mae_cyc"] for r in pf if r["sdram_mhz"] == 80))
+    e.append(f'<text x="{x80+7:.1f}" y="{y_80_base-8:.1f}" font-size="10.0" font-weight="bold" fill="#1d4ed8">80/80 CDC (66 cyc)</text>')
 
-    # Legend for Panel (a) at bottom
-    leg_a = [(ml1 + 2, "#dc2626", "BIST Roofline"), (ml1 + 102, "#2563eb", "Base WB"), (ml1 + 178, "#0d9488", "Ext. 1:1 WB"), (ml1 + 272, "#7c3aed", "0-ppm Sim")]
+    leg_a = [(ml1 + 2, "#dc2626", "BIST"), (ml1 + 58, "#2563eb", "Base WB"), (ml1 + 136, "#0d9488", "Stateful WB"), (ml1 + 236, "#7c3aed", "0-ppm Sim")]
     for lx, col, txt in leg_a:
         e.append(f'<rect x="{lx}" y="{H-24}" width="11" height="11" fill="{col}" rx="2"/>')
-        e.append(f'<text x="{lx+15}" y="{H-14}" font-size="10.8" font-weight="bold" fill="#334155">{txt}</text>')
+        e.append(f'<text x="{lx+15}" y="{H-14}" font-size="10.6" font-weight="bold" fill="#334155">{txt}</text>')
 
     # --- Panel (b): 32-Offset Sawtooth (192->640->192 @ 80/90 MHz) ---
     ml2, mt2, pw2, ph2 = 528, 38, 376, 260
-    ymin2, ymax2 = 65050.0, 65365.0
+    ymin2, ymax2 = 64980.0, 65365.0
 
     def px2(off: float) -> float:
         return ml2 + (off / 31.0) * pw2
@@ -1056,7 +1038,7 @@ def generate_fig5_60point_cycle_error(out_path: Path) -> None:
         return mt2 + (1.0 - (cyc - ymin2) / (ymax2 - ymin2)) * ph2
 
     e.append(
-        f'<text x="{ml2 + pw2/2:.1f}" y="22" text-anchor="middle" font-size="13.2" font-weight="bold" fill="#1e293b">'
+        f'<text x="{ml2 + pw2/2:.1f}" y="22" text-anchor="middle" font-size="13.0" font-weight="bold" fill="#1e293b">'
         "(b) 32-Offset Sawtooth (192→640→192 @ 80/90 MHz)</text>"
     )
     for yv, lbl in [(65100, "65,100"), (65180, "65,180"), (65260, "65,260"), (65340, "65,340")]:
@@ -1070,34 +1052,36 @@ def generate_fig5_60point_cycle_error(out_path: Path) -> None:
     e.append(f'<rect x="{ml2}" y="{mt2}" width="{pw2}" height="{ph2}" fill="none" stroke="#475569" stroke-width="1.3"/>')
     e.append(f'<text x="{ml2+pw2/2:.1f}" y="{mt2+ph2+38}" text-anchor="middle" font-size="12.2" font-weight="bold" fill="#1e293b">128-bit Word Offset (addr₀ mod 32)</text>')
     e.append(
-        f'<text x="466" y="{mt2+ph2/2:.1f}" text-anchor="middle" font-size="12.4" font-weight="bold" fill="#1e293b" '
+        f'<text x="466" y="{mt2+ph2/2:.1f}" text-anchor="middle" font-size="12.2" font-weight="bold" fill="#1e293b" '
         f'transform="rotate(-90 466 {mt2+ph2/2:.1f})">Total Layer Cycles</text>'
     )
 
-    avg_const = sum(r["pred_tot"] for r in off_rows) / len(off_rows)
+    avg_const = sum(r["pred_dc"] for r in off_rows) / len(off_rows)
     y_avg = py2(avg_const)
     e.append(f'<line x1="{ml2}" y1="{y_avg:.1f}" x2="{ml2+pw2}" y2="{y_avg:.1f}" stroke="#d97706" stroke-width="2.0" stroke-dasharray="5,4"/>')
 
-    pts_pred = [(px2(r["offset"]), py2(r["pred_tot"])) for r in off_rows]
+    pts_dc = [(px2(r["offset"]), py2(r["pred_dc"])) for r in off_rows]
+    pts_sf = [(px2(r["offset"]), py2(r["pred_sf_rtl"])) for r in off_rows]
     pts_meas = [(px2(r["offset"]), py2(r["meas_tot_mean"])) for r in off_rows]
-    d_pred = " ".join(f"{'M' if i == 0 else 'L'} {x:.1f} {y:.1f}" for i, (x, y) in enumerate(pts_pred))
+    d_dc = " ".join(f"{'M' if i == 0 else 'L'} {x:.1f} {y:.1f}" for i, (x, y) in enumerate(pts_dc))
+    d_sf = " ".join(f"{'M' if i == 0 else 'L'} {x:.1f} {y:.1f}" for i, (x, y) in enumerate(pts_sf))
     d_meas = " ".join(f"{'M' if i == 0 else 'L'} {x:.1f} {y:.1f}" for i, (x, y) in enumerate(pts_meas))
-    e.append(f'<path d="{d_pred}" fill="none" stroke="#2563eb" stroke-width="2.0" stroke-dasharray="6,3"/>')
+    e.append(f'<path d="{d_dc}" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-dasharray="6,3"/>')
+    e.append(f'<path d="{d_sf}" fill="none" stroke="#0d9488" stroke-width="2.0"/>')
     e.append(f'<path d="{d_meas}" fill="none" stroke="#0f172a" stroke-width="2.1"/>')
-    for x, y in pts_pred:
-        e.append(f'<rect x="{x-2.4:.1f}" y="{y-2.4:.1f}" width="4.8" height="4.8" fill="#2563eb"/>')
+    for x, y in pts_sf:
+        e.append(f'<rect x="{x-2.2:.1f}" y="{y-2.2:.1f}" width="4.4" height="4.4" fill="#0d9488"/>')
     for x, y in pts_meas:
-        e.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.1" fill="#0f172a" stroke="#ffffff" stroke-width="0.7"/>')
+        e.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.0" fill="#0f172a" stroke="#ffffff" stroke-width="0.7"/>')
 
-    # Annotation box in lower-right open area
-    e.append(f'<rect x="{ml2+130}" y="{mt2+ph2-50}" width="236" height="40" rx="4" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>')
-    e.append(f'<text x="{ml2+248}" y="{mt2+ph2-34}" text-anchor="middle" font-size="10.8" font-weight="bold" fill="#1e293b">Slope = {off_data["slope_meas_vs_pred"]:.3f} (n=10/offset)</text>')
-    e.append(f'<text x="{ml2+248}" y="{mt2+ph2-18}" text-anchor="middle" font-size="10.4" fill="#334155">Per-pkt MAE: {off_data["mae_cyc"]:.1f} vs. Avg-page: 63.5 cyc</text>')
+    e.append(f'<rect x="{ml2+124}" y="{mt2+ph2-48}" width="244" height="40" rx="4" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>')
+    e.append(f'<text x="{ml2+246}" y="{mt2+ph2-32}" text-anchor="middle" font-size="10.2" font-weight="bold" fill="#1e293b">Stateful MAE: {off_stats["stateful_rtl_exact"]["mae_cyc"]:.1f} vs. Base: {off_stats["duty_cycle"]["mae_cyc"]:.1f} cyc</text>')
+    e.append(f'<text x="{ml2+246}" y="{mt2+ph2-17}" text-anchor="middle" font-size="10.0" fill="#334155">r = {off_stats["stateful_rtl_exact"]["r"]:.4f} · Avg-page MAE: 63.5 cyc</text>')
 
-    leg_b = [(ml2 + 8, "#0f172a", "Silicon (n=10)"), (ml2 + 122, "#2563eb", "Per-Packet WB"), (ml2 + 244, "#d97706", "Avg-Page Const.")]
+    leg_b = [(ml2 + 2, "#0f172a", "Silicon"), (ml2 + 76, "#0d9488", "Stateful WB"), (ml2 + 180, "#2563eb", "Base WB"), (ml2 + 266, "#d97706", "Avg-Page")]
     for lx, col, txt in leg_b:
         e.append(f'<rect x="{lx}" y="{H-24}" width="11" height="11" fill="{col}" rx="2"/>')
-        e.append(f'<text x="{lx+15}" y="{H-14}" font-size="10.8" font-weight="bold" fill="#334155">{txt}</text>')
+        e.append(f'<text x="{lx+15}" y="{H-14}" font-size="10.6" font-weight="bold" fill="#334155">{txt}</text>')
 
     out_path.write_text(wrap_svg(W, H, e), encoding="utf-8")
 
