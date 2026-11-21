@@ -1059,9 +1059,9 @@ def generate_fig5_60point_cycle_error(out_path: Path) -> None:
         f'transform="rotate(-90 466 {mt2+ph2/2:.1f})">Total Layer Cycles</text>'
     )
 
-    avg_const = sum(r["pred_dc"] for r in off_rows) / len(off_rows)
-    y_avg = py2(avg_const)
-    e.append(f'<line x1="{ml2}" y1="{y_avg:.1f}" x2="{ml2+pw2}" y2="{y_avg:.1f}" stroke="#d97706" stroke-width="2.0" stroke-dasharray="5,4"/>')
+    pts_avg_pl = [(px2(r["offset"]), py2(65090.2 if (r["offset"] % 8 == 0) else 65243.6)) for r in off_rows]
+    d_avg_pl = " ".join(f"{'M' if i == 0 else 'L'} {x:.1f} {y:.1f}" for i, (x, y) in enumerate(pts_avg_pl))
+    e.append(f'<path d="{d_avg_pl}" fill="none" stroke="#d97706" stroke-width="2.0" stroke-dasharray="5,3"/>')
 
     pts_dc = [(px2(r["offset"]), py2(r["pred_dc"])) for r in off_rows]
     pts_sf = [(px2(r["offset"]), py2(r["pred_sf_rtl"])) for r in off_rows]
@@ -1077,11 +1077,11 @@ def generate_fig5_60point_cycle_error(out_path: Path) -> None:
     for x, y in pts_meas:
         e.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.0" fill="#0f172a" stroke="#ffffff" stroke-width="0.7"/>')
 
-    e.append(f'<rect x="{ml2+124}" y="{mt2+ph2-48}" width="244" height="40" rx="4" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>')
-    e.append(f'<text x="{ml2+246}" y="{mt2+ph2-32}" text-anchor="middle" font-size="10.2" font-weight="bold" fill="#1e293b">Stateful MAE: {off_stats["stateful_rtl_exact"]["mae_cyc"]:.1f} vs. Base: {off_stats["duty_cycle"]["mae_cyc"]:.1f} cyc</text>')
-    e.append(f'<text x="{ml2+246}" y="{mt2+ph2-17}" text-anchor="middle" font-size="10.0" fill="#334155">r = {off_stats["stateful_rtl_exact"]["r"]:.4f} · Avg-page MAE: 63.5 cyc</text>')
+    e.append(f'<rect x="{ml2+110}" y="{mt2+ph2-48}" width="258" height="40" rx="4" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.1"/>')
+    e.append(f'<text x="{ml2+239}" y="{mt2+ph2-32}" text-anchor="middle" font-size="10.2" font-weight="bold" fill="#1e293b">Stateful MAE: {off_stats["stateful_rtl_exact"]["mae_cyc"]:.1f} vs. Base: {off_stats["duty_cycle"]["mae_cyc"]:.1f} cyc</text>')
+    e.append(f'<text x="{ml2+239}" y="{mt2+ph2-17}" text-anchor="middle" font-size="10.0" fill="#334155">r = {off_stats["stateful_rtl_exact"]["r"]:.4f} · Per-layout Avg-Pg: 47.4 cyc</text>')
 
-    leg_b = [(ml2 + 2, "#0f172a", "Silicon"), (ml2 + 76, "#0d9488", "Stateful WB"), (ml2 + 180, "#2563eb", "Base WB"), (ml2 + 266, "#d97706", "Avg-Page")]
+    leg_b = [(ml2 + 2, "#0f172a", "Silicon"), (ml2 + 68, "#0d9488", "Stateful WB"), (ml2 + 168, "#2563eb", "Base WB"), (ml2 + 244, "#d97706", "Per-Layout Avg")]
     for lx, col, txt in leg_b:
         e.append(f'<rect x="{lx}" y="{H-24}" width="11" height="11" fill="{col}" rx="2"/>')
         e.append(f'<text x="{lx+15}" y="{H-14}" font-size="10.6" font-weight="bold" fill="#334155">{txt}</text>')
@@ -1134,6 +1134,150 @@ def generate_fig_offset_phase(out_path: Path) -> None:
     out_path.write_text(wrap_svg(W, H, e), encoding="utf-8")
 
 
+def generate_fig_wb_vs_gb_margin(out_path: Path) -> None:
+    """Paired error difference |e_GB60| - |e_BaseWB| vs max(C_dma - C_tile) across all 45 held-out conditions."""
+    import sys
+    sys.path.insert(0, str(ROOT_DIR / "scripts"))
+    from run_revision_stateful_refresh_and_baselines import make_ffn, page_word_counts, parse_sh
+    from run_43_silicon_heldout import predict_rtl_gen
+
+    fc14 = json.loads((BUILD_DIR / "frozen_heldout_predictions_c1_c4.json").read_text(encoding="utf-8"))
+    c14 = json.loads((BUILD_DIR / "c1_c4_silicon_results.json").read_text(encoding="utf-8"))
+    e79 = json.loads((BUILD_DIR / "e7_e9_silicon_results.json").read_text(encoding="utf-8"))["E8_E9_rows"]
+    b156 = json.loads((BUILD_DIR / "b1_b5_b6_silicon_results.json").read_text(encoding="utf-8"))
+    gb_60 = b156["frozen_greybox_constants"]
+    v43 = json.loads((BUILD_DIR / "validation_43_heldout_results.json").read_text(encoding="utf-8"))
+
+    items = []
+    for f_row, m_row in zip(fc14["c1_heldout_extrapolation"], c14["c1_heldout"]["rows"]):
+        dm, df = parse_sh(m_row["shape"]); wl = make_ffn(dm, df, 4, seed=1)
+        items.append(("C1", 4, 80.0, 100.0, f_row["l1_base"], f_row["l2_base"], wl["l1_meta"], wl["l2_meta"], m_row["meas_mean"]))
+    for f_row, m_row in zip(fc14["c2_t8_new_clocks"], c14["c2_t8_new_clocks"]):
+        dm, df = parse_sh(m_row["shape"]); wl = make_ffn(dm, df, 8, seed=1)
+        items.append(("C2", 8, float(m_row["eng_mhz"]), float(m_row["sdram_mhz"]), f_row["l1_base"], f_row["l2_base"], wl["l1_meta"], wl["l2_meta"], m_row["meas_mean"]))
+    for r in e79:
+        if r["tag"] != "e80_s64": continue
+        dm, df = parse_sh(r["shape"]); wl = make_ffn(dm, df, 4, seed=1)
+        items.append(("E9", 4, float(r["eng_mhz"]), float(r["sdram_mhz"]), r["l1_base"], r["l2_base"], wl["l1_meta"], wl["l2_meta"], r["meas_mean"]))
+    for r in b156["b1_t4_records"]:
+        dm, df = parse_sh(r["shape"]); wl = make_ffn(dm, df, 4, seed=1)
+        items.append(("B1_T4", 4, float(r["eng_mhz"]), float(r["sdram_mhz"]), r["l1_base"], r["l2_base"], wl["l1_meta"], wl["l2_meta"], r["meas_tot_mean"]))
+    for r in b156["b1_t8_records"]:
+        dm, df = parse_sh(r["shape"]); wl = make_ffn(dm, df, 8, seed=1)
+        items.append(("B1_T8", 8, float(r["eng_mhz"]), float(r["sdram_mhz"]), r["l1_base"], r["l2_base"], wl["l1_meta"], wl["l2_meta"], r["meas_tot_mean"]))
+    for key, tt, sh_list in [
+        ("t4_e80_s100_heldout", 4, [(128, 256), (320, 960)]),
+        ("t4_e70_s100_heldout", 4, [(128, 256), (320, 960)]),
+        ("t8_e70_s100_heldout", 8, [(128, 256), (192, 384), (256, 576), (256, 960), (512, 1536)]),
+    ]:
+        addr = 0
+        for idx, ((dm, df), r) in enumerate(zip(sh_list, v43[key])):
+            wl = make_ffn(dm, df, tt, seed=20261160 + idx + tt * 100)
+            b1 = addr; addr += len(wl["l1_words"]); b2 = addr; addr += len(wl["l2_words"])
+            items.append(("Val43", tt, float(r["eng_nom"]), float(r["sd_nom"]), b1, b2, wl["l1_meta"], wl["l2_meta"], r["meas_mean"]))
+
+    pts = []
+    for suite, tt, eng, sd, b1, b2, m1, m2, meas in items:
+        ri = int(sd * 14); tr = 9 if sd > 100 else 8
+        wb = predict_rtl_gen(b1, m1, tt, eng, sd, ri, tr) + predict_rtl_gen(b2, m2, tt, eng, sd, ri, tr)
+        def gb_l(b, m):
+            nt, kch, kc = m["n_tiles"], m["k_chunks"], m["k_chunk"]; P = 8 + m["w_words_per_chunk"]; M = nt * kch
+            ct = [tt * kc + (6.0 if (i % kch) < kch - 1 else 13.0) for i in range(M)]
+            rf = 1.0 + gb_60["t_rfc"] / ri
+            cd = [((8 * P + gb_60["c_page"] * len(page_word_counts(b + i * P, P)) + 1) * rf + gb_60["c_cdc_sd"]) * (eng / sd) + gb_60["c_cdc_eng"] for i in range(M)]
+            return sum(ct) + cd[0] + sum(max(0.0, cd[i] - ct[i - 1]) for i in range(1, M))
+        gb = gb_l(b1, m1) + gb_l(b2, m2)
+        margins = []
+        for b, m in [(b1, m1), (b2, m2)]:
+            nt, kch, kc = m["n_tiles"], m["k_chunks"], m["k_chunk"]; P = 8 + m["w_words_per_chunk"]; M = nt * kch
+            ct = [tt * kc + (6.0 if (i % kch) < kch - 1 else 13.0) for i in range(M)]
+            rf = 1.0 + tr / ri
+            cd = [((8 * P + 14.0 * len(page_word_counts(b + i * P, P)) + 1) * rf + 3.0) * (eng / sd) + 4.0 for i in range(M)]
+            margins.append(sum(c - t for c, t in zip(cd, ct)) / M)
+        pts.append((suite, tt, eng, sd, max(margins), abs(gb - meas) - abs(wb - meas)))
+
+    W, H = 560, 290
+    ml, mt, pw, ph = 68, 30, 468, 194
+    e: list[str] = [arrow_defs(), f'<rect x="0" y="0" width="{W}" height="{H}" fill="#ffffff"/>']
+
+    xmin, xmax = -1850.0, 850.0
+    def px(v: float) -> float:
+        return ml + (v - xmin) / (xmax - xmin) * pw
+
+    # Symmetric log transform: symlog(y) = sign(y) * log10(1 + |y|/10)
+    def symlog(v: float) -> float:
+        return math.copysign(math.log10(1.0 + abs(v) / 10.0), v)
+
+    ymin_s, ymax_s = symlog(-50.0), symlog(700.0)
+    def py(v: float) -> float:
+        return mt + (1.0 - (symlog(v) - ymin_s) / (ymax_s - ymin_s)) * ph
+
+    # Shaded regimes
+    x0 = px(0.0)
+    e.append(f'<rect x="{ml}" y="{mt}" width="{x0-ml:.1f}" height="{ph}" fill="#f8fafc"/>')
+    e.append(f'<rect x="{x0:.1f}" y="{mt}" width="{ml+pw-x0:.1f}" height="{ph}" fill="#fff7ed"/>')
+    e.append(f'<line x1="{x0:.1f}" y1="{mt}" x2="{x0:.1f}" y2="{mt+ph}" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4,3"/>')
+
+    y0 = py(0.0)
+    e.append(f'<line x1="{ml}" y1="{y0:.1f}" x2="{ml+pw}" y2="{y0:.1f}" stroke="#475569" stroke-width="1.2"/>')
+    for yv, lbl in [(-30, "-30"), (-10, "-10"), (0, "0"), (10, "+10"), (50, "+50"), (200, "+200"), (500, "+500")]:
+        yy = py(yv)
+        e.append(f'<line x1="{ml}" y1="{yy:.1f}" x2="{ml+pw}" y2="{yy:.1f}" stroke="#e2e8f0" stroke-width="1.0"/>')
+        e.append(f'<text x="{ml-7}" y="{yy+3.5:.1f}" text-anchor="end" font-size="10.2" fill="#334155">{lbl}</text>')
+    for xv in [-1500, -1000, -500, 0, 500]:
+        xx = px(xv)
+        e.append(f'<line x1="{xx:.1f}" y1="{mt}" x2="{xx:.1f}" y2="{mt+ph}" stroke="#f1f5f9" stroke-width="1.0"/>')
+        e.append(f'<text x="{xx:.1f}" y="{mt+ph+15}" text-anchor="middle" font-size="10.2" fill="#334155">{xv:+d}</text>')
+
+    e.append(f'<rect x="{ml}" y="{mt}" width="{pw}" height="{ph}" fill="none" stroke="#475569" stroke-width="1.2"/>')
+    e.append(f'<text x="{ml+pw/2:.1f}" y="18" text-anchor="middle" font-size="12.0" font-weight="bold" fill="#1e293b">Paired Error Advantage |e_GB60| − |e_BaseWB| vs. Bandwidth Margin (N = 45 Held-Out)</text>')
+    e.append(f'<text x="{ml+pw/2:.1f}" y="{mt+ph+32}" text-anchor="middle" font-size="11.0" font-weight="bold" fill="#1e293b">Max Layer Margin  mean(C_dma − C_tile)  [cycles/packet]</text>')
+    e.append(f'<text x="16" y="{mt+ph/2:.1f}" text-anchor="middle" font-size="11.0" font-weight="bold" fill="#1e293b" transform="rotate(-90 16 {mt+ph/2:.1f})">|e_GB60| − |e_BaseWB| (cycles, symlog)</text>')
+
+    e.append(f'<text x="{ml+8}" y="{mt+14}" font-size="9.5" font-weight="bold" fill="#475569">Compute-Saturated (C_dma &lt; C_tile)</text>')
+    e.append(f'<text x="{ml+pw-6}" y="{mt+14}" text-anchor="end" font-size="9.5" font-weight="bold" fill="#9a3412">Bandwidth-Bound (C_dma &gt; C_tile)</text>')
+    e.append(f'<text x="{ml+8}" y="{y0-6:.1f}" font-size="9.0" fill="#0f766e">Base WB better (&gt;0)</text>')
+    e.append(f'<text x="{ml+8}" y="{y0+12:.1f}" font-size="9.0" fill="#7c3aed">GB60 better (&lt;0)</text>')
+
+    styles = {
+        "C1": ("#2563eb", "circle"),
+        "C2": ("#0ea5e9", "square"),
+        "E9": ("#7c3aed", "diamond"),
+        "B1_T4": ("#d97706", "triangle"),
+        "B1_T8": ("#dc2626", "star"),
+        "Val43": ("#059669", "circle"),
+    }
+    for suite, tt, eng, sd, margin, diff in pts:
+        col, shp = styles[suite]
+        x, y = px(margin), py(diff)
+        if shp == "circle":
+            e.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.6" fill="{col}" stroke="#ffffff" stroke-width="0.7"/>')
+        elif shp == "square":
+            e.append(f'<rect x="{x-3.3:.1f}" y="{y-3.3:.1f}" width="6.6" height="6.6" fill="{col}" stroke="#ffffff" stroke-width="0.7"/>')
+        elif shp == "diamond":
+            e.append(f'<polygon points="{x:.1f},{y-4.5:.1f} {x+4.5:.1f},{y:.1f} {x:.1f},{y+4.5:.1f} {x-4.5:.1f},{y:.1f}" fill="{col}" stroke="#ffffff" stroke-width="0.7"/>')
+        elif shp == "triangle":
+            e.append(f'<polygon points="{x:.1f},{y-4.3:.1f} {x+4.2:.1f},{y+3.5:.1f} {x-4.2:.1f},{y+3.5:.1f}" fill="{col}" stroke="#ffffff" stroke-width="0.7"/>')
+        else:
+            e.append(f'<rect x="{x-3.8:.1f}" y="{y-3.8:.1f}" width="7.6" height="7.6" rx="1.5" fill="{col}" stroke="#ffffff" stroke-width="0.9"/>')
+
+    # Annotate key clusters
+    e.append(f'<text x="{px(340):.1f}" y="{py(490)+15:.1f}" text-anchor="end" font-size="9.3" font-weight="bold" fill="#991b1b">B1 T=8, 80/40 MHz (2:1)</text>')
+    e.append(f'<text x="{px(340):.1f}" y="{py(490)+27:.1f}" text-anchor="end" font-size="9.0" fill="#991b1b">+99 to +491 cyc (Base WB)</text>')
+    e.append(f'<text x="{px(730):.1f}" y="{py(-28)+14:.1f}" text-anchor="end" font-size="9.2" font-weight="bold" fill="#5b21b6">E9 T=4, 80/64 (5:4, in-range)</text>')
+    e.append(f'<text x="{px(-400):.1f}" y="{py(18):.1f}" text-anchor="middle" font-size="9.0" fill="#334155">C2 T=8 &amp; B1 T=8 (50–110M): clipped by max(0,·)</text>')
+
+    leg = [
+        (ml, "#2563eb", "C1 (Frozen)"), (ml + 82, "#0ea5e9", "C2 T=8 (Frozen)"), (ml + 186, "#7c3aed", "E9 (Frozen)"),
+        (ml + 266, "#d97706", "B1 T=4"), (ml + 328, "#dc2626", "B1 T=8"), (ml + 392, "#059669", "Val43"),
+    ]
+    for lx, col, txt in leg:
+        e.append(f'<rect x="{lx}" y="{H-19}" width="9" height="9" fill="{col}" rx="1.5"/>')
+        e.append(f'<text x="{lx+12}" y="{H-11}" font-size="9.5" font-weight="bold" fill="#334155">{txt}</text>')
+
+    out_path.write_text(wrap_svg(W, H, e), encoding="utf-8")
+
+
 def main() -> int:
     FIG_DIR.mkdir(parents=True, exist_ok=True)
     g4b = json.loads((BUILD_DIR / "g4b_sdram_results.json").read_text(encoding="utf-8"))
@@ -1155,6 +1299,7 @@ def main() -> int:
         FIG_DIR / "fig3b_oos_stall_prediction.svg",
         FIG_DIR / "fig4_wer_pareto_and_tones.svg",
         FIG_DIR / "fig5_mcu_breakeven.svg",
+        FIG_DIR / "fig_wb_vs_gb_margin.svg",
     ]
 
     generate_fig1_hybrid_architecture(outputs[0])
@@ -1166,6 +1311,7 @@ def main() -> int:
     generate_fig3b_oos_stall_prediction(oos, outputs[6])
     generate_fig4_wer_pareto_and_tones(paired, abl_tone, outputs[7])
     generate_fig5_mcu_breakeven(mcu_data, g5b_data, outputs[8])
+    generate_fig_wb_vs_gb_margin(outputs[9])
 
     for p in outputs:
         ET.parse(p)
